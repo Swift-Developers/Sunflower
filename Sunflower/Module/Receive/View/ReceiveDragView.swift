@@ -8,7 +8,7 @@
 import Cocoa
 
 protocol ReceiveDragViewDelegate: NSObjectProtocol {
-    func draggingFileAccept(file path: URL)
+    func draggingFileAccept(file url: URL)
 }
 
 class ReceiveDragView: NSView {

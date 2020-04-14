@@ -12,9 +12,32 @@ class ReceivePopoverController: ViewController<ReceivePopoverView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setup()
+    }
+    
+    private func setup() {
+        container.dragView.delegate = self
     }
     
     static func instance() -> Self {
         return StoryBoard.receive.instance()
+    }
+}
+
+
+extension ReceivePopoverController {
+    
+    private func handle(file url: URL) {
+        Analysis.ipa.handle(file: url) { (result) in
+            
+        }
+    }
+}
+
+extension ReceivePopoverController: ReceiveDragViewDelegate {
+    
+    func draggingFileAccept(file url: URL) {
+        handle(file: url)
+        AppDelegate.shared.popover.close()
     }
 }

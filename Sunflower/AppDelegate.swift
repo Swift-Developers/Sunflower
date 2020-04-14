@@ -14,7 +14,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSApplication.shared.delegate as! AppDelegate
     }
     
-    private let popover = NSPopover()
+    let popover = NSPopover()
     let statusBar = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {

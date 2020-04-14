@@ -11,7 +11,12 @@ class ReceiveController: ViewController<ReceiveView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        setup()
+    }
+    
+    private func setup() {
+        container.dragView.delegate = self
     }
     
     @IBAction func addAction(_ sender: NSButton) {
@@ -26,23 +31,33 @@ class ReceiveController: ViewController<ReceiveView> {
         panel.canCreateDirectories = false
         panel.allowsMultipleSelection = false
         panel.allowedFileTypes = Receive.types
-        panel.beginSheetModal(for: window) { (response) in
-            switch response {
-            case .OK:
-                guard let url = panel.url else {
-                    return
-                }
-                Analysis.ipa.handle(file: url) { (result) in
-                    
-                }
-                
-            default: break
-            }
+        panel.beginSheetModal(for: window) { [weak self] (response) in
+            guard let self = self else { return }
+            guard response == .OK else { return }
+            guard let url = panel.url else { return }
+            
+            self.handle(file: url)
         }
         
     }
     
     static func instance() -> Self {
         return StoryBoard.receive.instance()
+    }
+}
+
+extension ReceiveController {
+    
+    private func handle(file url: URL) {
+        Analysis.ipa.handle(file: url) { (result) in
+            
+        }
+    }
+}
+
+extension ReceiveController: ReceiveDragViewDelegate {
+    
+    func draggingFileAccept(file url: URL) {
+        handle(file: url)
     }
 }
