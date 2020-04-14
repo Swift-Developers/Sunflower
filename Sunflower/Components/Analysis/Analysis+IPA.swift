@@ -107,8 +107,7 @@ extension Analysis {
             let data = try Data(contentsOf: app.appendingPathComponent("Info.plist"))
             let icon = NSImage(contentsOf: app.appendingPathComponent("AppIcon60x60@2x.png"))
             let info = try PropertyListDecoder().decode(InfoPlist.self, from: data)
-            let attributes: [FileAttributeKey : Any] = try FileManager.default.attributesOfItem(atPath: app.path)
-            let date = attributes[.creationDate] as? Date
+            let date = try FileManager.default.attributesOfItem(atPath: app.path)[.creationDate] as? Date
             
             completion(
                 .success(
