@@ -20,9 +20,21 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setup()
     }
-
+    
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
+    }
+    
+    /// 设置关闭窗口之后点击Dock中的图标可以再次打开窗口
+    /// - Parameters:
+    ///   - sender: 当前应用
+    ///   - flag: 是否有显示的窗口
+    /// - Returns: 是否重新打开
+    func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+        for window in sender.windows where !flag {
+            window.makeKeyAndOrderFront(self)
+        }
+        return !flag
     }
 }
 
