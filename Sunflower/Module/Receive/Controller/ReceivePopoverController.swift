@@ -28,7 +28,7 @@ class ReceivePopoverController: ViewController<ReceivePopoverView> {
 extension ReceivePopoverController {
     
     private func handle(file url: URL) {
-        Analysis.ipa.handle(file: url) { (result) in
+        Analysis.handle(file: url) { (result) in
             
         }
     }

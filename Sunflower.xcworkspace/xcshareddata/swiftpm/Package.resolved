@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "swift-argument-parser",
+        "repositoryURL": "https://github.com/apple/swift-argument-parser",
+        "state": {
+          "branch": null,
+          "revision": "8d31a0905c346a45c87773ad50862b5b3df8dff6",
+          "version": "0.0.4"
+        }
+      },
+      {
+        "package": "AXML",
+        "repositoryURL": "https://github.com/xavierLowmiller/swift-axml-converter",
+        "state": {
+          "branch": null,
+          "revision": "deed132a00252da06f54369351ad396ef8b37fde",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}

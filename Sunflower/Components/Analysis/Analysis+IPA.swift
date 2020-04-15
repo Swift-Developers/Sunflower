@@ -10,18 +10,13 @@ import AppKit
 extension Analysis {
     
     struct IPA {
-        let url: URL
-        let info: Info
-        
-        struct Info {
-            let icon: NSImage
-            let name: String
-            let version: String
-            let bundleId: String
-            let bundleName: String
-            let bundleVersion: String
-            let creationDate: Date
-        }
+        let icon: NSImage
+        let name: String
+        let version: String
+        let bundleId: String
+        let bundleName: String
+        let bundleVersion: String
+        let creationDate: Date
     }
 }
 
@@ -37,12 +32,16 @@ extension Analysis.Error {
 
 extension Analysis {
     
-    func handleIPA(file url: URL, with completion: @escaping ((Result) -> Void)) {
+    /// 解析处理 IPA
+    /// - Parameters:
+    ///   - url: 文件URL
+    ///   - completion: 完成回调
+    static func handleIPA(file url: URL, with completion: @escaping ((Result<IPA>) -> Void)) {
         guard url.isFileURL else {
             completion(.failure(.fileURLInvalid))
             return
         }
-        guard url.pathExtension.lowercased() == "ipa" else {
+        guard url.pathExtension.lowercased() == Analysis.ipa.rawValue else {
             completion(.failure(.fileTypeInvalid))
             return
         }
@@ -58,29 +57,32 @@ extension Analysis {
         }
     }
     
-    private func unzip(file url: URL, with completion: @escaping ((Swift.Result<URL, Error>) -> Void)) {
-        let working = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("com.sunflower.app.analysis.ipa.cache")
+    private static func unzip(file url: URL, with completion: @escaping ((Swift.Result<URL, Error>) -> Void)) {
+        let working = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("analysis.ipa.cache")
         let payload = working.appendingPathComponent("Payload")
         // 清理工作路径
         try? FileManager.default.removeItem(at: working)
         
         do {
             let bin = URL(fileURLWithPath: "/usr/bin/unzip")
-            try Process.run(bin, arguments: ["-q", url.path, "-d", working.path]) { process in
-                process.waitUntilExit()
-                guard FileManager.default.fileExists(atPath: payload.path) else {
-                    completion(.failure(.ipa(.payload)))
-                    return
-                }
-                completion(.success(payload))
+            let process = Process()
+            process.executableURL = bin
+            process.arguments = ["-q", url.path, "-d", working.path]
+            try process.run()
+            process.waitUntilExit()
+            
+            guard FileManager.default.fileExists(atPath: payload.path) else {
+                completion(.failure(.ipa(.payload)))
+                return
             }
+            completion(.success(payload))
             
         } catch {
             completion(.failure(.ipa(.unzip)))
         }
     }
     
-    private func info(file url: URL, with completion: @escaping ((Result) -> Void)) {
+    private static func info(file url: URL, with completion: @escaping ((Result<IPA>) -> Void)) {
         
         struct InfoPlist: Codable {
             let name: String
@@ -111,19 +113,14 @@ extension Analysis {
             
             completion(
                 .success(
-                    .ipa(
-                        .init(
-                            url: url,
-                            info: .init(
-                                icon: icon ?? .init(),
-                                name: info.name,
-                                version: info.version,
-                                bundleId: info.bundleId,
-                                bundleName: info.bundleName,
-                                bundleVersion: info.bundleVersion,
-                                creationDate: date ?? .distantPast
-                            )
-                        )
+                    .init(
+                        icon: icon ?? .init(),
+                        name: info.name,
+                        version: info.version,
+                        bundleId: info.bundleId,
+                        bundleName: info.bundleName,
+                        bundleVersion: info.bundleVersion,
+                        creationDate: date ?? .distantPast
                     )
                 )
             )

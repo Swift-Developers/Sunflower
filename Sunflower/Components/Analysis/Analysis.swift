@@ -17,34 +17,33 @@ extension Analysis {
     /// 解析处理
     /// - Parameters:
     ///   - url: 文件URL
-    ///   - completion: 完成回调
-    func handle(file url: URL, with completion: @escaping ((Result) -> Void)) {
-        switch self {
+    ///   - completion: 完成回调 (包名)
+    static func handle(file url: URL, with completion: @escaping ((Result<String>) -> Void)) {
+        guard url.isFileURL else {
+            completion(.failure(.fileURLInvalid))
+            return
+        }
+        
+        switch Analysis(rawValue: url.pathExtension.lowercased()) {
         case .ipa:
-            handleIPA(file: url, with: completion)
+            handleIPA(file: url) { result in
+                completion(result.map { $0.bundleId })
+            }
+            
         case .apk:
-            handleAPK(file: url, with: completion)
+            handleAPK(file: url) { result in
+                completion(result.map { $0.name })
+            }
+            
+        default:
+            completion(.failure(.fileTypeInvalid))
         }
     }
 }
 
 extension Analysis {
     
-    struct Info {
-        let id: String  // 包名
-        let url: String // 本地路径
-    }
-}
-
-extension Analysis {
-    
-    typealias Result = Swift.Result<Analysis.Value, Analysis.Error>
-    
-    /// 解析结果
-    enum Value {
-        case ipa(IPA)
-        case apk(APK)
-    }
+    typealias Result<T> = Swift.Result<T, Analysis.Error>
     
     /// 解析异常
     enum Error: Swift.Error {
