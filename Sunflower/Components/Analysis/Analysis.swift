@@ -18,7 +18,7 @@ extension Analysis {
     /// - Parameters:
     ///   - url: 文件URL
     ///   - completion: 完成回调 (包名)
-    static func handle(file url: URL, with completion: @escaping ((Result<String>) -> Void)) {
+    static func handle(file url: URL, with completion: @escaping ((Result<Info>) -> Void)) {
         guard url.isFileURL else {
             completion(.failure(.fileURLInvalid))
             return
@@ -27,12 +27,12 @@ extension Analysis {
         switch Analysis(rawValue: url.pathExtension.lowercased()) {
         case .ipa:
             handleIPA(file: url) { result in
-                completion(result.map { $0.bundleId })
+                completion(result.map { .ipa($0) })
             }
             
         case .apk:
             handleAPK(file: url) { result in
-                completion(result.map { $0.name })
+                completion(result.map { .apk($0) })
             }
             
         default:
@@ -44,6 +44,11 @@ extension Analysis {
 extension Analysis {
     
     typealias Result<T> = Swift.Result<T, Analysis.Error>
+    
+    enum Info {
+        case ipa(IPA)
+        case apk(APK)
+    }
     
     /// 解析异常
     enum Error: Swift.Error {

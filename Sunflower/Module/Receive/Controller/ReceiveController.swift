@@ -49,8 +49,24 @@ class ReceiveController: ViewController<ReceiveView> {
 extension ReceiveController {
     
     private func handle(file url: URL) {
-        Analysis.handle(file: url) { (result) in
+        Analysis.handle(file: url) { [weak self] (result) in
+            guard let self = self else { return }
             
+            switch result {
+            case .success(let value):
+                switch value {
+                case .ipa(let info):
+                    let controller = PgyerIPAController.instance(info)
+                    
+                    NSApplication.shared.mainWindow?.contentViewController = controller
+                    
+                case .apk(let info):
+                    break
+                }
+                
+            case .failure(let error):
+                print(error)
+            }
         }
     }
 }

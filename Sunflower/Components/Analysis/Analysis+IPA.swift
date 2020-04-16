@@ -20,6 +20,25 @@ extension Analysis {
     }
 }
 
+extension Analysis.IPA {
+    
+    struct Embedded: Codable {
+        let name: String                // 描述文件名称
+        let appIDName: String           // 应用ID名称
+        let appIDPrefix: [String]       // 应用ID前缀
+        let teamID: [String]            // 团队ID
+        let teamName: String            // 团队名称
+        let platform: [String]          // 支持平台
+        
+        let creationDate: Date          // 证书创建时间
+        let expirationDate: Date        // 证书到期时间
+        
+        let devices: [String]?          // UDID
+        
+        let UUID: String                // UUID
+    }
+}
+
 extension Analysis.Error {
     
     enum IPA {
@@ -27,6 +46,7 @@ extension Analysis.Error {
         case payload
         case plist
         case app
+        case embedded
     }
 }
 
@@ -82,6 +102,76 @@ extension Analysis {
         }
     }
     
+    private static func embedded(file url: URL, with completion: @escaping ((Result<IPA.Embedded>) -> Void)) {
+        
+        struct Embedded: Codable {
+            let name: String                // 描述文件名称
+            let appIDName: String           // 应用ID名称
+            let appIDPrefix: [String]       // 应用ID前缀
+            let teamID: [String]            // 团队ID
+            let teamName: String            // 团队名称
+            let platform: [String]          // 支持平台
+            
+            let creationDate: Date          // 证书创建时间
+            let expirationDate: Date        // 证书到期时间
+            
+            let devices: [String]?          // UDID
+            
+            let UUID: String                // UUID
+            
+            enum CodingKeys: String, CodingKey {
+                case name = "Name"
+                case appIDName = "AppIDName"
+                case appIDPrefix = "ApplicationIdentifierPrefix"
+                case teamID = "TeamIdentifier"
+                case teamName = "TeamName"
+                case platform = "Platform"
+                case creationDate = "CreationDate"
+                case expirationDate = "ExpirationDate"
+                case devices = "ProvisionedDevices"
+                case UUID = "UUID"
+            }
+        }
+        
+        do {
+            let input = url.appendingPathComponent("embedded.mobileprovision")
+            let output = url.appendingPathComponent("embedded.plist")
+            let bin = URL(fileURLWithPath: "/usr/bin/security")
+            let process = Process()
+            process.executableURL = bin
+            process.arguments = ["cms", "-D", "-i", input.path, "-o", output.path]
+            try process.run()
+            process.waitUntilExit()
+            
+            guard FileManager.default.fileExists(atPath: output.path) else {
+                completion(.failure(.ipa(.embedded)))
+                return
+            }
+            let data = try Data(contentsOf: output)
+            let model = try PropertyListDecoder().decode(Embedded.self, from: data)
+            
+            completion(
+                .success(
+                    .init(
+                        name: model.name,
+                        appIDName: model.appIDName,
+                        appIDPrefix: model.appIDPrefix,
+                        teamID: model.teamID,
+                        teamName: model.teamName,
+                        platform: model.platform,
+                        creationDate: model.creationDate,
+                        expirationDate: model.expirationDate,
+                        devices: model.devices,
+                        UUID: model.UUID
+                    )
+                )
+            )
+            
+        } catch {
+            completion(.failure(.ipa(.embedded)))
+        }
+    }
+    
     private static func info(file url: URL, with completion: @escaping ((Result<IPA>) -> Void)) {
         
         struct InfoPlist: Codable {
@@ -110,6 +200,11 @@ extension Analysis {
             let icon = NSImage(contentsOf: app.appendingPathComponent("AppIcon60x60@2x.png"))
             let info = try PropertyListDecoder().decode(InfoPlist.self, from: data)
             let date = try FileManager.default.attributesOfItem(atPath: app.path)[.creationDate] as? Date
+            
+            embedded(file: app) { result in
+                print(result)
+            }
+            
             
             completion(
                 .success(
