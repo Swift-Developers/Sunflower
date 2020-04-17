@@ -2,7 +2,7 @@ import Moya
 import Alamofire
 
 extension API {
-    static let pgyer = MoyaProvider<APIPgyerTarget>(plugins: plugins)
+    static let pgyer = MoyaProvider<APIPgyerTarget>(plugins: plugins + [])
 }
 
 enum APIPgyerTarget {
@@ -14,7 +14,6 @@ enum APIPgyerTarget {
     case info
     /// app列表
     case list
-    
 }
 
 extension APIPgyerTarget: TargetType {
@@ -51,6 +50,10 @@ extension APIPgyerTarget: TargetType {
             )
         case .list:
             return .json(["_api_key": Pgyer.apiKey])
+            
+        case .info:
+            return .json(["_api_key": Pgyer.apiKey,])
+            
         default:
             return .requestPlain
         }

@@ -10,8 +10,8 @@ public extension MoyaProvider {
     private typealias Null = API.Null
     private struct Response: Decodable {
         let code: Int
-        let message: String
-    }   
+        let msg: String
+    }
     
     /// 加载 (无结果)
     ///
@@ -131,7 +131,7 @@ public extension MoyaProvider {
                     } else {
                         DispatchQueue.main.async {
                             guard !cancellable.isCancelled else { return }
-                            prompt?(.service(.make(response.code)), response.message)
+                            prompt?(.service(.make(response.code)), response.msg)
                             completion(.failure(.service(.make(response.code))))
                         }
                     }

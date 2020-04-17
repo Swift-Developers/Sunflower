@@ -35,6 +35,7 @@
 		9B4EFA1224483BAE00C1BD84 /* resources.arsc in Resources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1124483BAE00C1BD84 /* resources.arsc */; };
 		9B4EFA1C244886DB00C1BD84 /* PgyerIPAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1B244886DB00C1BD84 /* PgyerIPAController.swift */; };
 		9B4EFA1E244886EE00C1BD84 /* PgyerIPAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1D244886EE00C1BD84 /* PgyerIPAView.swift */; };
+		9B4EFA2024499C5A00C1BD84 /* APIPgyerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1F24499C5A00C1BD84 /* APIPgyerPlugin.swift */; };
 		9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0524458A5E0084563C /* Pgyer.storyboard */; };
 		9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0724458A7A0084563C /* PgyerController.swift */; };
 		9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0924458A900084563C /* PgyerView.swift */; };
@@ -83,6 +84,7 @@
 		9B4EFA1124483BAE00C1BD84 /* resources.arsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = resources.arsc; sourceTree = "<group>"; };
 		9B4EFA1B244886DB00C1BD84 /* PgyerIPAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerIPAController.swift; sourceTree = "<group>"; };
 		9B4EFA1D244886EE00C1BD84 /* PgyerIPAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerIPAView.swift; sourceTree = "<group>"; };
+		9B4EFA1F24499C5A00C1BD84 /* APIPgyerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPgyerPlugin.swift; sourceTree = "<group>"; };
 		9BEA1A0524458A5E0084563C /* Pgyer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pgyer.storyboard; sourceTree = "<group>"; };
 		9BEA1A0724458A7A0084563C /* PgyerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerController.swift; sourceTree = "<group>"; };
 		9BEA1A0924458A900084563C /* PgyerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerView.swift; sourceTree = "<group>"; };
@@ -282,6 +284,7 @@
 			isa = PBXGroup;
 			children = (
 				9B267C2C24447937002F571E /* APITimeoutPlugin.swift */,
+				9B4EFA1F24499C5A00C1BD84 /* APIPgyerPlugin.swift */,
 			);
 			path = Plugin;
 			sourceTree = "<group>";
@@ -512,6 +515,7 @@
 				9B267C4324447979002F571E /* ReceiveView.swift in Sources */,
 				9BEA1A0C2445944F0084563C /* ReceivePopoverController.swift in Sources */,
 				9B4EFA102448330D00C1BD84 /* parse.c in Sources */,
+				9B4EFA2024499C5A00C1BD84 /* APIPgyerPlugin.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

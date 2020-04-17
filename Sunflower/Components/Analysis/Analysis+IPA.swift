@@ -17,6 +17,8 @@ extension Analysis {
         let bundleName: String
         let bundleVersion: String
         let creationDate: Date
+        
+        let embedded: Embedded?
     }
 }
 
@@ -202,23 +204,27 @@ extension Analysis {
             let date = try FileManager.default.attributesOfItem(atPath: app.path)[.creationDate] as? Date
             
             embedded(file: app) { result in
-                print(result)
-            }
-            
-            
-            completion(
-                .success(
-                    .init(
-                        icon: icon ?? .init(),
-                        name: info.name,
-                        version: info.version,
-                        bundleId: info.bundleId,
-                        bundleName: info.bundleName,
-                        bundleVersion: info.bundleVersion,
-                        creationDate: date ?? .distantPast
+                switch result {
+                case .success(let value):
+                    completion(
+                        .success(
+                            .init(
+                                icon: icon ?? .init(),
+                                name: info.name,
+                                version: info.version,
+                                bundleId: info.bundleId,
+                                bundleName: info.bundleName,
+                                bundleVersion: info.bundleVersion,
+                                creationDate: date ?? .distantPast,
+                                embedded: value
+                            )
+                        )
                     )
-                )
-            )
+                    
+                case .failure(let error):
+                    completion(.failure(error))
+                }
+            }
             
         } catch {
             completion(.failure(.ipa(.plist)))

@@ -38,7 +38,6 @@ class ReceiveController: ViewController<ReceiveView> {
             
             self.handle(file: url)
         }
-        
     }
     
     static func instance() -> Self {
@@ -56,8 +55,10 @@ extension ReceiveController {
             case .success(let value):
                 switch value {
                 case .ipa(let info):
-                    let controller = PgyerIPAController.instance(info)
-                    
+                    // 选择平台
+                    // 查询该平台下app列表
+                    // 查找包名匹配的appid, 获取详情信息
+                    let controller = PgyerIPAController.instance(file: url, with: info)
                     NSApplication.shared.mainWindow?.contentViewController = controller
                     
                 case .apk(let info):

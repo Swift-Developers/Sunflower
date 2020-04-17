@@ -14,6 +14,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return NSApplication.shared.delegate as! AppDelegate
     }
     
+    var window: NSWindow?
+    
     let popover = NSPopover()
     let statusBar = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
     
@@ -31,7 +33,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     ///   - flag: 是否有显示的窗口
     /// - Returns: 是否重新打开
     func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-        for window in sender.windows where !flag {
+        for window in sender.windows where !flag && window == self.window {
             window.makeKeyAndOrderFront(self)
         }
         return !flag
@@ -41,6 +43,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate {
     
     private func setup() {
+        window = NSApplication.shared.mainWindow
         statusBar.button?.image = #imageLiteral(resourceName: "status_icon")
         statusBar.button?.action = #selector(statusAction)
         popover.contentViewController = ReceivePopoverController.instance()
