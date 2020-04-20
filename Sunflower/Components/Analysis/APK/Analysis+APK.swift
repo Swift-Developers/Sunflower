@@ -11,26 +11,37 @@ import AXML
 extension Analysis {
     
     struct APK {
-        let name: String?
-        let icon: NSImage?
-        let package: String
-        let versionCode: String
-        let versionName: String
-        let compileSdkVersionCode: String
-        let compileSdkVersionName: String
-        let platformBuildVersionCode: String
-        let platformBuildVersionName: String
-        let minSdkVersion: String
-        let targetSdkVersion: String
+        let name: String?                       // 名称
+        let icon: NSImage?                      // 图标
+        let package: String                     // 包名
+        let versionCode: String                 // 版本码
+        let versionName: String                 // 版本名
+        let compileSdkVersionCode: String       // 编译SDK版本码
+        let compileSdkVersionName: String       // 编译SDK版本名
+        let platformBuildVersionCode: String    // 平台编译版本码
+        let platformBuildVersionName: String    // 平台编译版本名
+        let minSdkVersion: String               // 最小SDK版本
+        let targetSdkVersion: String            // 目标SDK版本
     }
 }
 
 extension Analysis.Error {
 
-    enum APK {
-        case unzip
-        case manifest
-        case axml
+    enum APK: Swift.Error {
+        case unzip          // 解压失败
+        case manifest       // 应用配置
+        case axml           // AXML解析
+        
+        var localizedDescription: String {
+            switch self {
+            case .unzip:
+                return "解压失败"
+            case .manifest:
+                return "应用配置获取失败"
+            case .axml:
+                return "AXML解析失败"
+            }
+        }
     }
 }
 

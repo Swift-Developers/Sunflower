@@ -48,8 +48,8 @@ class ReceiveController: ViewController<ReceiveView> {
 extension ReceiveController {
     
     private func handle(file url: URL) {
-        Analysis.handle(file: url) { [weak self] (result) in
-            guard let self = self else { return }
+        Analysis.handle(file: url) { (result) in
+            guard let window = NSApplication.shared.mainWindow else { return }
             
             switch result {
             case .success(let value):
@@ -59,14 +59,18 @@ extension ReceiveController {
                     // 查询该平台下app列表
                     // 查找包名匹配的appid, 获取详情信息
                     let controller = PgyerIPAController.instance(file: url, with: info)
-                    NSApplication.shared.mainWindow?.contentViewController = controller
+                    window.contentViewController = controller
                     
                 case .apk(let info):
                     print(info)
                 }
                 
             case .failure(let error):
-                print(error)
+                let alert = NSAlert()
+                alert.alertStyle = .critical
+                alert.messageText = "异常"
+                alert.informativeText = error.localizedDescription
+                alert.beginSheetModal(for: window)
             }
         }
     }

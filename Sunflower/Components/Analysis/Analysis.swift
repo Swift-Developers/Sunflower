@@ -52,11 +52,28 @@ extension Analysis {
     
     /// 解析异常
     enum Error: Swift.Error {
-        case unknow
-        case fileURLInvalid
-        case fileTypeInvalid
-        case fileReadFailure
+        case unknow(Swift.Error)    // 未知
+        case fileURLInvalid         // 文件URL无效
+        case fileTypeInvalid        // 文件类型无效
+        case fileReadFailure        // 文件读取失败
         case ipa(IPA)
         case apk(APK)
+        
+        var localizedDescription: String {
+            switch self {
+            case .unknow(let error):
+                return error.localizedDescription
+            case .fileURLInvalid:
+                return "文件URL无效"
+            case .fileTypeInvalid:
+                return "文件类型无效"
+            case .fileReadFailure:
+                return "文件读取失败"
+            case .ipa(let error):
+                return error.localizedDescription
+            case .apk(let error):
+                return error.localizedDescription
+            }
+        }
     }
 }

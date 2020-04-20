@@ -52,7 +52,7 @@ extension APIPgyerTarget: TargetType {
             return .json(["_api_key": Pgyer.apiKey])
             
         case .info:
-            return .json(["_api_key": Pgyer.apiKey,])
+            return .json(["_api_key": Pgyer.apiKey])
             
         default:
             return .requestPlain

@@ -10,15 +10,15 @@ import AppKit
 extension Analysis {
     
     struct IPA {
-        let icon: NSImage?
-        let name: String
-        let version: String
-        let bundleId: String
-        let bundleName: String
-        let bundleVersion: String
-        let creationDate: Date?
+        let icon: NSImage?              // 图标
+        let name: String                // 名称
+        let version: String             // 版本
+        let bundleId: String            // 标识
+        let bundleName: String          // 包名
+        let bundleVersion: String       // 编译版本
+        let creationDate: Date?         // 创建时间
         
-        let embedded: Embedded?
+        let embedded: Embedded?         // 描述文件
     }
 }
 
@@ -43,12 +43,24 @@ extension Analysis.IPA {
 
 extension Analysis.Error {
     
-    enum IPA {
-        case unzip
-        case payload
-        case plist
-        case app
-        case embedded
+    enum IPA: Swift.Error {
+        case unzip              // 解压失败
+        case payload            // 应用文件
+        case plist              // 应用配置
+        case embedded           // 描述文件
+        
+        var localizedDescription: String {
+            switch self {
+            case .unzip:
+                return "解压失败"
+            case .payload:
+                return "应用文件获取失败"
+            case .plist:
+                return "应用配置解析失败"
+            case .embedded:
+                return "描述文件解析失败"
+            }
+        }
     }
 }
 
@@ -195,7 +207,7 @@ extension Analysis {
         do {
             let contents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [])
             guard let app = contents.filter({ $0.pathExtension.lowercased() == "app" }).first else {
-                completion(.failure(.ipa(.app)))
+                completion(.failure(.ipa(.plist)))
                 return
             }
             let data = try Data(contentsOf: app.appendingPathComponent("Info.plist"))

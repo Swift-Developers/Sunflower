@@ -18,6 +18,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     let popover = NSPopover()
     let statusBar = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    private lazy var eventMonitor = EventMonitor.init([.leftMouseUp, .rightMouseUp]) { (event) in
+        guard self.popover.isShown else { return }
+        
+        self.popover.close()
+    }
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setup()
@@ -53,9 +58,11 @@ extension AppDelegate {
     private func statusAction(_ sender: NSStatusBarButton) {
         if popover.isShown {
             popover.close()
+            eventMonitor.stop()
             
         } else {
             popover.show(relativeTo: sender.bounds, of: sender, preferredEdge: .maxY)
+            eventMonitor.start()
         }
     }
 }
