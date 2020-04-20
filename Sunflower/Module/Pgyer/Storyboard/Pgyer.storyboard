@@ -22,7 +22,7 @@
                                             <constraint firstAttribute="width" constant="60" id="JMs-Ed-otF"/>
                                             <constraint firstAttribute="height" constant="60" id="vNr-U8-BYV"/>
                                         </constraints>
-                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="popover_icon" id="O5E-zo-HEv"/>
+                                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="icon_placeholder_ipa" id="O5E-zo-HEv"/>
                                         <color key="contentTintColor" name="tertiaryLabelColor" catalog="System" colorSpace="catalog"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="customCornerRadius">
@@ -314,6 +314,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="popover_icon" width="200" height="200"/>
+        <image name="icon_placeholder_ipa" width="1024" height="1024"/>
     </resources>
 </document>

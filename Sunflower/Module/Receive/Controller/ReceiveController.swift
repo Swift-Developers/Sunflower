@@ -62,7 +62,7 @@ extension ReceiveController {
                     NSApplication.shared.mainWindow?.contentViewController = controller
                     
                 case .apk(let info):
-                    break
+                    print(info)
                 }
                 
             case .failure(let error):

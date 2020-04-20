@@ -34,7 +34,7 @@ extension PgyerIPAView {
         idLabel.stringValue = info.bundleId
         nameLabel.stringValue = info.name + " (\(info.bundleName))"
         versionLabel.stringValue = info.version + "(\(info.bundleVersion))"
-        creationLabel.stringValue = info.creationDate.string(withFormat: "yyyy年MM月dd日 HH:mm")
+        creationLabel.stringValue = info.creationDate?.string(withFormat: "yyyy年MM月dd日 HH:mm") ?? "未知"
         embeddedButton.stringValue = info.embedded?.name ?? "未知"
     }
     

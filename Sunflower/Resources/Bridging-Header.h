@@ -3,5 +3,4 @@
 //
 
 
-#import "resourcestype.h"
-#import "parse.h"
+#import "AnalysisArsc.h"

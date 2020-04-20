@@ -10,13 +10,13 @@ import AppKit
 extension Analysis {
     
     struct IPA {
-        let icon: NSImage
+        let icon: NSImage?
         let name: String
         let version: String
         let bundleId: String
         let bundleName: String
         let bundleVersion: String
-        let creationDate: Date
+        let creationDate: Date?
         
         let embedded: Embedded?
     }
@@ -209,13 +209,13 @@ extension Analysis {
                     completion(
                         .success(
                             .init(
-                                icon: icon ?? .init(),
+                                icon: icon,
                                 name: info.name,
                                 version: info.version,
                                 bundleId: info.bundleId,
                                 bundleName: info.bundleName,
                                 bundleVersion: info.bundleVersion,
-                                creationDate: date ?? .distantPast,
+                                creationDate: date,
                                 embedded: value
                             )
                         )

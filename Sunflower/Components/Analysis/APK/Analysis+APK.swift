@@ -5,13 +5,15 @@
 //  Created by Lee on 2020/4/14.
 //
 
-import Foundation
+import AppKit
 import AXML
 
 extension Analysis {
     
     struct APK {
-        let name: String
+        let name: String?
+        let icon: NSImage?
+        let package: String
         let versionCode: String
         let versionName: String
         let compileSdkVersionCode: String
@@ -61,7 +63,6 @@ extension Analysis {
     
     private static func unzip(file url: URL, with completion: @escaping ((Swift.Result<URL, Error>) -> Void)) {
         let working = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("analysis.apk.cache")
-        let manifest = working.appendingPathComponent("AndroidManifest.xml")
         // 清理工作路径
         try? FileManager.default.removeItem(at: working)
         
@@ -73,11 +74,7 @@ extension Analysis {
             try process.run()
             process.waitUntilExit()
             
-            guard FileManager.default.fileExists(atPath: manifest.path) else {
-                completion(.failure(.apk(.manifest)))
-                return
-            }
-            completion(.success(manifest))
+            completion(.success(working))
             
         } catch {
             completion(.failure(.ipa(.unzip)))
@@ -87,7 +84,9 @@ extension Analysis {
     private static func info(file url: URL, with completion: @escaping ((Result<APK>) -> Void)) {
         
         struct Model: Codable {
+            let icon: String
             let name: String
+            let package: String
             let versionCode: String
             let versionName: String
             let compileSdkVersionCode: String
@@ -98,7 +97,9 @@ extension Analysis {
             let targetSdkVersion: String
             
             enum CodingKeys: String, CodingKey {
-                case name = "package"
+                case name = "android:label"
+                case icon = "android:icon"
+                case package = "package"
                 case versionCode = "android:versionCode"
                 case versionName = "android:versionName"
                 case compileSdkVersionCode = "android:compileSdkVersion"
@@ -110,8 +111,14 @@ extension Analysis {
             }
         }
         
+        let manifest = url.appendingPathComponent("AndroidManifest.xml")
+        guard FileManager.default.fileExists(atPath: manifest.path) else {
+            completion(.failure(.apk(.manifest)))
+            return
+        }
+        
         do {
-            let data = try Data(contentsOf: url)
+            let data = try Data(contentsOf: manifest)
             let xml = XMLParser(data: try axmlToXml(data))
             let parser = ManifestParser()
             xml.delegate = parser
@@ -119,10 +126,22 @@ extension Analysis {
             let json = try JSONSerialization.data(withJSONObject: parser.info, options: .prettyPrinted)
             let model = try JSONDecoder().decode(Model.self, from: json)
             
+            // 解析资源
+            var name: String?
+            var icon: String?
+            let arsc = url.appendingPathComponent("resources.arsc")
+            if FileManager.default.fileExists(atPath: arsc.path) {
+                let analysis = AnalysisArsc(file: arsc)
+                name = analysis.value(forKey: model.name.replacingOccurrences(of: "@", with: "0x").lowercased()).first
+                icon = analysis.value(forKey: model.icon.replacingOccurrences(of: "@", with: "0x").lowercased()).first
+            }
+            
             completion(
                 .success(
                     .init(
-                        name: model.name,
+                        name: name,
+                        icon: NSImage(contentsOf: url.appendingPathComponent(icon ?? "")),
+                        package: model.package,
                         versionCode: model.versionCode,
                         versionName: model.versionName,
                         compileSdkVersionCode: model.compileSdkVersionCode,
@@ -134,7 +153,7 @@ extension Analysis {
                     )
                 )
             )
-            
+
         } catch {
             completion(.failure(.apk(.axml)))
         }
@@ -149,6 +168,9 @@ fileprivate class ManifestParser: NSObject, XMLParserDelegate {
             info.merge(attributeDict)
         }
         if elementName == "uses-sdk" {
+            info.merge(attributeDict)
+        }
+        if elementName == "application" {
             info.merge(attributeDict)
         }
     }

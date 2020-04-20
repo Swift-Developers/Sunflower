@@ -31,11 +31,13 @@
 		9B267C4824447B5E002F571E /* Pgyer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B267C4724447B5E002F571E /* Pgyer.swift */; };
 		9B267C4A24448446002F571E /* ReceiveDragView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B267C4924448446002F571E /* ReceiveDragView.swift */; };
 		9B375C222446E4B700E3E286 /* AXML in Frameworks */ = {isa = PBXBuildFile; productRef = 9B375C212446E4B700E3E286 /* AXML */; };
-		9B4EFA102448330D00C1BD84 /* parse.c in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA0D2448330C00C1BD84 /* parse.c */; };
-		9B4EFA1224483BAE00C1BD84 /* resources.arsc in Resources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1124483BAE00C1BD84 /* resources.arsc */; };
 		9B4EFA1C244886DB00C1BD84 /* PgyerIPAController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1B244886DB00C1BD84 /* PgyerIPAController.swift */; };
 		9B4EFA1E244886EE00C1BD84 /* PgyerIPAView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1D244886EE00C1BD84 /* PgyerIPAView.swift */; };
 		9B4EFA2024499C5A00C1BD84 /* APIPgyerPlugin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA1F24499C5A00C1BD84 /* APIPgyerPlugin.swift */; };
+		9B4EFA5C244D75B700C1BD84 /* ResourceTypes.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA57244D75B700C1BD84 /* ResourceTypes.cpp */; };
+		9B4EFA5D244D75B700C1BD84 /* ResourcesParserInterpreter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA58244D75B700C1BD84 /* ResourcesParserInterpreter.cpp */; };
+		9B4EFA5E244D75B700C1BD84 /* ResourcesParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA5A244D75B700C1BD84 /* ResourcesParser.cpp */; };
+		9B4EFA65244D866C00C1BD84 /* AnalysisArsc.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9B4EFA64244D866C00C1BD84 /* AnalysisArsc.mm */; };
 		9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0524458A5E0084563C /* Pgyer.storyboard */; };
 		9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0724458A7A0084563C /* PgyerController.swift */; };
 		9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0924458A900084563C /* PgyerView.swift */; };
@@ -77,14 +79,20 @@
 		9B267C4724447B5E002F571E /* Pgyer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pgyer.swift; sourceTree = "<group>"; };
 		9B267C4924448446002F571E /* ReceiveDragView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveDragView.swift; sourceTree = "<group>"; };
 		9B375C1F2446D57C00E3E286 /* Sunflower.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Sunflower.entitlements; sourceTree = "<group>"; };
-		9B4EFA0C2448330C00C1BD84 /* Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
-		9B4EFA0D2448330C00C1BD84 /* parse.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = parse.c; sourceTree = "<group>"; };
-		9B4EFA0E2448330D00C1BD84 /* parse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = parse.h; sourceTree = "<group>"; };
-		9B4EFA0F2448330D00C1BD84 /* resourcestype.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = resourcestype.h; sourceTree = "<group>"; };
-		9B4EFA1124483BAE00C1BD84 /* resources.arsc */ = {isa = PBXFileReference; lastKnownFileType = file; path = resources.arsc; sourceTree = "<group>"; };
+		9B4EFA0C2448330C00C1BD84 /* Bridging-Header.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; path = "Bridging-Header.h"; sourceTree = "<group>"; };
 		9B4EFA1B244886DB00C1BD84 /* PgyerIPAController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerIPAController.swift; sourceTree = "<group>"; };
 		9B4EFA1D244886EE00C1BD84 /* PgyerIPAView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerIPAView.swift; sourceTree = "<group>"; };
 		9B4EFA1F24499C5A00C1BD84 /* APIPgyerPlugin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIPgyerPlugin.swift; sourceTree = "<group>"; };
+		9B4EFA55244D75B700C1BD84 /* configuration.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = configuration.h; sourceTree = "<group>"; };
+		9B4EFA56244D75B700C1BD84 /* ResourcesParserInterpreter.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ResourcesParserInterpreter.hpp; sourceTree = "<group>"; };
+		9B4EFA57244D75B700C1BD84 /* ResourceTypes.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourceTypes.cpp; sourceTree = "<group>"; };
+		9B4EFA58244D75B700C1BD84 /* ResourcesParserInterpreter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourcesParserInterpreter.cpp; sourceTree = "<group>"; };
+		9B4EFA59244D75B700C1BD84 /* ResourceTypes.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ResourceTypes.hpp; sourceTree = "<group>"; };
+		9B4EFA5A244D75B700C1BD84 /* ResourcesParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ResourcesParser.cpp; sourceTree = "<group>"; };
+		9B4EFA5B244D75B700C1BD84 /* ResourcesParser.hpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ResourcesParser.hpp; sourceTree = "<group>"; };
+		9B4EFA5F244D75EA00C1BD84 /* ByteOrder.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.h; fileEncoding = 4; path = ByteOrder.h; sourceTree = "<group>"; };
+		9B4EFA60244D775100C1BD84 /* AnalysisArsc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AnalysisArsc.h; sourceTree = "<group>"; };
+		9B4EFA64244D866C00C1BD84 /* AnalysisArsc.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AnalysisArsc.mm; sourceTree = "<group>"; };
 		9BEA1A0524458A5E0084563C /* Pgyer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pgyer.storyboard; sourceTree = "<group>"; };
 		9BEA1A0724458A7A0084563C /* PgyerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerController.swift; sourceTree = "<group>"; };
 		9BEA1A0924458A900084563C /* PgyerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerView.swift; sourceTree = "<group>"; };
@@ -309,6 +317,40 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		9B4EFA52244D756400C1BD84 /* Arsc */ = {
+			isa = PBXGroup;
+			children = (
+				9B4EFA5F244D75EA00C1BD84 /* ByteOrder.h */,
+				9B4EFA55244D75B700C1BD84 /* configuration.h */,
+				9B4EFA5A244D75B700C1BD84 /* ResourcesParser.cpp */,
+				9B4EFA5B244D75B700C1BD84 /* ResourcesParser.hpp */,
+				9B4EFA58244D75B700C1BD84 /* ResourcesParserInterpreter.cpp */,
+				9B4EFA56244D75B700C1BD84 /* ResourcesParserInterpreter.hpp */,
+				9B4EFA57244D75B700C1BD84 /* ResourceTypes.cpp */,
+				9B4EFA59244D75B700C1BD84 /* ResourceTypes.hpp */,
+				9B4EFA60244D775100C1BD84 /* AnalysisArsc.h */,
+				9B4EFA64244D866C00C1BD84 /* AnalysisArsc.mm */,
+			);
+			path = Arsc;
+			sourceTree = "<group>";
+		};
+		9B4EFA53244D756D00C1BD84 /* IPA */ = {
+			isa = PBXGroup;
+			children = (
+				9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */,
+			);
+			path = IPA;
+			sourceTree = "<group>";
+		};
+		9B4EFA54244D757200C1BD84 /* APK */ = {
+			isa = PBXGroup;
+			children = (
+				9B4EFA52244D756400C1BD84 /* Arsc */,
+				9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */,
+			);
+			path = APK;
+			sourceTree = "<group>";
+		};
 		9BEA1A0224458A410084563C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -338,13 +380,9 @@
 		9BEA1A162445BB0A0084563C /* Analysis */ = {
 			isa = PBXGroup;
 			children = (
-				9B4EFA1124483BAE00C1BD84 /* resources.arsc */,
-				9B4EFA0D2448330C00C1BD84 /* parse.c */,
-				9B4EFA0E2448330D00C1BD84 /* parse.h */,
-				9B4EFA0F2448330D00C1BD84 /* resourcestype.h */,
 				9BEA1A182445BB540084563C /* Analysis.swift */,
-				9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */,
-				9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */,
+				9B4EFA53244D756D00C1BD84 /* IPA */,
+				9B4EFA54244D757200C1BD84 /* APK */,
 			);
 			path = Analysis;
 			sourceTree = "<group>";
@@ -430,7 +468,6 @@
 				9B267C052444638F002F571E /* Assets.xcassets in Resources */,
 				9B267C1D24446C1B002F571E /* Receive.storyboard in Resources */,
 				9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */,
-				9B4EFA1224483BAE00C1BD84 /* resources.arsc in Resources */,
 				9B267C082444638F002F571E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -485,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9B4EFA1E244886EE00C1BD84 /* PgyerIPAView.swift in Sources */,
+				9B4EFA5D244D75B700C1BD84 /* ResourcesParserInterpreter.cpp in Sources */,
 				9B267C3724447937002F571E /* APIWechatTarget.swift in Sources */,
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
 				9B267C4124447969002F571E /* ReceiveController.swift in Sources */,
@@ -492,6 +530,7 @@
 				9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */,
 				9B267C3824447937002F571E /* APITimeoutPlugin.swift in Sources */,
 				9B267C3524447937002F571E /* APIPgyerTarget.swift in Sources */,
+				9B4EFA65244D866C00C1BD84 /* AnalysisArsc.mm in Sources */,
 				9B267C4824447B5E002F571E /* Pgyer.swift in Sources */,
 				9BEA1A132445A6FC0084563C /* ViewExtension.swift in Sources */,
 				9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */,
@@ -499,6 +538,7 @@
 				9B267C3C24447937002F571E /* APIResult.swift in Sources */,
 				9B4EFA1C244886DB00C1BD84 /* PgyerIPAController.swift in Sources */,
 				9B267C3A24447937002F571E /* APIError.swift in Sources */,
+				9B4EFA5E244D75B700C1BD84 /* ResourcesParser.cpp in Sources */,
 				9B267C2024446C6E002F571E /* Storyboard.swift in Sources */,
 				9B267C1524446899002F571E /* Extension.swift in Sources */,
 				9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */,
@@ -514,8 +554,8 @@
 				9BEA1A152445AAE90084563C /* Receive.swift in Sources */,
 				9B267C4324447979002F571E /* ReceiveView.swift in Sources */,
 				9BEA1A0C2445944F0084563C /* ReceivePopoverController.swift in Sources */,
-				9B4EFA102448330D00C1BD84 /* parse.c in Sources */,
 				9B4EFA2024499C5A00C1BD84 /* APIPgyerPlugin.swift in Sources */,
+				9B4EFA5C244D75B700C1BD84 /* ResourceTypes.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
