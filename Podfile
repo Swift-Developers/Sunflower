@@ -9,5 +9,6 @@ target 'Sunflower' do
   pod 'Moya'
   pod 'SwifterSwift'
   pod 'CryptoSwift'
+  pod 'Preferences'
   
 end

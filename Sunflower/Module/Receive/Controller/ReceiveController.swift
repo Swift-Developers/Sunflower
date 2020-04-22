@@ -20,7 +20,7 @@ class ReceiveController: ViewController<ReceiveView> {
     }
     
     @IBAction func addAction(_ sender: NSButton) {
-        guard let window = NSApplication.shared.mainWindow else {
+        guard let window = NSApp.mainWindow else {
             return
         }
         
@@ -49,7 +49,7 @@ extension ReceiveController {
     
     private func handle(file url: URL) {
         Analysis.handle(file: url) { (result) in
-            guard let window = NSApplication.shared.mainWindow else { return }
+            guard let window = NSApp.mainWindow else { return }
             
             switch result {
             case .success(let value):

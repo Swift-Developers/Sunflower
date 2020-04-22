@@ -42,7 +42,7 @@ class PgyerIPAController: ViewController<PgyerIPAView> {
     
     @IBAction func cancelAction(_ sender: NSButton) {
         let controller = ReceiveController.instance()
-        NSApplication.shared.mainWindow?.contentViewController = controller
+        NSApp.mainWindow?.contentViewController = controller
     }
     
     @IBAction func doneAction(_ sender: NSButton) {
@@ -66,7 +66,7 @@ extension PgyerIPAController {
     @objc
     private func windowCloseAction(_ sender: Notification) {
         let controller = ReceiveController.instance()
-        NSApplication.shared.mainWindow?.contentViewController = controller
+        NSApp.mainWindow?.contentViewController = controller
     }
 }
 

@@ -6,23 +6,26 @@
 //
 
 import Cocoa
+import Preferences
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     static var shared: AppDelegate {
-        return NSApplication.shared.delegate as! AppDelegate
+        return NSApp.delegate as! AppDelegate
     }
     
     var window: NSWindow?
     
     let popover = NSPopover()
     let statusBar = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+    
     private lazy var eventMonitor = EventMonitor.init([.leftMouseUp, .rightMouseUp]) { (event) in
         guard self.popover.isShown else { return }
         
         self.popover.close()
     }
+    private var appearanceObservation: NSKeyValueObservation?
     
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         setup()
@@ -46,12 +49,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension AppDelegate {
-    
+    private static var o: Any?
     private func setup() {
         window = NSApplication.shared.mainWindow
         statusBar.button?.image = #imageLiteral(resourceName: "status_icon")
         statusBar.button?.action = #selector(statusAction)
         popover.contentViewController = ReceivePopoverController.instance()
+        // 添加外观监听 同步popover样式
+        appearanceObservation = NSApp.observe(\.appearance) { (observer, change) in
+            self.popover.appearance = observer.appearance
+        }
     }
     
     @objc
@@ -65,5 +72,20 @@ extension AppDelegate {
             eventMonitor.start()
         }
     }
-}
 
+    @IBAction
+    private func preferencesMenuItemAction(_ sender: NSMenuItem) {
+        let preferences = PreferencesWindowController(
+            preferencePanes: [
+                SettingsController.instance(),
+                SettingsAccountController.instance(),
+                SettingsRobotController.instance()
+            ],
+            style: .toolbarItems,
+            animated: true,
+            hidesToolbarForSingleItem: true
+        )
+        preferences.window?.titlebarAppearsTransparent = true
+        preferences.show()
+    }
+}

@@ -5,6 +5,7 @@ enum StoryBoard: String {
     case receive             = "Receive"
     case pgyer               = "Pgyer"
     case firim               = "Firim"
+    case settings            = "Settings"
     
     var storyboard: NSStoryboard {
         return NSStoryboard(name: rawValue, bundle: nil)

@@ -14,12 +14,14 @@ protocol ReceiveDragViewDelegate: NSObjectProtocol {
 class ReceiveDragView: NSView {
 
     weak var delegate : ReceiveDragViewDelegate?
-    /// 接受类型
-    private let types: [String] = Receive.types
+    
     /// 是否正在接收拖拽
     private var isReceivingDrag: Bool = false {
         didSet { needsDisplay = true }
     }
+    
+    /// 接受类型
+    var types: [String] = []
     
     override func awakeFromNib() {
         super.awakeFromNib()

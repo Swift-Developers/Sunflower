@@ -13,7 +13,8 @@ class ReceiveView: NSView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        // 设置接受类型
+        dragView.types = Receive.types
     }
     
     override func draw(_ dirtyRect: NSRect) {
