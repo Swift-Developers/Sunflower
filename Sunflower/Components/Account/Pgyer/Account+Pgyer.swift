@@ -11,6 +11,6 @@ extension Account {
     
     struct Pgyer: Codable {
         let key: String             // API Key
-        var alias: String?          // 别名
+        var alias: String           // 别名
     }
 }

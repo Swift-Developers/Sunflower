@@ -2,14 +2,12 @@ import Moya
 import Alamofire
 
 extension API {
-    static let pgyer = MoyaProvider<APIPgyerTarget>(plugins: plugins + [])
+    static let pgyer = MoyaProvider<APIPgyerTarget>(plugins: plugins + [APIPgyerPlugin()])
 }
 
 enum APIPgyerTarget {
     /// 上传
     case upload(Pgyer.Upload)
-    /// 上传预览
-    case uploadPrepare(type: String, bundleId: String)
     /// 信息
     case info
     /// app列表
@@ -23,7 +21,6 @@ extension APIPgyerTarget: TargetType {
     var path: String {
         switch self {
         case .upload:               return "app/upload"
-        case .uploadPrepare:        return "app/uploadPrepare"
         case .info:                 return "app/view"
         case .list:                 return "app/listMy"
         }
@@ -42,38 +39,24 @@ extension APIPgyerTarget: TargetType {
                 .init(provider: .data(body.description.data(using: .utf8)!), name: "buildUpdateDescription")
             ])
             
-        case let .uploadPrepare(type, bundleId):
-            return .json(["_api_key": Pgyer.apiKey,
-                          "userKey": Pgyer.userKey,
-                          "packageName": bundleId,
-                          "type": type]
-            )
         case .list:
             return .json(["_api_key": Pgyer.apiKey])
             
         case .info:
             return .json(["_api_key": Pgyer.apiKey])
-            
-        default:
-            return .requestPlain
         }
+    }
+    
+    var sampleData: Data {
+        .init()
     }
     
     var validationType: ValidationType {
         return .successAndRedirectCodes
     }
     
-    var sampleData: Data {
-         return Data()
-    }
-    
     var headers: [String: String]? {
-        switch self {
-        case .uploadPrepare:
-            return ["Content-Type": "application/x-www-form-urlencoded; charset=utf-8"]
-        default:
-            return ["Content-Type": "application/x-www-form-urlencoded"]
-        }
+        ["Content-Type": "application/x-www-form-urlencoded"]
     }
 }
 

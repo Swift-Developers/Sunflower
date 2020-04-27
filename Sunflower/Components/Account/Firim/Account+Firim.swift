@@ -6,3 +6,12 @@
 //
 
 import Foundation
+
+extension Account {
+    
+    struct Firim: Codable {
+        let key: String             // API Key
+        var alias: String           // 别名
+    }
+}
+

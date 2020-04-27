@@ -1,6 +1,6 @@
 import Moya
 
-class APIAdaptationPlugin: PluginType {
+class APIPgyerPlugin: PluginType {
     
     func process(_ result: Result<Moya.Response, MoyaError>, target: Moya.TargetType) -> Result<Moya.Response, MoyaError> {
         switch result {

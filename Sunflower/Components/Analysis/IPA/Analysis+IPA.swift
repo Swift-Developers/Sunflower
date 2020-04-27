@@ -146,7 +146,7 @@ extension Analysis {
                 case UUID = "UUID"
             }
         }
-        
+        // http://maniak-dobrii.com/extracting-stuff-from-provisioning-profile/
         do {
             let input = url.appendingPathComponent("embedded.mobileprovision")
             let output = url.appendingPathComponent("embedded.plist")

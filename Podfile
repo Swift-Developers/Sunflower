@@ -10,5 +10,6 @@ target 'Sunflower' do
   pod 'SwifterSwift'
   pod 'CryptoSwift'
   pod 'Preferences'
+  pod 'AttributedString'
   
 end
