@@ -45,6 +45,16 @@ class SettingsAccountView: NSView {
         listView.expandItem(nil, expandChildren: true)
     }
     
+    /// 列表移除
+    /// - Parameter item: 项
+    func removeItems(at item: Any) {
+        listView.removeItems(
+            at: .init(integer: listView.childIndex(forItem: item)),
+            inParent: listView.parent(forItem: item),
+            withAnimation: .effectFade
+        )
+    }
+    
     /// 显示移除按钮
     func showRemoveButton() {
         removeButton.isHidden = false

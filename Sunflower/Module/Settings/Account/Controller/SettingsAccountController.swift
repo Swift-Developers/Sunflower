@@ -50,14 +50,14 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
         /// 写入缓存
         do {
             var models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
-            models.append(.init(key: "0ce394fa6a416873a32fc62e" + String.random(ofLength: 8), alias: "18611401994@163.com"))
+            models.append(.init(key: String.random(ofLength: 8) + "0ce394fa6a416873a32fc62e", name: "18611401994@163.com"))
             UserDefaults.AccountInfo.set(model: models, forKey: .pgyer)
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
             do {
                 var models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
-                models.append(.init(key: "1ce394fa6a416873a32fc62e" + String.random(ofLength: 8), alias: "18611401994@qq.com"))
+                models.append(.init(key: String.random(ofLength: 8) + "1ce394fa6a416873a32fc62e", name: "18611401994@qq.com"))
                 UserDefaults.AccountInfo.set(model: models, forKey: .firim)
             }
         }
@@ -77,9 +77,15 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
                 let item = parent as? Item else {
                 return
             }
-            print(item)
-            print(child)
-            self.model.remove(type: item.type, with: child)
+            
+            self.container.updatesList {
+                // 移除数据 重新赋值
+                self.items = self.model.remove(type: item.type, with: child)
+                // 是否移除了Item
+                let isItemRemoved = !self.items.contains(where: { $0.type == item.type })
+                // UI同步移除
+                self.container.removeItems(at: isItemRemoved ? parent : selected)
+            }
         }
         
         let alert = NSAlert()
@@ -97,6 +103,29 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
     }
 }
 
+extension SettingsAccountController {
+    
+    private func showInfo(type: Account, with key: String) {
+        switch type {
+        case .pgyer:
+            let controller = SettingsAccountPgyerInfoController.instance(key)
+            add(child: controller, to: container.infoView)
+            
+        case .firim:
+            let controller = SettingsAccountFirimInfoController.instance(key)
+            add(child: controller, to: container.infoView)
+        }
+    }
+    
+    private func emptyInfo() {
+        
+    }
+    
+    private func updateInfo() {
+        
+    }
+}
+
 extension SettingsAccountController: NSOutlineViewDelegate {
     
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
@@ -104,6 +133,10 @@ extension SettingsAccountController: NSOutlineViewDelegate {
     }
     
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+        func format(_ string: String) -> String {
+            string.count > 18 ? String(string.prefix(16)) + ".." : string
+        }
+        
         if let item = item as? Item {
             let cell = outlineView.makeView(
                 withIdentifier: .init(rawValue: "header"),
@@ -119,8 +152,8 @@ extension SettingsAccountController: NSOutlineViewDelegate {
                 owner: self
             ) as? NSTableCellView
             cell?.textField?.attributed.string = """
-            \(String(item.name.prefix(16)) + "..", .font(.systemFont(ofSize: 13)))
-            \(String(item.key.prefix(18)) + "..", .font(.systemFont(ofSize: 11)), .color(.tertiaryLabelColor))
+            \(format(item.name), .font(.systemFont(ofSize: 13)))
+            \(format(item.key), .font(.systemFont(ofSize: 11)), .color(.tertiaryLabelColor))
             """
             
             return cell
@@ -133,17 +166,19 @@ extension SettingsAccountController: NSOutlineViewDelegate {
     }
     
     func outlineViewSelectionDidChange(_ notification: Notification) {
-        guard
+        if
             let listView = notification.object as? NSOutlineView,
             let selected = listView.item(atRow: listView.selectedRow),
             let parent = listView.parent(forItem: selected),
             let child = selected as? Item.Child,
-            let item = parent as? Item else {
-            return
+            let item = parent as? Item {
+            // 更新信息
+            showInfo(type: item.type, with: child.key)
+            container.showRemoveButton()
+            
+        } else {
+            container.hideRemoveButton()
         }
-        print(item)
-        print(child)
-        container.showRemoveButton()
     }
 }
 
@@ -174,9 +209,8 @@ extension SettingsAccountController: PreferencePane {
         
     var preferencePaneTitle: String { "账号" }
     
-    var toolbarItemIcon: NSImage { NSImage.init(named: NSImage.userAccountsName) ?? .init() }
+    var toolbarItemIcon: NSImage { NSImage(named: NSImage.userAccountsName) ?? .init() }
 }
-
 
 fileprivate extension Account {
     

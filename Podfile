@@ -11,5 +11,6 @@ target 'Sunflower' do
   pod 'CryptoSwift'
   pod 'Preferences'
   pod 'AttributedString'
+  pod 'DifferenceKit/AppKitExtension'
   
 end

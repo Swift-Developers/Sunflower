@@ -46,5 +46,5 @@ extension SettingsController: PreferencePane {
     
     var preferencePaneTitle: String { "通用" }
     
-    var toolbarItemIcon: NSImage { NSImage.init(named: NSImage.preferencesGeneralName) ?? .init() }
+    var toolbarItemIcon: NSImage { NSImage(named: NSImage.preferencesGeneralName) ?? .init() }
 }

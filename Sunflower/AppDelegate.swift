@@ -51,7 +51,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 extension AppDelegate {
     private static var o: Any?
     private func setup() {
-        UserDefaults.standard.set(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
+        UserDefaults.standard.set(false, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
         window = NSApplication.shared.mainWindow
         statusBar.button?.image = #imageLiteral(resourceName: "status_icon")
         statusBar.button?.action = #selector(statusAction)
@@ -83,7 +83,7 @@ extension AppDelegate {
                 SettingsRobotController.instance()
             ],
             style: .toolbarItems,
-            animated: true,
+            animated: false,
             hidesToolbarForSingleItem: true
         )
         preferences.window?.titlebarAppearsTransparent = true

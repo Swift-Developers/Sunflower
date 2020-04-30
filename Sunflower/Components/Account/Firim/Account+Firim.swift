@@ -11,7 +11,7 @@ extension Account {
     
     struct Firim: Codable {
         let key: String             // API Key
-        var alias: String           // 别名
+        var name: String           // 别名
     }
 }
 
