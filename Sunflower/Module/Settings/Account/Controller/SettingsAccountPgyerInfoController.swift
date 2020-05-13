@@ -10,7 +10,6 @@ import Cocoa
 class SettingsAccountPgyerInfoController: ViewController<SettingsAccountPgyerInfoView> {
 
     private var key: String = ""
-    private var changed: ((Account.Pgyer) -> Void)?
     
     private var model: Account.Pgyer {
         get {

@@ -9,7 +9,7 @@ import Cocoa
 
 class SettingsAccountView: NSView {
 
-    @IBOutlet weak var listView: NSOutlineView!
+    @IBOutlet weak var listView: NSCollectionView!
     @IBOutlet weak var infoView: NSView!
     
     @IBOutlet weak var createButton: NSButton!
@@ -18,41 +18,8 @@ class SettingsAccountView: NSView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        
-    }
-    
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
-    }
-    
-    /// 更新列表
-    /// - Parameter handle: 处理
-    func updatesList( handle: () -> Void) {
-        listView.beginUpdates()
-        handle()
-        listView.endUpdates()
-    }
-    
-    /// 刷新列表
-    func reloadList() {
-        listView.reloadData()
-    }
-    
-    /// 展开列表
-    func expandList() {
-        listView.expandItem(nil, expandChildren: true)
-    }
-    
-    /// 列表移除
-    /// - Parameter item: 项
-    func removeItems(at item: Any) {
-        listView.removeItems(
-            at: .init(integer: listView.childIndex(forItem: item)),
-            inParent: listView.parent(forItem: item),
-            withAnimation: .effectFade
-        )
+        listView.register(NSNib(nibNamed: "SettingsAccountItem", bundle: nil), forItemWithIdentifier: .init("cell"))
+        listView.register(SettingsAccountSectionHeader.self, forSupplementaryViewOfKind: NSCollectionView.elementKindSectionHeader, withIdentifier: .init("header"))
     }
     
     /// 显示移除按钮

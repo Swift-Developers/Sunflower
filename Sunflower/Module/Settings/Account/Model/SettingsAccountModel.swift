@@ -10,11 +10,11 @@ import AppKit
 class SettingsAccountModel {
     
     /// 数据
-    var datas: [Item] { items }
+    var datas: [Section] { sections }
     /// 数据变更回调
-    var changed: (([Item]) -> Void)?
+    var changed: (([Section]) -> Void)?
     
-    private var items: [Item] = []
+    private var sections: [Section] = []
     private var observations: [UserDefaultsObservation] = []
     
     init() {
@@ -52,12 +52,12 @@ class SettingsAccountModel {
         }
     }
     
-    private func handle(_ type: Account, with childs: [Item.Child]) {
-        guard self.childs(type: type) != childs  else {
+    private func handle(_ type: Account, with items: [Section.Item]) {
+        guard self.items(type: type) != items  else {
             return
         }
-        update(type, with: childs)
-        changed?(items)
+        update(type, with: items)
+        changed?(sections)
     }
 }
 
@@ -66,75 +66,71 @@ extension SettingsAccountModel {
     /// 移除某项数据
     /// - Parameters:
     ///   - type: 类型
-    ///   - child: 子项
+    ///   - item: 子项
     /// - Returns: 最新数据
-    func remove(type: Account, with child: Item.Child) -> [Item] {
-        defer {
-            // 同步缓存
-            switch type {
-            case .pgyer:
-                var models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
-                models.removeAll { $0.key == child.key }
-                UserDefaults.AccountInfo.set(model: models, forKey: .pgyer)
-                
-            case .firim:
-                var models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
-                models.removeAll { $0.key == child.key }
-                UserDefaults.AccountInfo.set(model: models, forKey: .firim)
-            }
+    func remove(type: Account, with item: Section.Item) {
+        switch type {
+        case .pgyer:
+            var models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
+            models.removeAll { $0.key == item.key }
+            UserDefaults.AccountInfo.set(model: models, forKey: .pgyer)
+            
+        case .firim:
+            var models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
+            models.removeAll { $0.key == item.key }
+            UserDefaults.AccountInfo.set(model: models, forKey: .firim)
         }
-        return remove(type, with: child)
     }
 }
 
 extension SettingsAccountModel {
     
-    private func childs(type: Account) -> [Item.Child] {
-        return items.first(where: { $0.type == type })?.childs ?? []
+    private func items(type: Account) -> [Section.Item] {
+        sections.first(where: { $0.type == type })?.items ?? []
     }
     
-    private func update(_ type: Account, with childs: [Item.Child]) {
-        if let index = items.firstIndex(where: { $0.type == type }) {
-            if childs.isEmpty {
-                items.remove(at: index)
+    private func update(_ type: Account, with items: [Section.Item]) {
+        if let index = sections.firstIndex(where: { $0.type == type }) {
+            if items.isEmpty {
+                sections.remove(at: index)
                 
             } else {
-                var item = items[index]
-                item.childs = childs
-                items[index] = item
+                var item = sections[index]
+                item.items = items
+                sections[index] = item
             }
             
         } else {
-            items.append(.init(type: type, childs: childs))
+            sections.append(.init(type: type, items: items))
         }
     }
     
     @discardableResult
-    private func remove(_ type: Account, with child: Item.Child) -> [Item] {
-        guard let i = items.firstIndex(where: { $0.type == type }) else {
-            return items
+    private func remove(_ type: Account, with item: Section.Item) -> [Section] {
+        guard let i = sections.firstIndex(where: { $0.type == type }) else {
+            return sections
         }
         
-        var item = items[i]
-        item.childs.removeAll(child)
-        if item.childs.isEmpty {
-            items.remove(at: i)
+        var section = sections[i]
+        section.items.removeAll(item)
+        if section.items.isEmpty {
+            sections.remove(at: i)
             
         } else {
-            items[i] = item
+            sections[i] = section
         }
         
-        return items
+        return sections
     }
 }
 
 extension SettingsAccountModel {
     
-    struct Item: Equatable {
+    struct Section: Equatable {
         let type: Account
-        var childs: [Child]
+        var items: [Item]
         
-        struct Child: Equatable {
+        struct Item: Equatable {
             let name: String
             let key: String
         }

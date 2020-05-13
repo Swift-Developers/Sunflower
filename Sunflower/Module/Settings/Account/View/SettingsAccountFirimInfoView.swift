@@ -9,10 +9,15 @@ import Cocoa
 
 class SettingsAccountFirimInfoView: NSView {
 
+    @IBOutlet weak var keyLabel: NSTextField!
+    @IBOutlet weak var nameTextField: NSTextField!
+    
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-
-        // Drawing code here.
     }
     
+    func set(key: String, name: String) {
+        keyLabel.stringValue = key
+        nameTextField.placeholderString = name
+    }
 }

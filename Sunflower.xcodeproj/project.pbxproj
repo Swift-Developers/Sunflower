@@ -67,6 +67,9 @@
 		9B62F063245011B800CBBD00 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F062245011B800CBBD00 /* Appearance.swift */; };
 		9B62F0662452AE7400CBBD00 /* UserDefaultsSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F0652452AE7400CBBD00 /* UserDefaultsSettable.swift */; };
 		9B62F06A2452B27000CBBD00 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F0692452B27000CBBD00 /* UserDefaults.swift */; };
+		9B7365B42463F04800D053FE /* SettingsAccountSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */; };
+		9B7365B72463FD7100D053FE /* SettingsAccountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */; };
+		9B7365B82463FD7100D053FE /* SettingsAccountItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */; };
 		9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0524458A5E0084563C /* Pgyer.storyboard */; };
 		9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0724458A7A0084563C /* PgyerController.swift */; };
 		9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0924458A900084563C /* PgyerView.swift */; };
@@ -151,6 +154,9 @@
 		9B62F062245011B800CBBD00 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		9B62F0652452AE7400CBBD00 /* UserDefaultsSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsSettable.swift; sourceTree = "<group>"; };
 		9B62F0692452B27000CBBD00 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
+		9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSectionHeader.swift; sourceTree = "<group>"; };
+		9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountItem.swift; sourceTree = "<group>"; };
+		9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsAccountItem.xib; sourceTree = "<group>"; };
 		9BEA1A0524458A5E0084563C /* Pgyer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pgyer.storyboard; sourceTree = "<group>"; };
 		9BEA1A0724458A7A0084563C /* PgyerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerController.swift; sourceTree = "<group>"; };
 		9BEA1A0924458A900084563C /* PgyerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerView.swift; sourceTree = "<group>"; };
@@ -601,6 +607,9 @@
 				9B62F05D244EEC5A00CBBD00 /* SettingsAccountView.swift */,
 				9B26C93D245806790038E82E /* SettingsAccountPgyerInfoView.swift */,
 				9B26C93F2458068C0038E82E /* SettingsAccountFirimInfoView.swift */,
+				9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */,
+				9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */,
+				9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -741,6 +750,7 @@
 				9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */,
 				9B267C082444638F002F571E /* Main.storyboard in Resources */,
 				9B62F013244EC21200CBBD00 /* Settings.storyboard in Resources */,
+				9B7365B82463FD7100D053FE /* SettingsAccountItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -796,6 +806,7 @@
 				9B62F0662452AE7400CBBD00 /* UserDefaultsSettable.swift in Sources */,
 				9B4EFA1E244886EE00C1BD84 /* PgyerIPAView.swift in Sources */,
 				9B26C942245809ED0038E82E /* ViewControllerExtension.swift in Sources */,
+				9B7365B72463FD7100D053FE /* SettingsAccountItem.swift in Sources */,
 				9B4EFA5D244D75B700C1BD84 /* ResourcesParserInterpreter.cpp in Sources */,
 				9B267C3724447937002F571E /* APIWechatTarget.swift in Sources */,
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
@@ -823,6 +834,7 @@
 				9B62EFFE244DC07400CBBD00 /* Account+Pgyer.swift in Sources */,
 				9B4EFA5E244D75B700C1BD84 /* ResourcesParser.cpp in Sources */,
 				9B267C2024446C6E002F571E /* Storyboard.swift in Sources */,
+				9B7365B42463F04800D053FE /* SettingsAccountSectionHeader.swift in Sources */,
 				9B267C1524446899002F571E /* Extension.swift in Sources */,
 				9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */,
 				9BEA1A0E244594720084563C /* ReceivePopoverView.swift in Sources */,

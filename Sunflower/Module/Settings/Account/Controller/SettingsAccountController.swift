@@ -7,15 +7,19 @@
 
 import Cocoa
 import Preferences
+import DifferenceKit
 import AttributedString
 
 class SettingsAccountController: ViewController<SettingsAccountView> {
 
-    typealias Item = SettingsAccountModel.Item
-    typealias Child = SettingsAccountModel.Item.Child
+    typealias Section = SettingsAccountModel.Section
     
     private let model = SettingsAccountModel()
-    private var items: [Item] = []
+    private var sections: [ArraySection<Account, Section.Item>] = []
+    private var selected: IndexPath? {
+        didSet { updateInfo() }
+    }
+    private weak var currentInfoController: NSViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,23 +31,41 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
     private func setup() {
         model.changed = { [weak self] new in
             guard let self = self else { return }
-            self.container.updatesList {
-                self.items = new
-                self.container.reloadList()
-                self.container.expandList()
-                self.container.hideRemoveButton()
+            // 刷新列表
+            let source = self.sections
+            let target = new.map {
+                ArraySection(model: $0.type, elements: $0.items)
+            }
+            let changeset = StagedChangeset(source: source, target: target)
+            self.container.listView.reload(using: changeset) { (data) in
+                self.sections = data
+            }
+            
+            // 同步选中项
+            if let indexPath = self.selected {
+                let type = source[indexPath.section].model
+                let item = source[indexPath.section].elements[indexPath.item]
+                if
+                    let sectionIndex = target.firstIndex(where: { $0.model == type }),
+                    let itemIndex = target[sectionIndex].elements.firstIndex(where: { $0.key == item.key }) {
+                    let selected = IndexPath(item: itemIndex, section: sectionIndex)
+                    self.selected = selected
+                    self.container.listView.selectItems(at: Set([selected]), scrollPosition: .init())
+                    
+                } else {
+                    self.selected = nil
+                }
             }
         }
     }
     
     /// 加载数据
     private func loadData() {
-        container.updatesList {
-            items = model.datas
-            container.reloadList()
-            container.expandList()
-            container.hideRemoveButton()
+        sections = model.datas.map {
+            ArraySection(model: $0.type, elements: $0.items)
         }
+        container.listView.reloadData()
+        container.hideRemoveButton()
     }
     
     @IBAction func createAction(_ sender: NSButton) {
@@ -69,23 +91,15 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
         }
         
         func remove() {
-            guard
-                let listView = container.listView,
-                let selected = listView.item(atRow: listView.selectedRow),
-                let parent = listView.parent(forItem: selected),
-                let child = selected as? Item.Child,
-                let item = parent as? Item else {
+            guard let indexPath = selected else {
                 return
             }
             
-            self.container.updatesList {
-                // 移除数据 重新赋值
-                self.items = self.model.remove(type: item.type, with: child)
-                // 是否移除了Item
-                let isItemRemoved = !self.items.contains(where: { $0.type == item.type })
-                // UI同步移除
-                self.container.removeItems(at: isItemRemoved ? parent : selected)
-            }
+            let section = sections[indexPath.section]
+            let item = section.elements[indexPath.item]
+            
+            // 移除数据
+            model.remove(type: section.model, with: item)
         }
         
         let alert = NSAlert()
@@ -106,100 +120,102 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
 extension SettingsAccountController {
     
     private func showInfo(type: Account, with key: String) {
+        emptyInfo()
+        
         switch type {
         case .pgyer:
             let controller = SettingsAccountPgyerInfoController.instance(key)
             add(child: controller, to: container.infoView)
+            currentInfoController = controller
             
         case .firim:
             let controller = SettingsAccountFirimInfoController.instance(key)
             add(child: controller, to: container.infoView)
+            currentInfoController = controller
         }
     }
     
     private func emptyInfo() {
-        
+        currentInfoController?.removeFromParentController()
     }
     
     private func updateInfo() {
-        
-    }
-}
-
-extension SettingsAccountController: NSOutlineViewDelegate {
-    
-    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
-        return 40
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        func format(_ string: String) -> String {
-            string.count > 18 ? String(string.prefix(16)) + ".." : string
-        }
-        
-        if let item = item as? Item {
-            let cell = outlineView.makeView(
-                withIdentifier: .init(rawValue: "header"),
-                owner: self
-            ) as? NSTableCellView
-            cell?.textField?.stringValue = item.type.name
-            cell?.imageView?.image = item.type.icon
-            return cell
-        }
-        if let item = item as? Item.Child {
-            let cell = outlineView.makeView(
-                withIdentifier: .init(rawValue: "child"),
-                owner: self
-            ) as? NSTableCellView
-            cell?.textField?.attributed.string = """
-            \(format(item.name), .font(.systemFont(ofSize: 13)))
-            \(format(item.key), .font(.systemFont(ofSize: 11)), .color(.tertiaryLabelColor))
-            """
-            
-            return cell
-        }
-        return nil
-    }
-    
-    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        return item is Item.Child
-    }
-    
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        if
-            let listView = notification.object as? NSOutlineView,
-            let selected = listView.item(atRow: listView.selectedRow),
-            let parent = listView.parent(forItem: selected),
-            let child = selected as? Item.Child,
-            let item = parent as? Item {
-            // 更新信息
-            showInfo(type: item.type, with: child.key)
+        if let indexPath = selected {
             container.showRemoveButton()
+            // 更新信息
+            let section = sections[indexPath.section]
+            let item = section.elements[indexPath.item]
+            showInfo(type: section.model, with: item.key)
             
         } else {
             container.hideRemoveButton()
+            emptyInfo()
         }
     }
 }
 
-extension SettingsAccountController: NSOutlineViewDataSource {
+extension SettingsAccountController: NSCollectionViewDelegateFlowLayout {
     
-    func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if let item = item as? Item {
-            return item.childs.count
-        }
-        return items.count
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> NSSize {
+        return .init(width: 180, height: 40)
     }
     
-    func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if let item = item as? Item {
-            return item.childs[index]
-        }
-        return items[index]
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, insetForSectionAt section: Int) -> NSEdgeInsets {
+        return .zero
     }
     
-    func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        return outlineView.parent(forItem: item) == nil
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, layout collectionViewLayout: NSCollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+}
+
+extension SettingsAccountController: NSCollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: NSCollectionView) -> Int {
+        return sections.count
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, numberOfItemsInSection section: Int) -> Int {
+        return sections[section].elements.count
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, itemForRepresentedObjectAt indexPath: IndexPath) -> NSCollectionViewItem {
+        let cell = collectionView.makeItem(withIdentifier: .init("cell"), for: indexPath) as! SettingsAccountItem
+        let item = sections[indexPath.section].elements[indexPath.item]
+        cell.set(item.key, with: item.name)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, viewForSupplementaryElementOfKind kind: NSCollectionView.SupplementaryElementKind, at indexPath: IndexPath) -> NSView {
+        switch kind {
+        case NSCollectionView.elementKindSectionHeader:
+            let header = collectionView.makeSupplementaryView(
+                ofKind: kind,
+                withIdentifier: .init("header"),
+                for: indexPath
+            ) as! SettingsAccountSectionHeader
+            let model = sections[indexPath.section].model
+            header.set(model.icon, with: model.name)
+            return header
+            
+        default:
+            return .init()
+        }
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, didSelectItemsAt indexPaths: Set<IndexPath>) {
+        selected = indexPaths.first
+    }
+    
+    func collectionView(_ collectionView: NSCollectionView, didDeselectItemsAt indexPaths: Set<IndexPath>) {
+        guard selected == indexPaths.first else {
+            return
+        }
+        selected = nil
     }
 }
 
@@ -227,4 +243,13 @@ fileprivate extension Account {
         case .firim:    return #imageLiteral(resourceName: "platform_icon_firim")
         }
     }
+}
+
+extension SettingsAccountModel.Section.Item: Differentiable {
+    
+    var differenceIdentifier: String { key }
+}
+
+extension Account: Differentiable {
+    
 }

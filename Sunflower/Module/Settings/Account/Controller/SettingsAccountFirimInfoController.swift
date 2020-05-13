@@ -11,9 +11,37 @@ class SettingsAccountFirimInfoController: ViewController<SettingsAccountFirimInf
 
     private var key: String = ""
     
+    private var model: Account.Firim {
+        get {
+            guard let models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) else {
+                return .init(key: key, name: "")
+            }
+            return models.first(where: { $0.key == key }) ?? .init(key: key, name: "")
+        }
+        set {
+            guard
+                var models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim),
+                let index = models.firstIndex(where: { $0.key == key }) else {
+                return
+            }
+            models[index] = newValue
+            UserDefaults.AccountInfo.set(model: models, forKey: .firim)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
+        
+        setup()
+    }
+    
+    private func setup() {
+        container.set(key: model.key, name: model.name)
+    }
+    
+    @IBAction func nameAction(_ sender: NSTextField) {
+        sender.placeholderString = sender.stringValue
+        model.name = sender.stringValue
     }
     
     private static func instance() -> Self {

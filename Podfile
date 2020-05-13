@@ -7,6 +7,7 @@ target 'Sunflower' do
 
   pod 'Kingfisher'
   pod 'Moya'
+  pod 'SnapKit'
   pod 'SwifterSwift'
   pod 'CryptoSwift'
   pod 'Preferences'
