@@ -565,7 +565,7 @@
                                                     <gridCells>
                                                         <gridCell row="bjB-K2-mD2" column="hzL-zi-hH7" headOfMergedCell="LNp-sw-ibC" xPlacement="leading" id="LNp-sw-ibC">
                                                             <customView key="contentView" translatesAutoresizingMaskIntoConstraints="NO" id="NM3-kz-5Nc">
-                                                                <rect key="frame" x="0.0" y="78" width="125" height="34"/>
+                                                                <rect key="frame" x="0.0" y="78" width="122" height="34"/>
                                                                 <subviews>
                                                                     <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="b1q-qT-Vbz">
                                                                         <rect key="frame" x="20" y="0.0" width="34" height="34"/>
@@ -581,8 +581,8 @@
                                                                         </userDefinedRuntimeAttributes>
                                                                     </imageView>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dkS-wj-ltV">
-                                                                        <rect key="frame" x="62" y="8" width="45" height="19"/>
-                                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Fir.im" id="4JH-H0-756">
+                                                                        <rect key="frame" x="62" y="8" width="42" height="19"/>
+                                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="fir.im" id="4JH-H0-756">
                                                                             <font key="font" metaFont="systemMedium" size="16"/>
                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

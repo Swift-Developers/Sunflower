@@ -80,6 +80,7 @@
 		9BEA1A192445BB540084563C /* Analysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A182445BB540084563C /* Analysis.swift */; };
 		9BEA1A1B2445BBB00084563C /* Analysis+IPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */; };
 		9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */; };
+		9BF00FCA246D3E7000AB10AA /* SettingsRobotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +170,7 @@
 		9BEA1A182445BB540084563C /* Analysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analysis.swift; sourceTree = "<group>"; };
 		9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+IPA.swift"; sourceTree = "<group>"; };
 		9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+APK.swift"; sourceTree = "<group>"; };
+		9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotModel.swift; sourceTree = "<group>"; };
 		B95F59C61F5960BF1C4D785A /* Pods-Sunflower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.release.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.release.xcconfig"; sourceTree = "<group>"; };
 		C398C851073995942D62038F /* Pods-Sunflower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.debug.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -518,6 +520,7 @@
 		9B62F017244EC32E00CBBD00 /* Robot */ = {
 			isa = PBXGroup;
 			children = (
+				9BF00FC8246D3E5B00AB10AA /* Model */,
 				9B62F01D244EC36A00CBBD00 /* View */,
 				9B62F01A244EC35800CBBD00 /* Controller */,
 				9B62F018244EC34300CBBD00 /* Settings+Robot.swift */,
@@ -667,6 +670,14 @@
 			path = Analysis;
 			sourceTree = "<group>";
 		};
+		9BF00FC8246D3E5B00AB10AA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BA6DE2C2C0426989F8F8AF56 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -812,6 +823,7 @@
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
 				9B267C4124447969002F571E /* ReceiveController.swift in Sources */,
 				9B62F000244DC08500CBBD00 /* Account+Firim.swift in Sources */,
+				9BF00FCA246D3E7000AB10AA /* SettingsRobotModel.swift in Sources */,
 				9B62EFFC244DBFD500CBBD00 /* Account.swift in Sources */,
 				9B267C3D24447937002F571E /* APICancellableWrapper.swift in Sources */,
 				9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */,

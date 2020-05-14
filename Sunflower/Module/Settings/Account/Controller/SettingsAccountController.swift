@@ -8,7 +8,6 @@
 import Cocoa
 import Preferences
 import DifferenceKit
-import AttributedString
 
 class SettingsAccountController: ViewController<SettingsAccountView> {
 
