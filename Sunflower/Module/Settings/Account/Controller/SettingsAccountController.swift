@@ -68,20 +68,7 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
     }
     
     @IBAction func createAction(_ sender: NSButton) {
-        /// 写入缓存
-        do {
-            var models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
-            models.append(.init(key: String.random(ofLength: 8) + "0ce394fa6a416873a32fc62e", name: "18611401994@163.com"))
-            UserDefaults.AccountInfo.set(model: models, forKey: .pgyer)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
-            do {
-                var models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
-                models.append(.init(key: String.random(ofLength: 8) + "1ce394fa6a416873a32fc62e", name: "18611401994@qq.com"))
-                UserDefaults.AccountInfo.set(model: models, forKey: .firim)
-            }
-        }
+        presentAsSheet(SettingsAccountSelectController.instance())
     }
     
     @IBAction func removeAction(_ sender: NSButton) {

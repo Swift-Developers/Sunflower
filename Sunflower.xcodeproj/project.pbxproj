@@ -81,6 +81,10 @@
 		9BEA1A1B2445BBB00084563C /* Analysis+IPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */; };
 		9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */; };
 		9BF00FCA246D3E7000AB10AA /* SettingsRobotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */; };
+		9BF00FCC246E46C900AB10AA /* SettingsAccountCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCB246E46C900AB10AA /* SettingsAccountCreateController.swift */; };
+		9BF00FCE246E46F700AB10AA /* SettingsAccountCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */; };
+		9BF00FD0246E76D500AB10AA /* SettingsAccountSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCF246E76D500AB10AA /* SettingsAccountSelectController.swift */; };
+		9BF00FD2246E76F900AB10AA /* SettingsAccountSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FD1246E76F900AB10AA /* SettingsAccountSelectView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -171,6 +175,10 @@
 		9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+IPA.swift"; sourceTree = "<group>"; };
 		9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+APK.swift"; sourceTree = "<group>"; };
 		9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotModel.swift; sourceTree = "<group>"; };
+		9BF00FCB246E46C900AB10AA /* SettingsAccountCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountCreateController.swift; sourceTree = "<group>"; };
+		9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountCreateView.swift; sourceTree = "<group>"; };
+		9BF00FCF246E76D500AB10AA /* SettingsAccountSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSelectController.swift; sourceTree = "<group>"; };
+		9BF00FD1246E76F900AB10AA /* SettingsAccountSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSelectView.swift; sourceTree = "<group>"; };
 		B95F59C61F5960BF1C4D785A /* Pods-Sunflower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.release.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.release.xcconfig"; sourceTree = "<group>"; };
 		C398C851073995942D62038F /* Pods-Sunflower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.debug.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -600,6 +608,8 @@
 				9B62F05A244EEC4600CBBD00 /* SettingsAccountController.swift */,
 				9B26C939245805F50038E82E /* SettingsAccountPgyerInfoController.swift */,
 				9B26C93B2458060C0038E82E /* SettingsAccountFirimInfoController.swift */,
+				9BF00FCB246E46C900AB10AA /* SettingsAccountCreateController.swift */,
+				9BF00FCF246E76D500AB10AA /* SettingsAccountSelectController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -613,6 +623,8 @@
 				9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */,
 				9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */,
 				9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */,
+				9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */,
+				9BF00FD1246E76F900AB10AA /* SettingsAccountSelectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -823,6 +835,7 @@
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
 				9B267C4124447969002F571E /* ReceiveController.swift in Sources */,
 				9B62F000244DC08500CBBD00 /* Account+Firim.swift in Sources */,
+				9BF00FCC246E46C900AB10AA /* SettingsAccountCreateController.swift in Sources */,
 				9BF00FCA246D3E7000AB10AA /* SettingsRobotModel.swift in Sources */,
 				9B62EFFC244DBFD500CBBD00 /* Account.swift in Sources */,
 				9B267C3D24447937002F571E /* APICancellableWrapper.swift in Sources */,
@@ -831,7 +844,9 @@
 				9B267C3524447937002F571E /* APIPgyerTarget.swift in Sources */,
 				9B4EFA65244D866C00C1BD84 /* AnalysisArsc.mm in Sources */,
 				9B267C4824447B5E002F571E /* Pgyer.swift in Sources */,
+				9BF00FD0246E76D500AB10AA /* SettingsAccountSelectController.swift in Sources */,
 				9BEA1A132445A6FC0084563C /* ViewExtension.swift in Sources */,
+				9BF00FCE246E46F700AB10AA /* SettingsAccountCreateView.swift in Sources */,
 				9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */,
 				9B62F02E244EC41D00CBBD00 /* SettingsRobotController.swift in Sources */,
 				9B62F005244DC95500CBBD00 /* Settings.swift in Sources */,
@@ -870,6 +885,7 @@
 				9B267C3B24447937002F571E /* Result.swift in Sources */,
 				9BEA1A152445AAE90084563C /* Receive.swift in Sources */,
 				9B26C93A245805F50038E82E /* SettingsAccountPgyerInfoController.swift in Sources */,
+				9BF00FD2246E76F900AB10AA /* SettingsAccountSelectView.swift in Sources */,
 				9B62F02A244EC3DC00CBBD00 /* SettingsFirimController.swift in Sources */,
 				9B267C4324447979002F571E /* ReceiveView.swift in Sources */,
 				9B62F016244EC22700CBBD00 /* SettingsController.swift in Sources */,

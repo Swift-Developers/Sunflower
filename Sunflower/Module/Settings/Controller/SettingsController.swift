@@ -33,6 +33,7 @@ class SettingsController: ViewController<SettingsView> {
     }
     
     @IBAction func uploadNotificationAction(_ sender: NSButton) {
+    
     }
     
     static func instance() -> Self {

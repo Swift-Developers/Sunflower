@@ -32,6 +32,7 @@ class SettingsAccountSectionHeader: NSView {
     }
     
     private func setup() {
+        image.customCornerRadius = 4
         addSubview(image)
         label.font = .systemFont(ofSize: 16, weight: .semibold)
         addSubview(label)
