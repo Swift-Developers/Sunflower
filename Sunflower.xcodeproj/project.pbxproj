@@ -53,7 +53,6 @@
 		9B62F00F244DD05B00CBBD00 /* EventMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F00E244DD05B00CBBD00 /* EventMonitor.swift */; };
 		9B62F013244EC21200CBBD00 /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B62F012244EC21200CBBD00 /* Settings.storyboard */; };
 		9B62F016244EC22700CBBD00 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F015244EC22700CBBD00 /* SettingsController.swift */; };
-		9B62F019244EC34300CBBD00 /* Settings+Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F018244EC34300CBBD00 /* Settings+Robot.swift */; };
 		9B62F022244EC39100CBBD00 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F021244EC39100CBBD00 /* SettingsView.swift */; };
 		9B62F024244EC3A700CBBD00 /* SettingsRobotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F023244EC3A700CBBD00 /* SettingsRobotView.swift */; };
 		9B62F026244EC3B800CBBD00 /* SettingsPgyerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F025244EC3B800CBBD00 /* SettingsPgyerView.swift */; };
@@ -85,6 +84,11 @@
 		9BF00FCE246E46F700AB10AA /* SettingsAccountCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */; };
 		9BF00FD0246E76D500AB10AA /* SettingsAccountSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCF246E76D500AB10AA /* SettingsAccountSelectController.swift */; };
 		9BF00FD2246E76F900AB10AA /* SettingsAccountSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FD1246E76F900AB10AA /* SettingsAccountSelectView.swift */; };
+		9BF00FD5246E93C700AB10AA /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FD4246E93C700AB10AA /* Robot.swift */; };
+		9BF00FD9246E942D00AB10AA /* Robot+Wechat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FD8246E942D00AB10AA /* Robot+Wechat.swift */; };
+		9BF00FDB246E943800AB10AA /* Robot+Feishu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */; };
+		9BF00FDD246E9D2B00AB10AA /* PgyerAPKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDC246E9D2B00AB10AA /* PgyerAPKController.swift */; };
+		9BF00FDF246E9D4400AB10AA /* PgyerAPKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDE246E9D4400AB10AA /* PgyerAPKView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -145,7 +149,6 @@
 		9B62F00E244DD05B00CBBD00 /* EventMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventMonitor.swift; sourceTree = "<group>"; };
 		9B62F012244EC21200CBBD00 /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
 		9B62F015244EC22700CBBD00 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
-		9B62F018244EC34300CBBD00 /* Settings+Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Settings+Robot.swift"; sourceTree = "<group>"; };
 		9B62F021244EC39100CBBD00 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		9B62F023244EC3A700CBBD00 /* SettingsRobotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotView.swift; sourceTree = "<group>"; };
 		9B62F025244EC3B800CBBD00 /* SettingsPgyerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPgyerView.swift; sourceTree = "<group>"; };
@@ -179,6 +182,11 @@
 		9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountCreateView.swift; sourceTree = "<group>"; };
 		9BF00FCF246E76D500AB10AA /* SettingsAccountSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSelectController.swift; sourceTree = "<group>"; };
 		9BF00FD1246E76F900AB10AA /* SettingsAccountSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSelectView.swift; sourceTree = "<group>"; };
+		9BF00FD4246E93C700AB10AA /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
+		9BF00FD8246E942D00AB10AA /* Robot+Wechat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Robot+Wechat.swift"; sourceTree = "<group>"; };
+		9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Robot+Feishu.swift"; sourceTree = "<group>"; };
+		9BF00FDC246E9D2B00AB10AA /* PgyerAPKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerAPKController.swift; sourceTree = "<group>"; };
+		9BF00FDE246E9D4400AB10AA /* PgyerAPKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerAPKView.swift; sourceTree = "<group>"; };
 		B95F59C61F5960BF1C4D785A /* Pods-Sunflower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.release.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.release.xcconfig"; sourceTree = "<group>"; };
 		C398C851073995942D62038F /* Pods-Sunflower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.debug.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +267,7 @@
 		9B267C1224446862002F571E /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				9BF00FD3246E93AF00AB10AA /* Robot */,
 				9B62F0642452AE6A00CBBD00 /* UserDefaults */,
 				9B62F061245011AF00CBBD00 /* Appearance */,
 				9B62F00D244DD04700CBBD00 /* EventMonitor */,
@@ -531,7 +540,6 @@
 				9BF00FC8246D3E5B00AB10AA /* Model */,
 				9B62F01D244EC36A00CBBD00 /* View */,
 				9B62F01A244EC35800CBBD00 /* Controller */,
-				9B62F018244EC34300CBBD00 /* Settings+Robot.swift */,
 			);
 			path = Robot;
 			sourceTree = "<group>";
@@ -651,6 +659,7 @@
 			children = (
 				9BEA1A0724458A7A0084563C /* PgyerController.swift */,
 				9B4EFA1B244886DB00C1BD84 /* PgyerIPAController.swift */,
+				9BF00FDC246E9D2B00AB10AA /* PgyerAPKController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -668,6 +677,7 @@
 			children = (
 				9BEA1A0924458A900084563C /* PgyerView.swift */,
 				9B4EFA1D244886EE00C1BD84 /* PgyerIPAView.swift */,
+				9BF00FDE246E9D4400AB10AA /* PgyerAPKView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -688,6 +698,32 @@
 				9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		9BF00FD3246E93AF00AB10AA /* Robot */ = {
+			isa = PBXGroup;
+			children = (
+				9BF00FD7246E93D600AB10AA /* Feishu */,
+				9BF00FD6246E93CE00AB10AA /* Wechat */,
+				9BF00FD4246E93C700AB10AA /* Robot.swift */,
+			);
+			path = Robot;
+			sourceTree = "<group>";
+		};
+		9BF00FD6246E93CE00AB10AA /* Wechat */ = {
+			isa = PBXGroup;
+			children = (
+				9BF00FD8246E942D00AB10AA /* Robot+Wechat.swift */,
+			);
+			path = Wechat;
+			sourceTree = "<group>";
+		};
+		9BF00FD7246E93D600AB10AA /* Feishu */ = {
+			isa = PBXGroup;
+			children = (
+				9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */,
+			);
+			path = Feishu;
 			sourceTree = "<group>";
 		};
 		BA6DE2C2C0426989F8F8AF56 /* Pods */ = {
@@ -826,6 +862,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF00FD5246E93C700AB10AA /* Robot.swift in Sources */,
 				9B62F0662452AE7400CBBD00 /* UserDefaultsSettable.swift in Sources */,
 				9B4EFA1E244886EE00C1BD84 /* PgyerIPAView.swift in Sources */,
 				9B26C942245809ED0038E82E /* ViewControllerExtension.swift in Sources */,
@@ -840,6 +877,7 @@
 				9B62EFFC244DBFD500CBBD00 /* Account.swift in Sources */,
 				9B267C3D24447937002F571E /* APICancellableWrapper.swift in Sources */,
 				9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */,
+				9BF00FDB246E943800AB10AA /* Robot+Feishu.swift in Sources */,
 				9B267C3824447937002F571E /* APITimeoutPlugin.swift in Sources */,
 				9B267C3524447937002F571E /* APIPgyerTarget.swift in Sources */,
 				9B4EFA65244D866C00C1BD84 /* AnalysisArsc.mm in Sources */,
@@ -867,6 +905,7 @@
 				9BEA1A0E244594720084563C /* ReceivePopoverView.swift in Sources */,
 				9B26C93C2458060C0038E82E /* SettingsAccountFirimInfoController.swift in Sources */,
 				9B62F06A2452B27000CBBD00 /* UserDefaults.swift in Sources */,
+				9BF00FD9246E942D00AB10AA /* Robot+Wechat.swift in Sources */,
 				9B62F00A244DC97C00CBBD00 /* Settings+Pgyer.swift in Sources */,
 				9B267C012444638D002F571E /* AppDelegate.swift in Sources */,
 				9B62F05B244EEC4600CBBD00 /* SettingsAccountController.swift in Sources */,
@@ -892,8 +931,9 @@
 				9BEA1A0C2445944F0084563C /* ReceivePopoverController.swift in Sources */,
 				9B62F00F244DD05B00CBBD00 /* EventMonitor.swift in Sources */,
 				9B62F02C244EC40E00CBBD00 /* SettingsPgyerController.swift in Sources */,
-				9B62F019244EC34300CBBD00 /* Settings+Robot.swift in Sources */,
+				9BF00FDF246E9D4400AB10AA /* PgyerAPKView.swift in Sources */,
 				9B4EFA2024499C5A00C1BD84 /* APIPgyerPlugin.swift in Sources */,
+				9BF00FDD246E9D2B00AB10AA /* PgyerAPKController.swift in Sources */,
 				9B26C93824570A6F0038E82E /* SettingsAccountModel.swift in Sources */,
 				9B4EFA5C244D75B700C1BD84 /* ResourceTypes.cpp in Sources */,
 			);

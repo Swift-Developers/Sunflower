@@ -104,24 +104,6 @@ extension SettingsAccountModel {
             sections.append(.init(type: type, items: items))
         }
     }
-    
-    @discardableResult
-    private func remove(_ type: Account, with item: Section.Item) -> [Section] {
-        guard let i = sections.firstIndex(where: { $0.type == type }) else {
-            return sections
-        }
-        
-        var section = sections[i]
-        section.items.removeAll(item)
-        if section.items.isEmpty {
-            sections.remove(at: i)
-            
-        } else {
-            sections[i] = section
-        }
-        
-        return sections
-    }
 }
 
 extension SettingsAccountModel {
