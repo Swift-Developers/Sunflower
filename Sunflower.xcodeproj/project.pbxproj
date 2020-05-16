@@ -89,6 +89,17 @@
 		9BF00FDB246E943800AB10AA /* Robot+Feishu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */; };
 		9BF00FDD246E9D2B00AB10AA /* PgyerAPKController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDC246E9D2B00AB10AA /* PgyerAPKController.swift */; };
 		9BF00FDF246E9D4400AB10AA /* PgyerAPKView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDE246E9D4400AB10AA /* PgyerAPKView.swift */; };
+		9BF79A1D246FD03100C471FA /* SettingsRobotWechatInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A1C246FD03100C471FA /* SettingsRobotWechatInfoView.swift */; };
+		9BF79A1F246FD04500C471FA /* SettingsRobotFeishuInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A1E246FD04500C471FA /* SettingsRobotFeishuInfoView.swift */; };
+		9BF79A21246FD06200C471FA /* SettingsRobotSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A20246FD06200C471FA /* SettingsRobotSectionHeader.swift */; };
+		9BF79A24246FD0CF00C471FA /* SettingsRobotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A22246FD0CF00C471FA /* SettingsRobotItem.swift */; };
+		9BF79A26246FD21000C471FA /* SettingsRobotWechatInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A25246FD21000C471FA /* SettingsRobotWechatInfoController.swift */; };
+		9BF79A28246FD22700C471FA /* SettingsRobotFeishuInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A27246FD22700C471FA /* SettingsRobotFeishuInfoController.swift */; };
+		9BF79A2B246FDC9700C471FA /* SettingsRobotCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A2A246FDC9700C471FA /* SettingsRobotCreateView.swift */; };
+		9BF79A2D246FDCA800C471FA /* SettingsRobotSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A2C246FDCA800C471FA /* SettingsRobotSelectView.swift */; };
+		9BF79A2F246FDCDF00C471FA /* SettingsRobotCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A2E246FDCDF00C471FA /* SettingsRobotCreateController.swift */; };
+		9BF79A31246FDCF300C471FA /* SettingsRobotSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A30246FDCF300C471FA /* SettingsRobotSelectController.swift */; };
+		9BF79A32246FE69F00C471FA /* SettingsRobotItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BF79A23246FD0CF00C471FA /* SettingsRobotItem.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -187,6 +198,17 @@
 		9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Robot+Feishu.swift"; sourceTree = "<group>"; };
 		9BF00FDC246E9D2B00AB10AA /* PgyerAPKController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerAPKController.swift; sourceTree = "<group>"; };
 		9BF00FDE246E9D4400AB10AA /* PgyerAPKView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerAPKView.swift; sourceTree = "<group>"; };
+		9BF79A1C246FD03100C471FA /* SettingsRobotWechatInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotWechatInfoView.swift; sourceTree = "<group>"; };
+		9BF79A1E246FD04500C471FA /* SettingsRobotFeishuInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotFeishuInfoView.swift; sourceTree = "<group>"; };
+		9BF79A20246FD06200C471FA /* SettingsRobotSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotSectionHeader.swift; sourceTree = "<group>"; };
+		9BF79A22246FD0CF00C471FA /* SettingsRobotItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotItem.swift; sourceTree = "<group>"; };
+		9BF79A23246FD0CF00C471FA /* SettingsRobotItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsRobotItem.xib; sourceTree = "<group>"; };
+		9BF79A25246FD21000C471FA /* SettingsRobotWechatInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotWechatInfoController.swift; sourceTree = "<group>"; };
+		9BF79A27246FD22700C471FA /* SettingsRobotFeishuInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotFeishuInfoController.swift; sourceTree = "<group>"; };
+		9BF79A2A246FDC9700C471FA /* SettingsRobotCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotCreateView.swift; sourceTree = "<group>"; };
+		9BF79A2C246FDCA800C471FA /* SettingsRobotSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotSelectView.swift; sourceTree = "<group>"; };
+		9BF79A2E246FDCDF00C471FA /* SettingsRobotCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotCreateController.swift; sourceTree = "<group>"; };
+		9BF79A30246FDCF300C471FA /* SettingsRobotSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotSelectController.swift; sourceTree = "<group>"; };
 		B95F59C61F5960BF1C4D785A /* Pods-Sunflower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.release.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.release.xcconfig"; sourceTree = "<group>"; };
 		C398C851073995942D62038F /* Pods-Sunflower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.debug.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -548,6 +570,10 @@
 			isa = PBXGroup;
 			children = (
 				9B62F02D244EC41D00CBBD00 /* SettingsRobotController.swift */,
+				9BF79A25246FD21000C471FA /* SettingsRobotWechatInfoController.swift */,
+				9BF79A27246FD22700C471FA /* SettingsRobotFeishuInfoController.swift */,
+				9BF79A2E246FDCDF00C471FA /* SettingsRobotCreateController.swift */,
+				9BF79A30246FDCF300C471FA /* SettingsRobotSelectController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -572,6 +598,13 @@
 			isa = PBXGroup;
 			children = (
 				9B62F023244EC3A700CBBD00 /* SettingsRobotView.swift */,
+				9BF79A1C246FD03100C471FA /* SettingsRobotWechatInfoView.swift */,
+				9BF79A1E246FD04500C471FA /* SettingsRobotFeishuInfoView.swift */,
+				9BF79A20246FD06200C471FA /* SettingsRobotSectionHeader.swift */,
+				9BF79A22246FD0CF00C471FA /* SettingsRobotItem.swift */,
+				9BF79A23246FD0CF00C471FA /* SettingsRobotItem.xib */,
+				9BF79A2A246FDC9700C471FA /* SettingsRobotCreateView.swift */,
+				9BF79A2C246FDCA800C471FA /* SettingsRobotSelectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -809,6 +842,7 @@
 				9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */,
 				9B267C082444638F002F571E /* Main.storyboard in Resources */,
 				9B62F013244EC21200CBBD00 /* Settings.storyboard in Resources */,
+				9BF79A32246FE69F00C471FA /* SettingsRobotItem.xib in Resources */,
 				9B7365B82463FD7100D053FE /* SettingsAccountItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -862,11 +896,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9BF79A2D246FDCA800C471FA /* SettingsRobotSelectView.swift in Sources */,
 				9BF00FD5246E93C700AB10AA /* Robot.swift in Sources */,
 				9B62F0662452AE7400CBBD00 /* UserDefaultsSettable.swift in Sources */,
 				9B4EFA1E244886EE00C1BD84 /* PgyerIPAView.swift in Sources */,
 				9B26C942245809ED0038E82E /* ViewControllerExtension.swift in Sources */,
 				9B7365B72463FD7100D053FE /* SettingsAccountItem.swift in Sources */,
+				9BF79A2F246FDCDF00C471FA /* SettingsRobotCreateController.swift in Sources */,
 				9B4EFA5D244D75B700C1BD84 /* ResourcesParserInterpreter.cpp in Sources */,
 				9B267C3724447937002F571E /* APIWechatTarget.swift in Sources */,
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
@@ -903,21 +939,29 @@
 				9B267C1524446899002F571E /* Extension.swift in Sources */,
 				9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */,
 				9BEA1A0E244594720084563C /* ReceivePopoverView.swift in Sources */,
+				9BF79A1D246FD03100C471FA /* SettingsRobotWechatInfoView.swift in Sources */,
 				9B26C93C2458060C0038E82E /* SettingsAccountFirimInfoController.swift in Sources */,
 				9B62F06A2452B27000CBBD00 /* UserDefaults.swift in Sources */,
 				9BF00FD9246E942D00AB10AA /* Robot+Wechat.swift in Sources */,
+				9BF79A24246FD0CF00C471FA /* SettingsRobotItem.swift in Sources */,
 				9B62F00A244DC97C00CBBD00 /* Settings+Pgyer.swift in Sources */,
 				9B267C012444638D002F571E /* AppDelegate.swift in Sources */,
 				9B62F05B244EEC4600CBBD00 /* SettingsAccountController.swift in Sources */,
 				9B267C46244479A3002F571E /* ViewController.swift in Sources */,
 				9B62F022244EC39100CBBD00 /* SettingsView.swift in Sources */,
+				9BF79A31246FDCF300C471FA /* SettingsRobotSelectController.swift in Sources */,
 				9B267C3624447937002F571E /* APIFeishuTarget.swift in Sources */,
+				9BF79A21246FD06200C471FA /* SettingsRobotSectionHeader.swift in Sources */,
+				9BF79A2B246FDC9700C471FA /* SettingsRobotCreateView.swift in Sources */,
 				9BEA1A1B2445BBB00084563C /* Analysis+IPA.swift in Sources */,
 				9B26C9402458068C0038E82E /* SettingsAccountFirimInfoView.swift in Sources */,
+				9BF79A26246FD21000C471FA /* SettingsRobotWechatInfoController.swift in Sources */,
 				9B62F026244EC3B800CBBD00 /* SettingsPgyerView.swift in Sources */,
+				9BF79A1F246FD04500C471FA /* SettingsRobotFeishuInfoView.swift in Sources */,
 				9B62F05E244EEC5A00CBBD00 /* SettingsAccountView.swift in Sources */,
 				9B62F063245011B800CBBD00 /* Appearance.swift in Sources */,
 				9B267C3E24447937002F571E /* APIOption.swift in Sources */,
+				9BF79A28246FD22700C471FA /* SettingsRobotFeishuInfoController.swift in Sources */,
 				9B26C93E245806790038E82E /* SettingsAccountPgyerInfoView.swift in Sources */,
 				9B267C4A24448446002F571E /* ReceiveDragView.swift in Sources */,
 				9B267C3924447937002F571E /* APILoad.swift in Sources */,
