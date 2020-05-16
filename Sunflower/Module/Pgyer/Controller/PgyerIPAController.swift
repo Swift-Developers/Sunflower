@@ -73,7 +73,7 @@ extension PgyerIPAController {
 fileprivate extension Analysis.IPA {
     
     static let empty: Self = .init(
-        icon: #imageLiteral(resourceName: "popover_icon"),
+        icon: #imageLiteral(resourceName: "icon_placeholder_ipa"),
         name: "",
         version: "",
         bundleId: "",

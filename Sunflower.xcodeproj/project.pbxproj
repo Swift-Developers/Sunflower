@@ -100,6 +100,7 @@
 		9BF79A2F246FDCDF00C471FA /* SettingsRobotCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A2E246FDCDF00C471FA /* SettingsRobotCreateController.swift */; };
 		9BF79A31246FDCF300C471FA /* SettingsRobotSelectController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A30246FDCF300C471FA /* SettingsRobotSelectController.swift */; };
 		9BF79A32246FE69F00C471FA /* SettingsRobotItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9BF79A23246FD0CF00C471FA /* SettingsRobotItem.xib */; };
+		9BF79A35246FEBEA00C471FA /* PgyerIPAModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF79A34246FEBEA00C471FA /* PgyerIPAModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +210,7 @@
 		9BF79A2C246FDCA800C471FA /* SettingsRobotSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotSelectView.swift; sourceTree = "<group>"; };
 		9BF79A2E246FDCDF00C471FA /* SettingsRobotCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotCreateController.swift; sourceTree = "<group>"; };
 		9BF79A30246FDCF300C471FA /* SettingsRobotSelectController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotSelectController.swift; sourceTree = "<group>"; };
+		9BF79A34246FEBEA00C471FA /* PgyerIPAModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerIPAModel.swift; sourceTree = "<group>"; };
 		B95F59C61F5960BF1C4D785A /* Pods-Sunflower.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.release.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.release.xcconfig"; sourceTree = "<group>"; };
 		C398C851073995942D62038F /* Pods-Sunflower.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Sunflower.debug.xcconfig"; path = "Target Support Files/Pods-Sunflower/Pods-Sunflower.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -317,6 +319,7 @@
 		9B267C16244468B2002F571E /* Pgyer */ = {
 			isa = PBXGroup;
 			children = (
+				9BF79A33246FEBDB00C471FA /* Model */,
 				9BEA1A0424458A500084563C /* View */,
 				9BEA1A0224458A410084563C /* Controller */,
 				9BEA1A0324458A4B0084563C /* Storyboard */,
@@ -759,6 +762,14 @@
 			path = Feishu;
 			sourceTree = "<group>";
 		};
+		9BF79A33246FEBDB00C471FA /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9BF79A34246FEBEA00C471FA /* PgyerIPAModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		BA6DE2C2C0426989F8F8AF56 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -904,6 +915,7 @@
 				9B7365B72463FD7100D053FE /* SettingsAccountItem.swift in Sources */,
 				9BF79A2F246FDCDF00C471FA /* SettingsRobotCreateController.swift in Sources */,
 				9B4EFA5D244D75B700C1BD84 /* ResourcesParserInterpreter.cpp in Sources */,
+				9BF79A35246FEBEA00C471FA /* PgyerIPAModel.swift in Sources */,
 				9B267C3724447937002F571E /* APIWechatTarget.swift in Sources */,
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
 				9B267C4124447969002F571E /* ReceiveController.swift in Sources */,

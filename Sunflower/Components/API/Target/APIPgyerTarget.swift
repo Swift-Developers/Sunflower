@@ -9,9 +9,9 @@ enum APIPgyerTarget {
     /// 上传
     case upload(Pgyer.Upload)
     /// 信息
-    case info
+    case info(key: String)
     /// app列表
-    case list
+    case list(key: String)
 }
 
 extension APIPgyerTarget: TargetType {
@@ -39,11 +39,11 @@ extension APIPgyerTarget: TargetType {
                 .init(provider: .data(body.description.data(using: .utf8)!), name: "buildUpdateDescription")
             ])
             
-        case .list:
-            return .json(["_api_key": Pgyer.apiKey])
+        case let .list(key):
+            return .json(["_api_key": key])
             
-        case .info:
-            return .json(["_api_key": Pgyer.apiKey])
+        case let .info(key):
+            return .json(["_api_key": key])
         }
     }
     

@@ -33,9 +33,10 @@ extension PgyerIPAView {
         iconImageView.image = info.icon
         idLabel.stringValue = info.bundleId
         nameLabel.stringValue = info.name + " (\(info.bundleName))"
+        nameLabel.toolTip = nameLabel.stringValue
         versionLabel.stringValue = info.version + "(\(info.bundleVersion))"
         creationLabel.stringValue = info.creationDate?.string(withFormat: "yyyy年MM月dd日 HH:mm") ?? "未知"
-        embeddedButton.stringValue = info.embedded?.name ?? "未知"
+        embeddedButton.title = info.embedded?.name ?? "未知"
     }
     
     /// 设置文件地址
@@ -47,8 +48,9 @@ extension PgyerIPAView {
         }
         
         let attributes = try? FileManager.default.attributesOfItem(atPath: url.path)
-        let size = attributes?[.size] as? UInt64
-        sizeLabel.stringValue = "\(size ?? 0)"
+        let size = attributes?[.size] as? UInt64 ?? 0
+        let mb = Double(size) / 1000.0 / 1000.0
+        sizeLabel.stringValue = String(format: "%.2fMB", mb)
     }
     
     /// 设置更新记录

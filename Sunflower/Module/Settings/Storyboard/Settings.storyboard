@@ -11,17 +11,18 @@
                 <customObject id="wfY-8c-dtG" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="SettingsController" id="l8w-Od-mHT" customClass="SettingsController" customModule="Sunflower" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" translatesAutoresizingMaskIntoConstraints="NO" id="hCn-I2-K2z" customClass="SettingsView" customModule="Sunflower" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="490" height="289"/>
+                        <rect key="frame" x="0.0" y="0.0" width="490" height="290"/>
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="xaY-Dy-lPl">
-                                <rect key="frame" x="20" y="20" width="450" height="249"/>
+                                <rect key="frame" x="20" y="20" width="450" height="250"/>
                                 <subviews>
                                     <gridView xPlacement="center" yPlacement="center" rowAlignment="none" rowSpacing="8" columnSpacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MOr-hI-nx7">
-                                        <rect key="frame" x="0.0" y="0.0" width="450" height="249"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="450" height="250"/>
                                         <constraints>
                                             <constraint firstItem="DiH-Ln-Ee4" firstAttribute="top" secondItem="bP9-SE-z3z" secondAttribute="bottom" constant="31" id="3Ai-Cq-rc8"/>
                                             <constraint firstItem="5Gx-sE-e8Y" firstAttribute="top" secondItem="bP9-SE-z3z" secondAttribute="bottom" constant="34" id="R69-gE-trj"/>
                                             <constraint firstAttribute="width" constant="450" id="dLH-cL-htU"/>
+                                            <constraint firstAttribute="height" constant="250" id="j2c-nk-Aom"/>
                                             <constraint firstItem="bP9-SE-z3z" firstAttribute="top" secondItem="Vtp-yF-adx" secondAttribute="bottom" constant="17" id="xrk-oZ-MLZ"/>
                                             <constraint firstItem="la0-pC-L6I" firstAttribute="leading" secondItem="MOr-hI-nx7" secondAttribute="leading" id="z6b-JO-bGG"/>
                                         </constraints>
@@ -50,10 +51,10 @@
                                             </gridCell>
                                             <gridCell row="vna-hn-d7K" column="ZKd-Mc-Wbx" id="cgW-XT-c3C">
                                                 <stackView key="contentView" distribution="fillEqually" orientation="horizontal" alignment="top" spacing="15" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vtp-yF-adx">
-                                                    <rect key="frame" x="120" y="170" width="270" height="79"/>
+                                                    <rect key="frame" x="120" y="170" width="270" height="80"/>
                                                     <subviews>
                                                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MFp-3N-IFX">
-                                                            <rect key="frame" x="0.0" y="7" width="80" height="72"/>
+                                                            <rect key="frame" x="0.0" y="8" width="80" height="72"/>
                                                             <buttonCell key="cell" type="bevel" title="浅色" alternateTitle="浅色" bezelStyle="regularSquare" image="settings_appearance_aqua" imagePosition="above" alignment="center" alternateImage="settings_appearance_aqua_selected" imageScaling="proportionallyDown" inset="2" id="I9C-hI-utv">
                                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="controlContent"/>
@@ -63,7 +64,7 @@
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="LpQ-nd-Bmn">
-                                                            <rect key="frame" x="95" y="9" width="80" height="70"/>
+                                                            <rect key="frame" x="95" y="10" width="80" height="70"/>
                                                             <buttonCell key="cell" type="bevel" title="深色" alternateTitle="深色" bezelStyle="rounded" image="settings_appearance_dark" imagePosition="above" alignment="center" alternateImage="settings_appearance_dark_selected" imageScaling="proportionallyDown" inset="2" id="7PO-xB-GaK">
                                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="controlContent"/>
@@ -73,7 +74,7 @@
                                                             </connections>
                                                         </button>
                                                         <button verticalHuggingPriority="750" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="wmI-Hj-8TP">
-                                                            <rect key="frame" x="190" y="9" width="80" height="70"/>
+                                                            <rect key="frame" x="190" y="10" width="80" height="70"/>
                                                             <buttonCell key="cell" type="bevel" title="自动" alternateTitle="自动" bezelStyle="rounded" image="settings_appearance_auto" imagePosition="above" alignment="center" alternateImage="settings_appearance_auto_selected" state="on" imageScaling="proportionallyDown" inset="2" id="dpI-7v-TNW">
                                                                 <behavior key="behavior" pushIn="YES" changeContents="YES" lightByContents="YES"/>
                                                                 <font key="font" metaFont="controlContent"/>
