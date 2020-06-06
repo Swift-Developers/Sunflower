@@ -17,11 +17,12 @@ class PgyerIPAView: NSView {
     @IBOutlet weak var sizeLabel: NSTextField!
     @IBOutlet weak var embeddedButton: NSButton!
     
-    @IBOutlet var notesTextView: NSTextView!
+    @IBOutlet var descriptionTextView: NSTextView!
     
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-        
+    /// 更新描述
+    override var description: String {
+        get { descriptionTextView.string }
+        set { descriptionTextView.string = newValue }
     }
 }
 
@@ -51,11 +52,5 @@ extension PgyerIPAView {
         let size = attributes?[.size] as? UInt64 ?? 0
         let mb = Double(size) / 1000.0 / 1000.0
         sizeLabel.stringValue = String(format: "%.2fMB", mb)
-    }
-    
-    /// 设置更新记录
-    /// - Parameter notes: 记录
-    func set(_ notes: String) {
-        notesTextView.string = notes
     }
 }

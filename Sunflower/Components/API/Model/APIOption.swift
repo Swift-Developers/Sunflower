@@ -52,7 +52,12 @@ public extension Array where Element == API.Option {
         .prompt { (error, msg) in
             guard !error.isRequestCancelled, !error.isServiceUnauthorized else { return }
             
-//            Toast.show(top: msg, at: .failure)
+            guard let window = NSApp.mainWindow else { return }
+            
+            let alert = NSAlert()
+            alert.addButton(withTitle: "了解")
+            alert.messageText = "msg"
+            alert.beginSheetModal(for: window)
         }
     ]
 }

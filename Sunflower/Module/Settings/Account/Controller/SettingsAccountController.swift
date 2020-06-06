@@ -68,7 +68,14 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
     }
     
     @IBAction func createAction(_ sender: NSButton) {
-        presentAsSheet(SettingsAccountSelectController.instance())
+        let controller = SinglePickerController.instance(
+            Account.allCases.map({ .init(icon: $0.icon, name: $0.name) })
+        )
+        controller.completion = { [weak self] index in
+            let controller = SettingsAccountCreateController.instance(Account.allCases[index])
+            self?.presentAsSheet(controller)
+        }
+        presentAsSheet(controller)
     }
     
     @IBAction func removeAction(_ sender: NSButton) {

@@ -58,8 +58,20 @@ extension ReceiveController {
                     // 选择平台
                     // 查询该平台下app列表
                     // 查找包名匹配的appid, 获取详情信息
-                    let controller = PgyerIPAController.instance(file: url, with: info)
-                    window.contentViewController = controller
+                    let controller = SinglePickerController.instance(
+                        Account.allCases.map({ .init(icon: $0.icon, name: $0.name) })
+                    )
+                    controller.completion = { [weak self] index in
+                        switch Account.allCases[index] {
+                        case .pgyer:
+                            let controller = PgyerIPAController.instance(file: url, with: info)
+                            window.contentViewController = controller
+                            
+                        case .firim:
+                            break
+                        }
+                    }
+                    self.presentAsSheet(controller)
                     
                 case .apk(let info):
                     print(info)
@@ -80,5 +92,22 @@ extension ReceiveController: ReceiveDragViewDelegate {
     
     func draggingFileAccept(file url: URL) {
         handle(file: url)
+    }
+}
+
+fileprivate extension Account {
+    
+    var name: String {
+        switch self {
+        case .pgyer:    return "蒲公英"
+        case .firim:    return "fir.im"
+        }
+    }
+    
+    var icon: NSImage {
+        switch self {
+        case .pgyer:    return #imageLiteral(resourceName: "platform_icon_pgyer")
+        case .firim:    return #imageLiteral(resourceName: "platform_icon_firim")
+        }
     }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="System colors introduced in macOS 10.14" minToolsVersion="10.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -204,7 +204,7 @@
                                         <rect key="frame" x="15" y="20" width="730" height="203"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="iMQ-4s-6g6">
                                             <rect key="frame" x="0.0" y="0.0" width="730" height="203"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textView drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5su-sN-jdA">
                                                     <rect key="frame" x="0.0" y="0.0" width="730" height="203"/>
@@ -298,11 +298,11 @@
                         </constraints>
                         <connections>
                             <outlet property="creationLabel" destination="PZ8-YN-p9Y" id="NXo-uO-H2Y"/>
+                            <outlet property="descriptionTextView" destination="5su-sN-jdA" id="e9g-Fd-qWf"/>
                             <outlet property="embeddedButton" destination="IBO-hE-ePr" id="7Y2-hT-BLm"/>
                             <outlet property="iconImageView" destination="dPh-EN-hBm" id="592-HN-dsR"/>
                             <outlet property="idLabel" destination="BCv-9g-IzQ" id="ETf-uI-cOB"/>
                             <outlet property="nameLabel" destination="tzk-iv-EmR" id="QfC-7V-kUv"/>
-                            <outlet property="notesTextView" destination="5su-sN-jdA" id="e9g-Fd-qWf"/>
                             <outlet property="sizeLabel" destination="Ifv-aZ-gRw" id="8rX-Q5-H4i"/>
                             <outlet property="versionLabel" destination="xnU-bn-c4l" id="tr3-Ty-I3o"/>
                         </connections>

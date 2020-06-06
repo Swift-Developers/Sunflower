@@ -11,8 +11,3 @@ enum Account: String, CaseIterable {
     case pgyer
     case firim
 }
-
-extension Account {
-    
-    
-}

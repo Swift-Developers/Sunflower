@@ -2,6 +2,7 @@ import Foundation
 import Cocoa
 
 enum StoryBoard: String {
+    case picker              = "Picker"
     case receive             = "Receive"
     case pgyer               = "Pgyer"
     case firim               = "Firim"
