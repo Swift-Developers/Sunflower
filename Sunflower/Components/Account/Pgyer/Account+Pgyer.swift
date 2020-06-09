@@ -12,5 +12,6 @@ extension Account {
     struct Pgyer: Codable {
         let key: String             // API Key
         var name: String            // 别名
+        var password: String        // 安装密码
     }
 }

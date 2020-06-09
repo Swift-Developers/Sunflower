@@ -6,6 +6,7 @@
 //
 
 import Cocoa
+import AttributedString
 
 class ReceiveController: ViewController<ReceiveView> {
 
@@ -48,36 +49,14 @@ class ReceiveController: ViewController<ReceiveView> {
 extension ReceiveController {
     
     private func handle(file url: URL) {
-        Analysis.handle(file: url) { (result) in
-            guard let window = NSApp.mainWindow else { return }
-            
+        Analysis.handle(file: url) { [weak self] (result) in
             switch result {
             case .success(let value):
-                switch value {
-                case .ipa(let info):
-                    // 选择平台
-                    // 查询该平台下app列表
-                    // 查找包名匹配的appid, 获取详情信息
-                    let controller = SinglePickerController.instance(
-                        Account.allCases.map({ .init(icon: $0.icon, name: $0.name) })
-                    )
-                    controller.completion = { [weak self] index in
-                        switch Account.allCases[index] {
-                        case .pgyer:
-                            let controller = PgyerIPAController.instance(file: url, with: info)
-                            window.contentViewController = controller
-                            
-                        case .firim:
-                            break
-                        }
-                    }
-                    self.presentAsSheet(controller)
-                    
-                case .apk(let info):
-                    print(info)
-                }
+                self?.handle(file: url, with: value)
                 
             case .failure(let error):
+                guard let window = NSApp.mainWindow else { return }
+                
                 let alert = NSAlert()
                 alert.alertStyle = .critical
                 alert.messageText = "异常"
@@ -85,6 +64,60 @@ extension ReceiveController {
                 alert.beginSheetModal(for: window)
             }
         }
+    }
+    
+    private func handle(file url: URL, with info: Analysis.Info) {
+        guard let window = NSApp.mainWindow else { return }
+        
+        // 选择账号
+        // 查询该账号平台下app列表
+        // 查找包名匹配的appid, 获取详情信息
+        
+        enum Temp {
+            case pgyer(Account.Pgyer)
+            case firim(Account.Firim)
+            
+            var icon: NSImage {
+                switch self {
+                case .pgyer: return Account.pgyer.icon
+                case .firim: return Account.firim.icon
+                }
+            }
+            
+            var name: NSAttributedString {
+                switch self {
+                case .pgyer(let value): return (value.name + AttributedString("\(value.key)", .font(.systemFont(ofSize: 12)))).value
+                case .firim(let value): return (value.name + AttributedString("\(value.key)", .font(.systemFont(ofSize: 12)))).value
+                }
+            }
+        }
+        
+        var accounts: [Temp] = []
+        do {
+            let models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
+            accounts += models.map { .pgyer($0) }
+        }
+        do {
+            let models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
+            accounts += models.map { .firim($0) }
+        }
+        
+        let controller = SinglePickerController.instance(
+            accounts.map { .init(icon: $0.icon, name: $0.name) }
+        )
+        controller.title = "选择账号"
+        controller.completion = { index in
+            let account = accounts[index]
+            switch account {
+            case .pgyer(let account):
+                let controller = PgyerController.instance(account, file: url, with: info)
+                window.contentViewController = controller
+                
+            case .firim:
+                break
+            }
+        }
+        self.presentAsSheet(controller)
     }
 }
 

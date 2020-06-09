@@ -16,13 +16,25 @@ class PgyerIPAView: NSView {
     @IBOutlet weak var creationLabel: NSTextField!
     @IBOutlet weak var sizeLabel: NSTextField!
     @IBOutlet weak var embeddedButton: NSButton!
+    @IBOutlet weak var doneButton: NSButton!
     
+    @IBOutlet weak var loadingIndicator: NSProgressIndicator!
     @IBOutlet var descriptionTextView: NSTextView!
     
     /// 更新描述
-    override var description: String {
+    var notes: String {
         get { descriptionTextView.string }
-        set { descriptionTextView.string = newValue }
+        set {
+            descriptionTextView.string = newValue
+            descriptionTextView.isHidden = false
+            loadingIndicator.stopAnimation(self)
+            doneButton.isEnabled = true
+        }
+    }
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        loadingIndicator.startAnimation(self)
     }
 }
 

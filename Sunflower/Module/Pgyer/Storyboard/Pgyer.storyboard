@@ -6,6 +6,19 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Pgyer Controller-->
+        <scene sceneID="YJc-tW-iX4">
+            <objects>
+                <viewController storyboardIdentifier="PgyerController" id="alz-kf-KpS" customClass="PgyerController" customModule="Sunflower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="p4L-jK-hXC">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="500"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="OVq-uh-fmZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-819" y="119"/>
+        </scene>
         <!--PgyerIPA Controller-->
         <scene sceneID="1Yx-qS-ABm">
             <objects>
@@ -204,9 +217,9 @@
                                         <rect key="frame" x="15" y="20" width="730" height="203"/>
                                         <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="iMQ-4s-6g6">
                                             <rect key="frame" x="0.0" y="0.0" width="730" height="203"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textView drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5su-sN-jdA">
+                                                <textView hidden="YES" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5su-sN-jdA">
                                                     <rect key="frame" x="0.0" y="0.0" width="730" height="203"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -226,6 +239,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                         </scroller>
                                     </scrollView>
+                                    <progressIndicator wantsLayer="YES" fixedFrame="YES" maxValue="100" displayedWhenStopped="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="WAj-TB-zd8">
+                                        <rect key="frame" x="372" y="122" width="16" height="16"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </progressIndicator>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Isj-YX-naP" firstAttribute="top" secondItem="irr-oZ-bgn" secondAttribute="bottom" constant="10" id="AM0-XT-JZ7"/>
@@ -250,7 +267,7 @@
                                     <constraint firstAttribute="width" constant="80" id="Asl-Fs-V9M"/>
                                     <constraint firstAttribute="height" constant="34" id="tzt-rm-iC2"/>
                                 </constraints>
-                                <buttonCell key="cell" type="square" title="发布" bezelStyle="shadowlessSquare" alignment="center" imageScaling="proportionallyDown" inset="2" id="mlR-1Q-Kb7">
+                                <buttonCell key="cell" type="bevel" title="发布" bezelStyle="regularSquare" alignment="center" enabled="NO" imageScaling="proportionallyDown" inset="2" id="mlR-1Q-Kb7">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system" size="16"/>
                                 </buttonCell>
@@ -299,9 +316,11 @@
                         <connections>
                             <outlet property="creationLabel" destination="PZ8-YN-p9Y" id="NXo-uO-H2Y"/>
                             <outlet property="descriptionTextView" destination="5su-sN-jdA" id="e9g-Fd-qWf"/>
+                            <outlet property="doneButton" destination="pao-C8-7O8" id="pcf-gG-mnk"/>
                             <outlet property="embeddedButton" destination="IBO-hE-ePr" id="7Y2-hT-BLm"/>
                             <outlet property="iconImageView" destination="dPh-EN-hBm" id="592-HN-dsR"/>
                             <outlet property="idLabel" destination="BCv-9g-IzQ" id="ETf-uI-cOB"/>
+                            <outlet property="loadingIndicator" destination="WAj-TB-zd8" id="Ei4-XM-Nth"/>
                             <outlet property="nameLabel" destination="tzk-iv-EmR" id="QfC-7V-kUv"/>
                             <outlet property="sizeLabel" destination="Ifv-aZ-gRw" id="8rX-Q5-H4i"/>
                             <outlet property="versionLabel" destination="xnU-bn-c4l" id="tr3-Ty-I3o"/>

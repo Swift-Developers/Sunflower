@@ -33,10 +33,10 @@ extension APIPgyerTarget: TargetType {
         case let .upload(body):
             return .uploadMultipart([
                 .init(provider: .file(body.file), name: "file"),
-                .init(provider: .data(Pgyer.apiKey.data(using: .utf8)!), name: "_api_key"),
-                .init(provider: .data(String(body.installType).data(using: .utf8)!), name: "buildInstallType"),
-                .init(provider: .data(body.password.data(using: .utf8)!), name: "buildPassword"),
-                .init(provider: .data(body.description.data(using: .utf8)!), name: "buildUpdateDescription")
+                .init(provider: .data(body.key.data(using: .utf8) ?? .init()), name: "_api_key"),
+                .init(provider: .data(String(body.installType).data(using: .utf8) ?? .init()), name: "buildInstallType"),
+                .init(provider: .data(body.password.data(using: .utf8) ?? .init()), name: "buildPassword"),
+                .init(provider: .data(body.description.data(using: .utf8) ?? .init()), name: "buildUpdateDescription")
             ])
             
         case let .list(key):

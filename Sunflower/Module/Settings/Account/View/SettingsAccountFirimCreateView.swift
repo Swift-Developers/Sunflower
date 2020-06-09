@@ -1,13 +1,13 @@
 //
-//  SettingsAccountCreateView.swift
+//  SettingsAccountFirimCreateView.swift
 //  Sunflower
 //
-//  Created by Lee on 2020/5/15.
+//  Created by Lee on 2020/6/8.
 //
 
 import Cocoa
 
-class SettingsAccountCreateView: NSView {
+class SettingsAccountFirimCreateView: NSView {
 
     var key: String {
         keyTextField.stringValue

@@ -9,10 +9,13 @@ import Cocoa
 
 class PgyerAPKView: NSView {
 
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
+    @IBOutlet weak var loadingIndicator: NSProgressIndicator!
+    @IBOutlet var descriptionTextView: NSTextView!
+    
+    /// 更新描述
+    var notes: String {
+        get { descriptionTextView.string }
+        set { descriptionTextView.string = newValue }
     }
     
 }

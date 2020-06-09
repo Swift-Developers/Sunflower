@@ -72,6 +72,8 @@
 		9BE7D4D1248B899600DE1176 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7D4D0248B899600DE1176 /* Constant.swift */; };
 		9BE7D4D6248B8C4D00DE1176 /* Picker.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BE7D4D5248B8C4D00DE1176 /* Picker.storyboard */; };
 		9BE7D4DA248B95FB00DE1176 /* SinglePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7D4D9248B95FB00DE1176 /* SinglePickerController.swift */; };
+		9BE7D4DC248E412500DE1176 /* SettingsAccountFirimCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7D4DB248E412500DE1176 /* SettingsAccountFirimCreateController.swift */; };
+		9BE7D4DE248E416200DE1176 /* SettingsAccountFirimCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BE7D4DD248E416200DE1176 /* SettingsAccountFirimCreateView.swift */; };
 		9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0524458A5E0084563C /* Pgyer.storyboard */; };
 		9BEA1A0824458A7A0084563C /* PgyerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0724458A7A0084563C /* PgyerController.swift */; };
 		9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A0924458A900084563C /* PgyerView.swift */; };
@@ -83,8 +85,8 @@
 		9BEA1A1B2445BBB00084563C /* Analysis+IPA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */; };
 		9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */; };
 		9BF00FCA246D3E7000AB10AA /* SettingsRobotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */; };
-		9BF00FCC246E46C900AB10AA /* SettingsAccountCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCB246E46C900AB10AA /* SettingsAccountCreateController.swift */; };
-		9BF00FCE246E46F700AB10AA /* SettingsAccountCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */; };
+		9BF00FCC246E46C900AB10AA /* SettingsAccountPgyerCreateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCB246E46C900AB10AA /* SettingsAccountPgyerCreateController.swift */; };
+		9BF00FCE246E46F700AB10AA /* SettingsAccountPgyerCreateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FCD246E46F700AB10AA /* SettingsAccountPgyerCreateView.swift */; };
 		9BF00FD5246E93C700AB10AA /* Robot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FD4246E93C700AB10AA /* Robot.swift */; };
 		9BF00FD9246E942D00AB10AA /* Robot+Wechat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FD8246E942D00AB10AA /* Robot+Wechat.swift */; };
 		9BF00FDB246E943800AB10AA /* Robot+Feishu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */; };
@@ -179,6 +181,8 @@
 		9BE7D4D0248B899600DE1176 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		9BE7D4D5248B8C4D00DE1176 /* Picker.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Picker.storyboard; sourceTree = "<group>"; };
 		9BE7D4D9248B95FB00DE1176 /* SinglePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePickerController.swift; sourceTree = "<group>"; };
+		9BE7D4DB248E412500DE1176 /* SettingsAccountFirimCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountFirimCreateController.swift; sourceTree = "<group>"; };
+		9BE7D4DD248E416200DE1176 /* SettingsAccountFirimCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountFirimCreateView.swift; sourceTree = "<group>"; };
 		9BEA1A0524458A5E0084563C /* Pgyer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Pgyer.storyboard; sourceTree = "<group>"; };
 		9BEA1A0724458A7A0084563C /* PgyerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerController.swift; sourceTree = "<group>"; };
 		9BEA1A0924458A900084563C /* PgyerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PgyerView.swift; sourceTree = "<group>"; };
@@ -192,8 +196,8 @@
 		9BEA1A1A2445BBB00084563C /* Analysis+IPA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+IPA.swift"; sourceTree = "<group>"; };
 		9BEA1A1C2445BBC10084563C /* Analysis+APK.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analysis+APK.swift"; sourceTree = "<group>"; };
 		9BF00FC9246D3E7000AB10AA /* SettingsRobotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsRobotModel.swift; sourceTree = "<group>"; };
-		9BF00FCB246E46C900AB10AA /* SettingsAccountCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountCreateController.swift; sourceTree = "<group>"; };
-		9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountCreateView.swift; sourceTree = "<group>"; };
+		9BF00FCB246E46C900AB10AA /* SettingsAccountPgyerCreateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountPgyerCreateController.swift; sourceTree = "<group>"; };
+		9BF00FCD246E46F700AB10AA /* SettingsAccountPgyerCreateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountPgyerCreateView.swift; sourceTree = "<group>"; };
 		9BF00FD4246E93C700AB10AA /* Robot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Robot.swift; sourceTree = "<group>"; };
 		9BF00FD8246E942D00AB10AA /* Robot+Wechat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Robot+Wechat.swift"; sourceTree = "<group>"; };
 		9BF00FDA246E943800AB10AA /* Robot+Feishu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Robot+Feishu.swift"; sourceTree = "<group>"; };
@@ -650,7 +654,8 @@
 				9B62F05A244EEC4600CBBD00 /* SettingsAccountController.swift */,
 				9B26C939245805F50038E82E /* SettingsAccountPgyerInfoController.swift */,
 				9B26C93B2458060C0038E82E /* SettingsAccountFirimInfoController.swift */,
-				9BF00FCB246E46C900AB10AA /* SettingsAccountCreateController.swift */,
+				9BF00FCB246E46C900AB10AA /* SettingsAccountPgyerCreateController.swift */,
+				9BE7D4DB248E412500DE1176 /* SettingsAccountFirimCreateController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -664,7 +669,8 @@
 				9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */,
 				9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */,
 				9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */,
-				9BF00FCD246E46F700AB10AA /* SettingsAccountCreateView.swift */,
+				9BF00FCD246E46F700AB10AA /* SettingsAccountPgyerCreateView.swift */,
+				9BE7D4DD248E416200DE1176 /* SettingsAccountFirimCreateView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -950,7 +956,8 @@
 				9BEA1A192445BB540084563C /* Analysis.swift in Sources */,
 				9B267C4124447969002F571E /* ReceiveController.swift in Sources */,
 				9B62F000244DC08500CBBD00 /* Account+Firim.swift in Sources */,
-				9BF00FCC246E46C900AB10AA /* SettingsAccountCreateController.swift in Sources */,
+				9BF00FCC246E46C900AB10AA /* SettingsAccountPgyerCreateController.swift in Sources */,
+				9BE7D4DC248E412500DE1176 /* SettingsAccountFirimCreateController.swift in Sources */,
 				9BF00FCA246D3E7000AB10AA /* SettingsRobotModel.swift in Sources */,
 				9B62EFFC244DBFD500CBBD00 /* Account.swift in Sources */,
 				9B267C3D24447937002F571E /* APICancellableWrapper.swift in Sources */,
@@ -961,7 +968,7 @@
 				9B4EFA65244D866C00C1BD84 /* AnalysisArsc.mm in Sources */,
 				9B267C4824447B5E002F571E /* Pgyer.swift in Sources */,
 				9BEA1A132445A6FC0084563C /* ViewExtension.swift in Sources */,
-				9BF00FCE246E46F700AB10AA /* SettingsAccountCreateView.swift in Sources */,
+				9BF00FCE246E46F700AB10AA /* SettingsAccountPgyerCreateView.swift in Sources */,
 				9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */,
 				9B62F02E244EC41D00CBBD00 /* SettingsRobotController.swift in Sources */,
 				9B62F005244DC95500CBBD00 /* Settings.swift in Sources */,
@@ -1009,6 +1016,7 @@
 				9B267C3B24447937002F571E /* Result.swift in Sources */,
 				9BEA1A152445AAE90084563C /* Receive.swift in Sources */,
 				9B26C93A245805F50038E82E /* SettingsAccountPgyerInfoController.swift in Sources */,
+				9BE7D4DE248E416200DE1176 /* SettingsAccountFirimCreateView.swift in Sources */,
 				9B62F02A244EC3DC00CBBD00 /* SettingsFirimController.swift in Sources */,
 				9B267C4324447979002F571E /* ReceiveView.swift in Sources */,
 				9B62F016244EC22700CBBD00 /* SettingsController.swift in Sources */,

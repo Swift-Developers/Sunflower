@@ -11,7 +11,7 @@ class SinglePickerController: ViewController<NSView> {
 
     struct Item {
         let icon: NSImage
-        let name: String
+        let name: NSAttributedString
     }
     
     @IBOutlet private weak var titleLabel: NSTextField!
@@ -21,11 +21,15 @@ class SinglePickerController: ViewController<NSView> {
     var completion: ((Int) -> Void)?
     
     override var title: String? {
-        didSet { titleLabel.stringValue = title ?? "" }
+        didSet {
+            guard isViewLoaded else { return }
+            titleLabel.stringValue = title ?? ""
+        }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        titleLabel.stringValue = title ?? ""
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -54,7 +58,7 @@ extension SinglePickerController: NSTableViewDataSource, NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         let cell = tableView.makeView(withIdentifier: .init("cell"), owner: self) as? NSTableCellView
         cell?.imageView?.image = items[row].icon
-        cell?.textField?.stringValue = items[row].name
+        cell?.textField?.attributedStringValue = items[row].name
         return cell
     }
     

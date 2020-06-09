@@ -40,6 +40,7 @@ class SettingsAccountFirimInfoController: ViewController<SettingsAccountFirimInf
     }
     
     @IBAction func nameAction(_ sender: NSTextField) {
+        guard !sender.stringValue.isEmpty else { return }
         sender.placeholderString = sender.stringValue
         model.name = sender.stringValue
     }

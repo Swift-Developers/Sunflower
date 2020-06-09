@@ -32,7 +32,6 @@ extension AttributedStringCompatible {
     }
 }
 
-
 extension AttributedString {
     
     /// Add a AttributedString to another AttributedString.
@@ -85,6 +84,15 @@ extension AttributedString {
     public static func + (lhs: AttributedString, rhs: String) -> AttributedString {
         return lhs + AttributedString(.init(string: rhs))
     }
+    /// Add a AttributedString to another String and return a new AttributedString instance.
+    ///
+    /// - Parameters:
+    ///   - lhs: String to add.
+    ///   - rhs: AttributedString to add.
+    /// - Returns: New instance with added NSAttributedString.
+    public static func + (lhs: String, rhs: AttributedString) -> AttributedString {
+        return AttributedString(.init(string: lhs)) + rhs
+    }
     
     /// Add a NSAttributedString to another AttributedString.
     ///
@@ -114,60 +122,79 @@ extension AttributedString {
         return lhs + AttributedString(rhs)
     }
     
-    /// Add a AttributedString.Style to another AttributedString.
+    /// Add a AttributedString to another NSAttributedString and return a new AttributedString instance.
+    ///
+    /// - Parameters:
+    ///   - lhs: NSAttributedString to add.
+    ///   - rhs: AttributedString to add.
+    /// - Returns: New instance with added NSAttributedString.
+    public static func + (lhs: NSAttributedString, rhs: AttributedString) -> AttributedString {
+        return AttributedString(lhs) + rhs
+    }
+    
+    /// Add a AttributedString.Attribute to another AttributedString.
     ///
     /// - Parameters:
     ///   - lhs: AttributedString to add to.
-    ///   - rhs: AttributedString.Style to add.
-    public static func += (lhs: inout AttributedString, rhs: AttributedString.Style) {
+    ///   - rhs: AttributedString.Attribute to add.
+    public static func += (lhs: inout AttributedString, rhs: AttributedString.Attribute) {
         lhs += (rhs, .init(location: 0, length: lhs.value.string.count))
     }
     
-    /// Add a AttributedString.Style to another AttributedString.
+    /// Add a AttributedString.Attribute to another AttributedString.
     ///
     /// - Parameters:
     ///   - lhs: AttributedString to add to.
-    ///   - rhs: AttributedString.Style to add.
-    public static func += (lhs: inout AttributedString, rhs: (AttributedString.Style, NSRange)) {
+    ///   - rhs: AttributedString.Attribute to add.
+    public static func += (lhs: inout AttributedString, rhs: [AttributedString.Attribute]) {
+        lhs += (rhs, .init(location: 0, length: lhs.value.string.count))
+    }
+    
+    /// Add a AttributedString.Attribute to another AttributedString.
+    ///
+    /// - Parameters:
+    ///   - lhs: AttributedString to add to.
+    ///   - rhs: AttributedString.Attribute to add.
+    public static func += (lhs: inout AttributedString, rhs: (AttributedString.Attribute, NSRange)) {
         lhs += ([rhs.0], rhs.1)
     }
     
-    /// Add a AttributedString.Style to another AttributedString.
+    /// Add a AttributedString.Attribute to another AttributedString.
     ///
     /// - Parameters:
     ///   - lhs: AttributedString to add to.
-    ///   - rhs: AttributedString.Style to add.
-    public static func += (lhs: inout AttributedString, rhs: ([AttributedString.Style], NSRange)) {
+    ///   - rhs: AttributedString.Attribute to add.
+    public static func += (lhs: inout AttributedString, rhs: ([AttributedString.Attribute], NSRange)) {
         lhs = lhs + rhs
     }
     
-    /// Add a AttributedString.Style to another AttributedString and return a new AttributedString instance.
+    /// Add a AttributedString.Attribute to another AttributedString and return a new AttributedString instance.
     ///
     /// - Parameters:
     ///   - lhs: AttributedString to add.
-    ///   - rhs: AttributedString.Style to add.
-    /// - Returns: New instance with added AttributedString.Style.
-    public static func + (lhs: AttributedString, rhs: AttributedString.Style) -> AttributedString {
+    ///   - rhs: AttributedString.Attribute to add.
+    /// - Returns: New instance with added AttributedString.Attribute.
+    public static func + (lhs: AttributedString, rhs: AttributedString.Attribute) -> AttributedString {
         return lhs + (rhs, .init(location: 0, length: lhs.value.string.count))
     }
     
-    /// Add a AttributedString.Style to another AttributedString and return a new AttributedString instance.
+    /// Add a AttributedString.Attribute to another AttributedString and return a new AttributedString instance.
     ///
     /// - Parameters:
     ///   - lhs: AttributedString to add.
-    ///   - rhs: AttributedString.Style to add.
-    /// - Returns: New instance with added AttributedString.Style.
-    public static func + (lhs: AttributedString, rhs: (AttributedString.Style, NSRange)) -> AttributedString {
+    ///   - rhs: AttributedString.Attribute to add.
+    /// - Returns: New instance with added AttributedString.Attribute.
+    public static func + (lhs: AttributedString, rhs: (AttributedString.Attribute, NSRange)) -> AttributedString {
         return lhs + ([rhs.0], rhs.1)
     }
     
-    /// Add a AttributedString.Style to another AttributedString and return a new AttributedString instance.
+    /// Add a AttributedString.Attribute to another AttributedString and return a new AttributedString instance.
     ///
     /// - Parameters:
     ///   - lhs: AttributedString to add.
-    ///   - rhs: AttributedString.Style to add.
-    /// - Returns: New instance with added AttributedString.Style.
-    public static func + (lhs: AttributedString, rhs: ([AttributedString.Style], NSRange)) -> AttributedString {
+    ///   - rhs: AttributedString.Attribute to add.
+    /// - Returns: New instance with added AttributedString.Attribute.
+    public static func + (lhs: AttributedString, rhs: ([AttributedString.Attribute], NSRange)) -> AttributedString {
         let string = NSMutableAttributedString(attributedString: lhs.value)
         rhs.0.forEach { string.addAttributes($0.attributes, range: rhs.1) }
         return .init(string)

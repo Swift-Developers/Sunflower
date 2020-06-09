@@ -11,18 +11,21 @@ class PgyerModel {
     
     typealias Info = Analysis.Info
     
-    let key: String
+    let account: Account.Pgyer
     let file: URL
     let info: Info
     
-    init(_ key: String, file url: URL, with info: Info) {
-        self.key = key
+    init(_ account: Account.Pgyer, file url: URL, with info: Info) {
+        self.account = account
         self.file = url
         self.info = info
     }
     
-    func upload(_ notes: String, with completion: @escaping ((Bool) -> Void)) {
-        API.pgyer.load(.upload(.init(password: "", description: notes, file: file)), options: [.retry(.count(3))]) { (result) in
+    func upload(_ notes: String, progress: @escaping ((Double) -> Void), with completion: @escaping ((Bool) -> Void)) {
+        API.pgyer.load(
+            .upload(.init(key: account.key, password: account.password, description: notes, file: file)),
+            options: [.progress(progress)]
+        ) { (result) in
             completion(result)
         }
     }
@@ -44,7 +47,7 @@ class PgyerModel {
         struct Model: Codable {
             let list: [Item]
         }
-        API.pgyer.load(.list(key: key), options: []) { (result: API.Result<Model>) in
+        API.pgyer.load(.list(key: account.key), options: []) { (result: API.Result<Model>) in
             switch result {
             case .success(let value):
                 completion(.success(value.list))

@@ -19,7 +19,7 @@ import UIKit
 
 #if !os(watchOS)
 
-extension AttributedStringInterpolation {
+extension AttributedString {
     
     public enum Attachment {
         case image(Image, bounds: CGRect)
@@ -144,7 +144,13 @@ extension AttributedStringInterpolation {
                 return .init(point(size), size)
             }
         }
-    }
+    }    
+}
+
+extension AttributedStringInterpolation {
+    
+    public typealias Attachment = AttributedString.Attachment
+    public typealias ImageTextAttachment = AttributedString.ImageTextAttachment
     
     public mutating func appendInterpolation(_ value: ImageTextAttachment) {
         self.value.append(.init(attachment: value))
@@ -152,6 +158,21 @@ extension AttributedStringInterpolation {
     
     public mutating func appendInterpolation(_ value: Attachment) {
         self.value.append(.init(attachment: value.value))
+    }
+}
+
+extension AttributedString {
+
+    public init<T: NSTextAttachment>(_ attachment: T) {
+        self.value = .init(attachment: attachment)
+    }
+
+    public init(_ attachment: ImageTextAttachment) {
+        self.value = .init(attachment: attachment)
+    }
+
+    public init(_ attachment: Attachment) {
+        self.value = .init(attachment: attachment.value)
     }
 }
 

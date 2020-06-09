@@ -69,7 +69,7 @@ class SettingsRobotController: ViewController<SettingsRobotView> {
     
     @IBAction func createAction(_ sender: NSButton) {
         let controller = SinglePickerController.instance(
-            Robot.allCases.map({ .init(icon: $0.icon, name: $0.name) })
+            Robot.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
         )
         controller.completion = { [weak self] index in
             let controller = SettingsRobotCreateController.instance(Robot.allCases[index])
@@ -214,7 +214,7 @@ extension SettingsRobotController: NSCollectionViewDataSource {
 
 extension SettingsRobotController: PreferencePane {
     
-    var preferencePaneIdentifier: Identifier { .robot }
+    var preferencePaneIdentifier: Preferences.PaneIdentifier { .robot }
     
     var preferencePaneTitle: String { "机器人" }
     

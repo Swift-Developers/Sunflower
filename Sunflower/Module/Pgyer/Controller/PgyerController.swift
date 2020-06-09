@@ -7,14 +7,82 @@
 
 import Cocoa
 
-class PgyerController: ViewController<PgyerView> {
+class PgyerController: ViewController<NSView> {
+    
+    var model: PgyerModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        switch model.info {
+        case .ipa(let value):
+            let controller = PgyerIPAController.instance(file: model.file, with: value)
+            add(child: controller)
+            controller.upload = upload
+            getNotes { (notes) in
+                controller.notes = notes ?? ""
+            }
+            
+        case .apk:
+            break
+        }
     }
     
-    static func instance() -> Self {
+    private static func instance() -> Self {
         return StoryBoard.pgyer.instance()
+    }
+    
+    static func instance(_ account: Account.Pgyer, file url: URL, with info: Analysis.Info) -> Self {
+        let controller = instance()
+        controller.model = .init(account, file: url, with: info)
+        return controller
+    }
+}
+
+extension PgyerController {
+    
+    private func getNotes(with completion: @escaping ((String?) -> Void)) {
+        model.getDetail { [weak self] (result) in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let value):
+                completion(value?.buildUpdateDescription)
+                
+            case .failure:
+                guard let window = NSApp.mainWindow else { return }
+                
+                let alert = NSAlert()
+                alert.addButton(withTitle: "重试")
+                alert.addButton(withTitle: "取消")
+                alert.messageText = "获取应用信息失败"
+                alert.beginSheetModal(for: window) { [weak self] (response) in
+                    guard let self = self else { return }
+                    if response == .alertFirstButtonReturn {
+                        self.getNotes(with: completion)
+                        
+                    } else {
+                        let controller = ReceiveController.instance()
+                        NSApp.mainWindow?.contentViewController = controller
+                    }
+                }
+            }
+        }
+    }
+    
+    private func upload(_ controller: PgyerIPAController, with notes: String) {
+        model.upload(
+            notes,
+            progress: { progress in
+                print(progress)
+            },
+            with: { result in
+                print(result)
+            }
+        )
+    }
+    
+    private func upload(_ controller: PgyerAPKController, with notes: String) {
+        
     }
 }

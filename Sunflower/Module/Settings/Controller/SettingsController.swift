@@ -43,7 +43,7 @@ class SettingsController: ViewController<SettingsView> {
 
 extension SettingsController: PreferencePane {
     
-    var preferencePaneIdentifier: Identifier { .general }
+    var preferencePaneIdentifier: Preferences.PaneIdentifier { .general }
     
     var preferencePaneTitle: String { "通用" }
     

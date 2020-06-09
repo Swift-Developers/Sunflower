@@ -69,11 +69,18 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
     
     @IBAction func createAction(_ sender: NSButton) {
         let controller = SinglePickerController.instance(
-            Account.allCases.map({ .init(icon: $0.icon, name: $0.name) })
+            Account.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
         )
         controller.completion = { [weak self] index in
-            let controller = SettingsAccountCreateController.instance(Account.allCases[index])
-            self?.presentAsSheet(controller)
+            switch Account.allCases[index] {
+            case .pgyer:
+                let controller = SettingsAccountPgyerCreateController.instance()
+                self?.presentAsSheet(controller)
+                
+            case .firim:
+                let controller = SettingsAccountPgyerCreateController.instance()
+                self?.presentAsSheet(controller)
+            }
         }
         presentAsSheet(controller)
     }
@@ -214,7 +221,7 @@ extension SettingsAccountController: NSCollectionViewDataSource {
 
 extension SettingsAccountController: PreferencePane {
         
-    var preferencePaneIdentifier: Identifier { .account }
+    var preferencePaneIdentifier: Preferences.PaneIdentifier { .account }
         
     var preferencePaneTitle: String { "账号" }
     

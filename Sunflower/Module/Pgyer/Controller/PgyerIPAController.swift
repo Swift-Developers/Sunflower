@@ -11,8 +11,14 @@ class PgyerIPAController: ViewController<PgyerIPAView> {
 
     typealias Info = Analysis.IPA
     
-    private var model: PgyerModel?
+    private var file: URL?
     private var info: Info = .empty
+    
+    var notes: String {
+        get { container.notes }
+        set { container.notes = newValue }
+    }
+    var upload: ((PgyerIPAController, String) -> Void)?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,23 +30,7 @@ class PgyerIPAController: ViewController<PgyerIPAView> {
     private func setup() {
         title = info.name
         container.set(info)
-        container.set(model?.file)
-        
-        model?.getDetail { [weak self] (result) in
-            guard let self = self else { return }
-            switch result {
-            case .success(let value):
-                if let item = value {
-                    self.container.description = item.buildUpdateDescription
-                    
-                } else {
-                    
-                }
-                
-            case .failure:
-                print("")
-            }
-        }
+        container.set(file)
     }
     
     private func setupNotification() {
@@ -62,20 +52,18 @@ class PgyerIPAController: ViewController<PgyerIPAView> {
     }
     
     @IBAction func doneAction(_ sender: NSButton) {
-        model?.upload(container.description) { (result) in
-            
-        }
-    }
-    
-    static func instance(file url: URL, with info: Info) -> Self {
-        let controller = instance()
-        controller.model = .init("b7b9e51d9589c2e9c6002db2214111ee", file: url, with: .ipa(info))
-        controller.info = info
-        return controller
+        upload?(self, notes)
     }
     
     private static func instance() -> Self {
         return StoryBoard.pgyer.instance()
+    }
+    
+    static func instance(file url: URL, with info: Info) -> Self {
+        let controller = instance()
+        controller.file = url
+        controller.info = info
+        return controller
     }
 }
 
@@ -86,6 +74,15 @@ extension PgyerIPAController {
         let controller = ReceiveController.instance()
         NSApp.mainWindow?.contentViewController = controller
     }
+}
+
+fileprivate extension PgyerModel {
+    
+    static let empty: PgyerModel = .init(
+        .init(key: "", name: "", password: ""),
+        file: .init(fileURLWithPath: ""),
+        with: .ipa(.empty)
+    )
 }
 
 fileprivate extension Analysis.IPA {

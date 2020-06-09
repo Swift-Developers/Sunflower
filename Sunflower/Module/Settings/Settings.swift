@@ -14,9 +14,9 @@ enum Settings: String, CaseIterable {
     case robot          // 机器人
 }
 
-extension PreferencePane.Identifier {
-    static let general = Identifier("general")
-    static let account = Identifier("account")
-    static let robot = Identifier("robot")
+extension Preferences.PaneIdentifier {
+    static let general = Preferences.PaneIdentifier("general")
+    static let account = Preferences.PaneIdentifier("account")
+    static let robot = Preferences.PaneIdentifier("robot")
 }
 

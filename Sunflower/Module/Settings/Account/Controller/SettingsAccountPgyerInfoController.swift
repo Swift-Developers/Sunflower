@@ -14,9 +14,9 @@ class SettingsAccountPgyerInfoController: ViewController<SettingsAccountPgyerInf
     private var model: Account.Pgyer {
         get {
             guard let models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) else {
-                return .init(key: key, name: "")
+                return .init(key: key, name: "", password: "")
             }
-            return models.first(where: { $0.key == key }) ?? .init(key: key, name: "")
+            return models.first(where: { $0.key == key }) ?? .init(key: key, name: "", password: "")
         }
         set {
             guard
@@ -36,12 +36,19 @@ class SettingsAccountPgyerInfoController: ViewController<SettingsAccountPgyerInf
     }
     
     private func setup() {
-        container.set(key: model.key, name: model.name)
+        container.set(key: model.key, name: model.name, password: model.password)
     }
     
     @IBAction func nameAction(_ sender: NSTextField) {
+        guard !sender.stringValue.isEmpty else { return }
         sender.placeholderString = sender.stringValue
         model.name = sender.stringValue
+    }
+    
+    @IBAction func passwordAction(_ sender: NSTextField) {
+        guard !sender.stringValue.isEmpty else { return }
+        sender.placeholderString = sender.stringValue
+        model.password = sender.stringValue
     }
     
     private static func instance() -> Self {
