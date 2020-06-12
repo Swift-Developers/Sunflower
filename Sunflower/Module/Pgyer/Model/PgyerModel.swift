@@ -15,19 +15,32 @@ class PgyerModel {
     let file: URL
     let info: Info
     
+    private var cancellable: Cancellable?
+    
     init(_ account: Account.Pgyer, file url: URL, with info: Info) {
         self.account = account
         self.file = url
         self.info = info
     }
     
+    /// 上传
+    /// - Parameters:
+    ///   - notes: 更新记录
+    ///   - progress: 进度回调
+    ///   - completion: 完成回调
     func upload(_ notes: String, progress: @escaping ((Double) -> Void), with completion: @escaping ((Bool) -> Void)) {
-        API.pgyer.load(
+        cancellable?.cancel()
+        cancellable = API.pgyer.load(
             .upload(.init(key: account.key, password: account.password, description: notes, file: file)),
             options: [.progress(progress)]
         ) { (result) in
             completion(result)
         }
+    }
+    
+    /// 取消上传
+    func cancelUpload() {
+        cancellable?.cancel()
     }
     
     func getDetail(with completion: @escaping ((API.Result<Item?>) -> Void)) {

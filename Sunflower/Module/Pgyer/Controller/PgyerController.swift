@@ -9,7 +9,7 @@ import Cocoa
 
 class PgyerController: ViewController<NSView> {
     
-    var model: PgyerModel!
+    private var model: PgyerModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,8 +19,8 @@ class PgyerController: ViewController<NSView> {
             let controller = PgyerIPAController.instance(file: model.file, with: value)
             add(child: controller)
             controller.upload = upload
-            getNotes { (notes) in
-                controller.notes = notes ?? ""
+            getNotes {
+                controller.notes = $0 ?? ""
             }
             
         case .apk:
@@ -71,13 +71,23 @@ extension PgyerController {
     }
     
     private func upload(_ controller: PgyerIPAController, with notes: String) {
+        
+        let controller = UploadAlertController.instance()
+        presentAsSheet(controller)
+        controller.cancelled = { [weak self] in
+            self?.model.cancelUpload()
+        }
+        controller.message = "准备完成 开始上传"
+        
         model.upload(
             notes,
             progress: { progress in
-                print(progress)
+                controller.message = "正在上传中.."
+                controller.progress = progress * 100
             },
             with: { result in
                 print(result)
+                controller.dismiss(controller)
             }
         )
     }

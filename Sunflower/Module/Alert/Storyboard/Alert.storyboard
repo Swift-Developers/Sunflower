@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Upload Alert Controller-->
+        <scene sceneID="GpO-P4-MJh">
+            <objects>
+                <viewController storyboardIdentifier="UploadAlertController" id="xLv-f0-6y8" customClass="UploadAlertController" customModule="Sunflower" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="ta5-Zc-b4B">
+                        <rect key="frame" x="0.0" y="0.0" width="540" height="240"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="NGF-pk-eDn">
+                                <rect key="frame" x="20" y="20" width="500" height="200"/>
+                                <subviews>
+                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HlR-Fl-IHc">
+                                        <rect key="frame" x="426" y="-7" width="80" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="68" id="AaU-4k-7GS"/>
+                                            <constraint firstAttribute="height" constant="24" id="Mcl-0Z-llf"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="push" title="取消" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="das-Vt-crP">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="cancelAction:" target="xLv-f0-6y8" id="NFT-wQ-OHw"/>
+                                        </connections>
+                                    </button>
+                                    <box boxType="custom" cornerRadius="4" translatesAutoresizingMaskIntoConstraints="NO" id="R1w-NC-4AG">
+                                        <rect key="frame" x="0.0" y="39" width="500" height="161"/>
+                                        <view key="contentView" id="ans-G3-xkH">
+                                            <rect key="frame" x="1" y="1" width="498" height="159"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="722-v6-MKC">
+                                                    <rect key="frame" x="200" y="99" width="99" height="23"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Uploading" id="tIA-yq-sZe">
+                                                        <font key="font" metaFont="systemSemibold" size="20"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                                <progressIndicator wantsLayer="YES" maxValue="100" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="yop-Ax-tQ9">
+                                                    <rect key="frame" x="20" y="70" width="458" height="20"/>
+                                                </progressIndicator>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="1AY-d9-2er">
+                                                    <rect key="frame" x="18" y="45" width="462" height="16"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="准备完成" id="8ag-sg-o0Z">
+                                                        <font key="font" metaFont="system"/>
+                                                        <color key="textColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="1AY-d9-2er" firstAttribute="centerX" secondItem="ans-G3-xkH" secondAttribute="centerX" id="0m8-Og-2tS"/>
+                                                <constraint firstItem="1AY-d9-2er" firstAttribute="leading" secondItem="ans-G3-xkH" secondAttribute="leading" constant="20" id="4kd-Wo-4Xj"/>
+                                                <constraint firstAttribute="trailing" secondItem="yop-Ax-tQ9" secondAttribute="trailing" constant="20" id="70z-uO-O1f"/>
+                                                <constraint firstItem="1AY-d9-2er" firstAttribute="top" secondItem="yop-Ax-tQ9" secondAttribute="bottom" constant="10" id="RcA-9E-CHv"/>
+                                                <constraint firstAttribute="trailing" secondItem="1AY-d9-2er" secondAttribute="trailing" constant="20" id="YzO-so-sEp"/>
+                                                <constraint firstItem="722-v6-MKC" firstAttribute="centerX" secondItem="ans-G3-xkH" secondAttribute="centerX" id="gaq-mI-ENz"/>
+                                                <constraint firstItem="yop-Ax-tQ9" firstAttribute="top" secondItem="722-v6-MKC" secondAttribute="bottom" constant="10" id="gtH-a1-zBG"/>
+                                                <constraint firstItem="yop-Ax-tQ9" firstAttribute="leading" secondItem="ans-G3-xkH" secondAttribute="leading" constant="20" id="pTI-O3-NVm"/>
+                                                <constraint firstItem="yop-Ax-tQ9" firstAttribute="centerY" secondItem="ans-G3-xkH" secondAttribute="centerY" id="u5N-NE-AkU"/>
+                                            </constraints>
+                                        </view>
+                                        <color key="borderColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                        <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </box>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="R1w-NC-4AG" secondAttribute="trailing" id="DmK-3K-GZD"/>
+                                    <constraint firstAttribute="width" constant="500" id="MJP-hK-qBl"/>
+                                    <constraint firstAttribute="trailing" secondItem="HlR-Fl-IHc" secondAttribute="trailing" id="VsS-wU-mo0"/>
+                                    <constraint firstItem="R1w-NC-4AG" firstAttribute="top" secondItem="NGF-pk-eDn" secondAttribute="top" id="WHK-U2-ah0"/>
+                                    <constraint firstItem="HlR-Fl-IHc" firstAttribute="top" secondItem="R1w-NC-4AG" secondAttribute="bottom" constant="15" id="gDr-ca-zyE"/>
+                                    <constraint firstItem="R1w-NC-4AG" firstAttribute="leading" secondItem="NGF-pk-eDn" secondAttribute="leading" id="kUl-iG-7En"/>
+                                    <constraint firstAttribute="bottom" secondItem="HlR-Fl-IHc" secondAttribute="bottom" id="t0r-mr-HSn"/>
+                                    <constraint firstAttribute="height" constant="200" id="vKk-jn-2cO"/>
+                                </constraints>
+                            </customView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="NGF-pk-eDn" secondAttribute="bottom" constant="20" id="XGm-eX-g6r"/>
+                            <constraint firstAttribute="trailing" secondItem="NGF-pk-eDn" secondAttribute="trailing" constant="20" id="iNK-YN-srK"/>
+                            <constraint firstItem="NGF-pk-eDn" firstAttribute="top" secondItem="ta5-Zc-b4B" secondAttribute="top" constant="20" id="ot6-2z-L6N"/>
+                            <constraint firstItem="NGF-pk-eDn" firstAttribute="leading" secondItem="ta5-Zc-b4B" secondAttribute="leading" constant="20" id="ucd-nD-RoY"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="messageLabel" destination="1AY-d9-2er" id="MnU-1u-2gR"/>
+                        <outlet property="progressIndicator" destination="yop-Ax-tQ9" id="MFf-xE-W15"/>
+                    </connections>
+                </viewController>
+                <customObject id="q30-zc-ma8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="246" y="-107"/>
+        </scene>
+    </scenes>
+</document>

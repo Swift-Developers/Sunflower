@@ -118,7 +118,7 @@ extension ReceiveController {
                 break
             }
         }
-        self.presentAsSheet(controller)
+        presentAsSheet(controller)
     }
 }
 

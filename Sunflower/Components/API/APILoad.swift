@@ -43,7 +43,14 @@ public extension MoyaProvider {
               completion: @escaping ((Bool) -> Void)) -> Cancellable
     {
         return load(target, options: options) { (result: API.Result<Null>) in
-            completion(result.isSuccess)
+            switch result {
+            case .success:
+                completion(true)
+                
+            case .failure(let error):
+                guard !error.isRequestCancelled else { return }
+                completion(false)
+            }
         }
     }
     
