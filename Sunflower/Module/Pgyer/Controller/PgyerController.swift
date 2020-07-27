@@ -70,9 +70,8 @@ extension PgyerController {
         }
     }
     
-    private func upload(_ controller: PgyerIPAController, with notes: String) {
-        
-        let controller = UploadAlertController.instance()
+    private func upload(_ source: PgyerIPAController, with notes: String) {
+        let controller = UploadProcessAlertController.instance()
         presentAsSheet(controller)
         controller.cancelled = { [weak self] in
             self?.model.cancelUpload()
@@ -82,17 +81,33 @@ extension PgyerController {
         model.upload(
             notes,
             progress: { progress in
-                controller.message = "正在上传中.."
+                controller.message = "正在上传.."
                 controller.progress = progress * 100
             },
-            with: { result in
-                print(result)
+            with: { [weak self] result in
+                guard let self = self else { return }
                 controller.dismiss(controller)
+                
+                switch result {
+                case .success(let value):
+                    let controller = UploadSuccessAlertController.instance()
+                    self.presentAsSheet(controller)
+                    controller.url = value
+                    
+                case .failure(let error):
+                    let controller = UploadFailureAlertController.instance()
+                    self.presentAsSheet(controller)
+                    controller.message = error.description
+                    controller.retry = { [weak self] in
+                        guard let self = self else { return }
+                        self.upload(source, with: notes)
+                    }
+                }
             }
         )
     }
     
-    private func upload(_ controller: PgyerAPKController, with notes: String) {
+    private func upload(_ source: PgyerAPKController, with notes: String) {
         
     }
 }

@@ -78,7 +78,7 @@ class SettingsAccountController: ViewController<SettingsAccountView> {
                 self?.presentAsSheet(controller)
                 
             case .firim:
-                let controller = SettingsAccountPgyerCreateController.instance()
+                let controller = SettingsAccountFirimCreateController.instance()
                 self?.presentAsSheet(controller)
             }
         }

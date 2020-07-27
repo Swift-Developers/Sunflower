@@ -1,5 +1,5 @@
 //
-//  UploadAlertController.swift
+//  UploadProcessAlertController.swift
 //  Sunflower
 //
 //  Created by Lee on 2020/6/12.
@@ -7,7 +7,7 @@
 
 import Cocoa
 
-class UploadAlertController: ViewController<NSView> {
+class UploadProcessAlertController: ViewController<NSView> {
     
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
     @IBOutlet private weak var messageLabel: NSTextField!

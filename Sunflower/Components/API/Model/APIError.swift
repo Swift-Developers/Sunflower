@@ -1,5 +1,6 @@
 import Foundation
 import Moya
+import Alamofire
 
 extension API {
     
@@ -112,6 +113,9 @@ public extension API.Error.Request {
             }
             if (error as NSError).code == NSURLErrorNotConnectedToInternet {
                 return .notConnected
+            }
+            if (error as? Alamofire.AFError)?.isExplicitlyCancelledError ?? false {
+                return .cancelled
             }
             return .other(error)
         }

@@ -28,13 +28,28 @@ class PgyerModel {
     ///   - notes: 更新记录
     ///   - progress: 进度回调
     ///   - completion: 完成回调
-    func upload(_ notes: String, progress: @escaping ((Double) -> Void), with completion: @escaping ((Bool) -> Void)) {
+    func upload(_ notes: String,
+                progress: @escaping ((Double) -> Void),
+                with completion: @escaping ((API.Result<URL>) -> Void)) {
+        
+        struct Model: Codable {
+            let buildShortcutUrl: URL
+        }
+        
         cancellable?.cancel()
         cancellable = API.pgyer.load(
             .upload(.init(key: account.key, password: account.password, description: notes, file: file)),
             options: [.progress(progress)]
-        ) { (result) in
-            completion(result)
+        ) { (result: API.Result<Model>) in
+            guard !(result.error?.isRequestCancelled ?? false) else { return }
+            switch result {
+            case .success(let value):
+                completion(.success(value.buildShortcutUrl))
+                
+            case .failure(let error):
+                guard !error.isRequestCancelled else { return }
+                completion(.failure(error))
+            }
         }
     }
     

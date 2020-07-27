@@ -67,8 +67,7 @@
 		9B62F0662452AE7400CBBD00 /* UserDefaultsSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F0652452AE7400CBBD00 /* UserDefaultsSettable.swift */; };
 		9B62F06A2452B27000CBBD00 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F0692452B27000CBBD00 /* UserDefaults.swift */; };
 		9B6854BB24937124005F301C /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6854BA24937124005F301C /* Alert.storyboard */; };
-		9B6854BD24937174005F301C /* UploadAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854BC24937174005F301C /* UploadAlertController.swift */; };
-		9B6854BF24938B76005F301C /* ProcessAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854BE24938B76005F301C /* ProcessAlertController.swift */; };
+		9B6854BD24937174005F301C /* UploadProcessAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854BC24937174005F301C /* UploadProcessAlertController.swift */; };
 		9B6854C124938BBA005F301C /* UploadSuccessAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854C024938BBA005F301C /* UploadSuccessAlertController.swift */; };
 		9B6854C324938BFA005F301C /* UploadFailureAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854C224938BFA005F301C /* UploadFailureAlertController.swift */; };
 		9B7365B42463F04800D053FE /* SettingsAccountSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */; };
@@ -181,8 +180,7 @@
 		9B62F0652452AE7400CBBD00 /* UserDefaultsSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsSettable.swift; sourceTree = "<group>"; };
 		9B62F0692452B27000CBBD00 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		9B6854BA24937124005F301C /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
-		9B6854BC24937174005F301C /* UploadAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadAlertController.swift; sourceTree = "<group>"; };
-		9B6854BE24938B76005F301C /* ProcessAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessAlertController.swift; sourceTree = "<group>"; };
+		9B6854BC24937174005F301C /* UploadProcessAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProcessAlertController.swift; sourceTree = "<group>"; };
 		9B6854C024938BBA005F301C /* UploadSuccessAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessAlertController.swift; sourceTree = "<group>"; };
 		9B6854C224938BFA005F301C /* UploadFailureAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFailureAlertController.swift; sourceTree = "<group>"; };
 		9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSectionHeader.swift; sourceTree = "<group>"; };
@@ -715,10 +713,9 @@
 		9B6854B82493710B005F301C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9B6854BC24937174005F301C /* UploadAlertController.swift */,
+				9B6854BC24937174005F301C /* UploadProcessAlertController.swift */,
 				9B6854C024938BBA005F301C /* UploadSuccessAlertController.swift */,
 				9B6854C224938BFA005F301C /* UploadFailureAlertController.swift */,
-				9B6854BE24938B76005F301C /* ProcessAlertController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1036,7 +1033,7 @@
 				9B62F00A244DC97C00CBBD00 /* Settings+Pgyer.swift in Sources */,
 				9B267C012444638D002F571E /* AppDelegate.swift in Sources */,
 				9B6854C124938BBA005F301C /* UploadSuccessAlertController.swift in Sources */,
-				9B6854BD24937174005F301C /* UploadAlertController.swift in Sources */,
+				9B6854BD24937174005F301C /* UploadProcessAlertController.swift in Sources */,
 				9B62F05B244EEC4600CBBD00 /* SettingsAccountController.swift in Sources */,
 				9B267C46244479A3002F571E /* ViewController.swift in Sources */,
 				9B62F022244EC39100CBBD00 /* SettingsView.swift in Sources */,
@@ -1059,7 +1056,6 @@
 				9B267C3B24447937002F571E /* Result.swift in Sources */,
 				9BEA1A152445AAE90084563C /* Receive.swift in Sources */,
 				9B26C93A245805F50038E82E /* SettingsAccountPgyerInfoController.swift in Sources */,
-				9B6854BF24938B76005F301C /* ProcessAlertController.swift in Sources */,
 				9BE7D4DE248E416200DE1176 /* SettingsAccountFirimCreateView.swift in Sources */,
 				9B62F02A244EC3DC00CBBD00 /* SettingsFirimController.swift in Sources */,
 				9B267C4324447979002F571E /* ReceiveView.swift in Sources */,

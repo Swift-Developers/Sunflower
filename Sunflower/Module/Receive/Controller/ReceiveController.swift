@@ -103,13 +103,32 @@ extension ReceiveController {
             accounts += models.map { .firim($0) }
         }
         
-        let controller = SinglePickerController.instance(
-            accounts.map { .init(icon: $0.icon, name: $0.name) }
-        )
-        controller.title = "选择账号"
-        controller.completion = { index in
-            let account = accounts[index]
-            switch account {
+        switch accounts.count {
+        case 0:
+            // 无账号
+            let controller = SinglePickerController.instance(
+                Account.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
+            )
+            controller.completion = { [weak self] index in
+                switch Account.allCases[index] {
+                case .pgyer:
+                    let controller = SettingsAccountPgyerCreateController.instance()
+                    controller.completion = { account in
+                        let controller = PgyerController.instance(account, file: url, with: info)
+                        window.contentViewController = controller
+                    }
+                    self?.presentAsSheet(controller)
+                    
+                case .firim:
+                    let controller = SettingsAccountFirimCreateController.instance()
+                    self?.presentAsSheet(controller)
+                }
+            }
+            presentAsSheet(controller)
+            
+        case 1:
+            // 一个账号
+            switch accounts[0] {
             case .pgyer(let account):
                 let controller = PgyerController.instance(account, file: url, with: info)
                 window.contentViewController = controller
@@ -117,8 +136,25 @@ extension ReceiveController {
             case .firim:
                 break
             }
+            
+        default:
+            // 多账号 单选
+            let controller = SinglePickerController.instance(
+                accounts.map { .init(icon: $0.icon, name: $0.name) }
+            )
+            controller.title = "选择账号"
+            controller.completion = { index in
+                switch accounts[index] {
+                case .pgyer(let account):
+                    let controller = PgyerController.instance(account, file: url, with: info)
+                    window.contentViewController = controller
+                    
+                case .firim:
+                    break
+                }
+            }
+            presentAsSheet(controller)
         }
-        presentAsSheet(controller)
     }
 }
 

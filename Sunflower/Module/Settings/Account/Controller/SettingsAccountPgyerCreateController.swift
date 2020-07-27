@@ -8,7 +8,9 @@
 import Cocoa
 
 class SettingsAccountPgyerCreateController: ViewController<SettingsAccountPgyerCreateView> {
-
+    
+    var completion: ((Account.Pgyer) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,12 +21,15 @@ class SettingsAccountPgyerCreateController: ViewController<SettingsAccountPgyerC
     }
     
     @IBAction func createAction(_ sender: NSButton) {
+        let temp = Account.Pgyer(key: container.key, name: container.name, password: container.password)
         var models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
         models.removeAll(where: { $0.key == container.key })
-        models.append(.init(key: container.key, name: container.name, password: container.password))
+        models.append(temp)
         UserDefaults.AccountInfo.set(model: models, forKey: .pgyer)
         
         dismiss(self)
+        
+        completion?(temp)
     }
     
     static func instance() -> Self {

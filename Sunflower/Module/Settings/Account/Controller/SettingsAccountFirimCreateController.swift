@@ -9,6 +9,8 @@ import Cocoa
 
 class SettingsAccountFirimCreateController: ViewController<SettingsAccountFirimCreateView> {
 
+    var completion: ((Account.Firim) -> Void)?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,12 +21,15 @@ class SettingsAccountFirimCreateController: ViewController<SettingsAccountFirimC
     }
     
     @IBAction func createAction(_ sender: NSButton) {
+        let temp = Account.Firim(key: container.key, name: container.name)
         var models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
         models.removeAll(where: { $0.key == container.key })
-        models.append(.init(key: container.key, name: container.name))
+        models.append(temp)
         UserDefaults.AccountInfo.set(model: models, forKey: .firim)
         
         dismiss(self)
+        
+        completion?(temp)
     }
     
     static func instance() -> Self {
