@@ -2,10 +2,14 @@
 
 # AttributedString - 基于Swift插值方式优雅的构建富文本
 
-[![](https://img.shields.io/cocoapods/l/AttributedString.svg)](LICENSE)&nbsp;
-![Swift](https://img.shields.io/badge/Swift-5.0-orange.svg)
+[![License](https://img.shields.io/cocoapods/l/AttributedString.svg)](LICENSE)&nbsp;
+![Swift](https://img.shields.io/badge/Swift-5.2-orange.svg)&nbsp;
+![Platform](https://img.shields.io/cocoapods/p/AttributedString.svg?style=flat)&nbsp;
+[![Swift Package Manager](https://img.shields.io/badge/Swift_Package_Manager-compatible-4BC51D.svg?style=flat")](https://swift.org/package-manager/)&nbsp;
+[![Carthage](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)&nbsp;
+[![Cocoapods](https://img.shields.io/cocoapods/v/AttributedString.svg)](https://cocoapods.org)
 
-## [天朝子民](README_CN.md)
+## [🇨🇳天朝子民](README_CN.md)
 
 ## Features
 
@@ -14,7 +18,8 @@
 - [x] Support for multi-level rich text cascading and provide other style priority strategies.
 - [x] Support for all `NSAttributedString.Key` functions.
 - [x] Support iOS & macOS & watchOS & tvOS.
-- [x] Support text and attachment click event callback.
+- [x] Support text and attachment click or press event callback, support highlight style.
+- [x] Support view attachment, you can add custom view to `UITextView`.
 - [x] Continue to add more new features.
 
 ## Screenshot
@@ -37,18 +42,31 @@
 
 ## Installation
 
-**CocoaPods - Podfile**
+#### CocoaPods - Podfile
 
 ```ruby
 pod 'AttributedString'
 ```
 
-**Carthage - Cartfile**
+#### Carthage - Cartfile
 
 ```ruby
 github "lixiang1994/AttributedString"
 ```
 
+#### [Swift Package Manager for Apple platforms](https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app)
+
+Select Xcode menu `File > Swift Packages > Add Package Dependency` and enter repository URL with GUI.  
+```
+Repository: https://github.com/lixiang1994/AttributedString
+```
+
+#### [Swift Package Manager](https://swift.org/package-manager/)
+
+Add the following to the dependencies of your `Package.swift`:
+```swift
+.package(url: "https://github.com/lixiang1994/AttributedString.git", from: "version")
+```
 
 
 ## Usage
@@ -94,9 +112,9 @@ textView.attributed.text = """
 ```swift
 textView.attributed.text = """
 
-\("foregroundColor", .color(.white))
+\("foregroundColor", .foreground(.white))
 
-\("foregroundColor", .color(.red))
+\("foregroundColor", .foreground(.red))
 
 """
 ```
@@ -113,9 +131,27 @@ textView.attributed.text = """
 """
 ```
 
-#### Image:	(Does not include watchOS)
+#### Attachment: (Does not include watchOS)
 
 ```swift
+// AttributedString.Attachment
+
+textView.attributed.text = """
+
+\(.data(xxxx, type: "zip"))
+
+\(.file(try!.init(url: .init(fileURLWithPath: "xxxxx"), options: [])))
+
+\(.attachment(NSTextAttachment()))
+
+"""
+```
+
+#### Attachment Image: (Does not include watchOS)
+
+```swift
+// AttributedString.ImageAttachment
+
 textView.attributed.text = """
 
 \(.image(UIImage(named: "xxxx")))
@@ -123,6 +159,22 @@ textView.attributed.text = """
 \(.image(UIImage(named: "xxxx"), .custom(size: .init(width: 200, height: 200))))
 
 \(.image(UIImage(named: "xxxx"), .proposed(.center))).
+
+"""
+```
+
+#### Attachment View: (Only supports iOS: UITextView)
+
+```swift
+// AttributedString.ViewAttachment
+
+textView.attributed.text = """
+
+\(.view(xxxxView))
+
+\(.view(xxxxView, .custom(size: .init(width: 200, height: 200))))
+
+\(.view(xxxxView, .proposed(.center))).
 
 """
 ```
@@ -151,7 +203,30 @@ textView.attributed.text = a + b
 textView.attributed.text += c
 ```
 
-#### Click:	(Only supports iOS, only for UILabel / UITextView)
+#### Checking:
+
+```swift
+var string: AttributedString = .init("my phone number is +86 18611401994.", .background(.blue))
+string.add(attributes: [.foreground(color)], checkings: [.phoneNumber])
+textView.attributed.text = string
+```
+
+```swift
+var string: AttributedString = .init("open https://www.apple.com and https://github.com/lixiang1994/AttributedString", .background(.blue))
+string.add(attributes: [.foreground(color)], checkings: [.link])
+textView.attributed.text = string
+```
+
+```swift
+var string: AttributedString = .init("123456789", .background(.blue))
+string.add(attributes: [.foreground(color)], checkings: [.regex("[0-6]")])
+textView.attributed.text = string
+```
+
+
+#### Action: (Only supports iOS: UILabel / UITextView & macOS: NSTextField)
+
+##### Click:	
 
 ```swift
 // Text
@@ -162,32 +237,92 @@ let b: AttributedString = .init(.image(image), action: {
 })
 
 // It is recommended to use functions as parameters.
-func click() {
+func clicked() {
     // code
 }
 // Normal
-let c: AttributedString = .init("lee", .action(click))
-let d: AttributedString = .init(.image(image), action: click)
+let c: AttributedString = .init("lee", .action(clicked))
+let d: AttributedString = .init(.image(image), action: clicked)
 // Interpolation
-let e: AttributedString = "\("lee", .action(click))"
-let f: AttributedString = "\(.image(image), action: click)"
+let e: AttributedString = "\("lee", .action(clicked))"
+let f: AttributedString = "\(.image(image), action: clicked)"
 
 // More information. 
-func click(_ action: AttributedString.Action) {
-    switch action.content {
+func clicked(_ result: AttributedString.Action.Result) {
+    switch result.content {
     case .string(let value):
-       	print("Currently clicked text: \(value) range: \(action.range)")
+       	print("Currently clicked text: \(value) range: \(result.range)")
 				
     case .attachment(let value):
-	print("Currently clicked attachment: \(value) range: \(action.range)")
+        print("Currently clicked attachment: \(value) range: \(result.range)")
     }
 }
 
-label.attributed.text = "This is \("Label", .font(.systemFont(ofSize: 20)), .action(click))"
-textView.attributed.text = "This is a picture \(.image(image, .custom(size: .init(width: 100, height: 100))), action: click) Displayed in custom size."
+label.attributed.text = "This is \("Label", .font(.systemFont(ofSize: 20)), .action(clicked))"
+textView.attributed.text = "This is a picture \(.image(image, .custom(size: .init(width: 100, height: 100))), action: clicked) Displayed in custom size."
 ```
 
+##### Press:  
 
+```swift
+func pressed(_ result: AttributedString.Action.Result) {
+    switch result.content {
+    case .string(let value):
+        print("Currently pressed text: \(value) range: \(result.range)")
+                
+    case .attachment(let value):
+        print("Currently pressed attachment: \(value) range: \(result.range)")
+    }
+}
+
+label.attributed.text = "This is \("Long Press", .font(.systemFont(ofSize: 20)), .action(.press, pressed))"
+textView.attributed.text = "This is a picture \(.image(image, .custom(size: .init(width: 100, height: 100))), trigger: .press, action: pressed) Displayed in custom size."
+```
+
+##### Highlight style:    
+
+```swift
+func clicked(_ result: AttributedString.Action.Result) {
+    switch result.content {
+    case .string(let value):
+        print("Currently clicked text: \(value) range: \(result.range)")
+                
+    case .attachment(let value):
+        print("Currently clicked attachment: \(value) range: \(result.range)")
+    }
+}
+
+label.attributed.text = "This is \("Label", .font(.systemFont(ofSize: 20)), .action([.foreground(.blue)], clicked))"
+```
+
+##### Custom: 
+
+```swift
+let custom = AttributedString.Action(.press, highlights: [.background(.blue), .foreground(.white)]) { (result) in
+    switch result.content {
+    case .string(let value):
+        print("Currently pressed text: \(value) range: \(result.range)")
+        
+    case .attachment(let value):
+        print("Currently pressed attachment: \(value) range: \(result.range)")
+    }
+}
+
+label.attributed.text = "This is \("Custom", .font(.systemFont(ofSize: 20)), .action(custom))"
+textView.attributed.text = "This is a picture \(.image(image, .original(.center)), action: custom) Displayed in original size."
+```
+
+#### Observe: (Only supports iOS: UILabel / UITextView & macOS: NSTextField)
+
+```swift
+label.attributed.observe([.phoneNumber], highlights: [.foreground(.blue)]) { (result) in
+    print("Currently clicked \(result)")
+}
+
+textView.attributed.observe([.link], highlights: [.foreground(.blue)]) { (result) in
+    print("Currently clicked \(result)")
+}
+```
 
 For more examples, see the sample application.
 
@@ -218,6 +353,18 @@ The following properties are available:
 | verticalGlyphForm | `Bool`                               | vertical glyph (Currently on iOS, it's always horizontal.)   |
 
 
+## Cases available via `Attribute.Checking` enumerated
+
+| CASE                                 | DESCRIPTION                                         |
+| ------------------------------------ | -------------------------------------------- |
+| `range(NSRange)`                              | custom range                                                         |
+| `regex(String)`                                    | regular expression                                                         |
+| `action`                                                | action                                                                    |
+| `date`                                                   | date (Based on `NSDataDetector`)                         |
+| `link`                                                     | link (Based on `NSDataDetector`)                         |
+| `address`                                             | address (Based on `NSDataDetector`)                         |
+| `phoneNumber`                                  | phone number (Based on `NSDataDetector`)                         |
+| `transitInformation`                            | transit Information (Based on `NSDataDetector`)                         |
 
 
 ## Contributing

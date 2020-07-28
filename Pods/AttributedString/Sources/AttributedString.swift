@@ -25,12 +25,20 @@ public typealias Font = UIFont
 
 public struct AttributedString {
     
-    public let value: NSAttributedString
+    public internal(set) var value: NSAttributedString
     
-    /// Generic
+    public var length: Int {
+        value.length
+    }
     
-    public init<T>(_ value: T) {
-        self.value = .init(string: "\(value)")
+    /// String
+    
+    public init(string value: String, _ attributes: Attribute...) {
+        self.value = AttributedString(string: value, with: attributes).value
+    }
+    
+    public init(string value: String, with attributes: [Attribute] = []) {
+        self.value = AttributedString(.init(string: value), with: attributes).value
     }
     
     /// NSAttributedString
@@ -38,8 +46,6 @@ public struct AttributedString {
     public init(_ value: NSAttributedString) {
         self.value = value
     }
-    
-    /// NSAttributedString + Attributes
     
     public init(_ value: NSAttributedString, _ attributes: Attribute...) {
         self.value = AttributedString(value, with: attributes).value
@@ -59,13 +65,13 @@ public struct AttributedString {
         self.value = AttributedString(.init(value), with: attributes).value
     }
     
-    /// AttributedString + Attributes
+    /// AttributedString
     
     public init(_ string: AttributedString, _ attributes: Attribute...) {
         self.value = AttributedString(wrap: .embedding(string), with: attributes).value
     }
     
-    public init(_ string: AttributedString, with attributes: [Attribute]) {
+    public init(_ string: AttributedString, with attributes: [Attribute] = []) {
         self.value = AttributedString(wrap: .embedding(string), with: attributes).value
     }
     
@@ -121,5 +127,76 @@ extension AttributedString: CustomStringConvertible {
     
     public var description: String {
         .init(describing: value)
+    }
+}
+
+extension AttributedString: Equatable {
+    
+    public static func == (lhs: AttributedString, rhs: AttributedString) -> Bool {
+        guard lhs.length == rhs.length else {
+            return false
+        }
+        guard lhs.value.string == rhs.value.string else {
+            return false
+        }
+        guard lhs.value.get(.init(location: 0, length: lhs.length)) == rhs.value.get(.init(location: 0, length: rhs.length)) else {
+            return false
+        }
+        return true
+    }
+    
+    /// 内容是否相等
+    /// - Parameter other: 其他AttributedString
+    /// - Returns: 结果
+    public func isContentEqual(to other: AttributedString?) -> Bool {
+        guard let other = other else {
+            return false
+        }
+        guard length == other.length else {
+            return false
+        }
+        return value.string == other.value.string
+    }
+}
+
+extension AttributedString {
+    
+    public mutating func add(attributes: [Attribute], range: NSRange) {
+        guard !attributes.isEmpty, range.length > 0 else { return }
+        
+        var temp: [NSAttributedString.Key: Any] = [:]
+        attributes.forEach { temp.merge($0.attributes, uniquingKeysWith: { $1 }) }
+        let string = NSMutableAttributedString(attributedString: value)
+        string.addAttributes(temp, range: range)
+        value = string
+    }
+    
+    public mutating func set(attributes: [Attribute], range: NSRange) {
+        guard !attributes.isEmpty, range.length > 0 else { return }
+        
+        var temp: [NSAttributedString.Key: Any] = [:]
+        attributes.forEach { temp.merge($0.attributes, uniquingKeysWith: { $1 }) }
+        let string = NSMutableAttributedString(attributedString: value)
+        string.setAttributes(temp, range: range)
+        value = string
+    }
+}
+
+fileprivate extension Dictionary where Key == NSAttributedString.Key, Value == Any {
+    
+    static func == (lhs: [NSAttributedString.Key: Any], rhs: [NSAttributedString.Key: Any]) -> Bool {
+        lhs.keys == rhs.keys ? NSDictionary(dictionary: lhs).isEqual(to: rhs) : false
+    }
+}
+
+fileprivate extension Dictionary where Key == NSRange, Value == [NSAttributedString.Key: Any]  {
+    
+    static func == (lhs: [NSRange: [NSAttributedString.Key: Any]], rhs: [NSRange: [NSAttributedString.Key: Any]]) -> Bool {
+        guard lhs.count == rhs.count else {
+            return false
+        }
+        return zip(lhs, rhs).allSatisfy { (l, r) -> Bool in
+            l.0 == r.0 && l.1 == r.1
+        }
     }
 }

@@ -34,7 +34,7 @@ extension SettingsAccountItem {
     func set(_ key: String, with name: String) {
         label.attributed.string = """
         \(format(name), .font(.systemFont(ofSize: 13)))
-        \(format(key), .font(.systemFont(ofSize: 11)), .color(.tertiaryLabelColor))
+        \(format(key), .font(.systemFont(ofSize: 11)), .foreground(.tertiaryLabelColor))
         """
     }
     

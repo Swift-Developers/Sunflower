@@ -97,7 +97,7 @@ fileprivate extension Robot.Info {
     }
     
     var name: NSAttributedString {
-        let attributes: [AttributedString.Attribute] = [.font(.systemFont(ofSize: 12)), .color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))]
+        let attributes: [AttributedString.Attribute] = [.font(.systemFont(ofSize: 12)), .foreground(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))]
         switch self {
         case .wechat(let value): return (value.name + AttributedString("\n\(value.key)", with: attributes)).value
         case .feishu(let value): return (value.name + AttributedString("\n\(value.key)", with: attributes)).value
