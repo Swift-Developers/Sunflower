@@ -10,7 +10,7 @@ import Foundation
 extension Account {
     
     struct Firim: Codable {
-        let key: String             // API Key
+        let key: String            // API Key
         var name: String           // 别名
     }
 }

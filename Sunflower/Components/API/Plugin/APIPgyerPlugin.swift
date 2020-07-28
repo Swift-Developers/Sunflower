@@ -11,7 +11,7 @@ class APIPgyerPlugin: PluginType {
                 }
                 
                 var final: [AnyHashable: Any] = [:]
-                final["code"] = temp["code"]
+                final["code"] = to(code: temp["code"])
                 final["msg"] = temp["message"] as? String ?? ""
                 final["data"] = temp["data"]
                 
@@ -30,6 +30,18 @@ class APIPgyerPlugin: PluginType {
 
         case .failure(let error):
             return .failure(error)
+        }
+    }
+    
+    private func to(code value: Any?) -> Int {
+        guard let value = value as? Int else {
+            return -1
+        }
+    
+        switch value {
+        case 0:             return 0    // 成功
+        case 1001, 1002:    return -3   // 鉴权
+        default:            return -1   // 其他
         }
     }
 }

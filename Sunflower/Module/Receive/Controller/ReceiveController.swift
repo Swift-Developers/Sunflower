@@ -73,62 +73,8 @@ extension ReceiveController {
         // 查询该账号平台下app列表
         // 查找包名匹配的appid, 获取详情信息
         
-        enum Temp {
-            case pgyer(Account.Pgyer)
-            case firim(Account.Firim)
-            
-            var icon: NSImage {
-                switch self {
-                case .pgyer: return Account.pgyer.icon
-                case .firim: return Account.firim.icon
-                }
-            }
-            
-            var name: NSAttributedString {
-                let attributes: [AttributedString.Attribute] = [.font(.systemFont(ofSize: 12)), .color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1))]
-                switch self {
-                case .pgyer(let value): return (value.name + AttributedString("\n\(value.key)", with: attributes)).value
-                case .firim(let value): return (value.name + AttributedString("\n\(value.key)", with: attributes)).value
-                }
-            }
-        }
-        
-        var accounts: [Temp] = []
-        do {
-            let models: [Account.Pgyer] = UserDefaults.AccountInfo.model(forKey: .pgyer) ?? []
-            accounts += models.map { .pgyer($0) }
-        }
-        do {
-            let models: [Account.Firim] = UserDefaults.AccountInfo.model(forKey: .firim) ?? []
-            accounts += models.map { .firim($0) }
-        }
-        
-        switch accounts.count {
-        case 0:
-            // 无账号
-            let controller = SinglePickerController.instance(
-                Account.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
-            )
-            controller.completion = { [weak self] index in
-                switch Account.allCases[index] {
-                case .pgyer:
-                    let controller = SettingsAccountPgyerCreateController.instance()
-                    controller.completion = { account in
-                        let controller = PgyerController.instance(account, file: url, with: info)
-                        window.contentViewController = controller
-                    }
-                    self?.presentAsSheet(controller)
-                    
-                case .firim:
-                    let controller = SettingsAccountFirimCreateController.instance()
-                    self?.presentAsSheet(controller)
-                }
-            }
-            presentAsSheet(controller)
-            
-        case 1:
-            // 一个账号
-            switch accounts[0] {
+        Account.select(in: self) { (account) in
+            switch account {
             case .pgyer(let account):
                 let controller = PgyerController.instance(account, file: url, with: info)
                 window.contentViewController = controller
@@ -136,24 +82,6 @@ extension ReceiveController {
             case .firim:
                 break
             }
-            
-        default:
-            // 多账号 单选
-            let controller = SinglePickerController.instance(
-                accounts.map { .init(icon: $0.icon, name: $0.name) }
-            )
-            controller.title = "选择账号"
-            controller.completion = { index in
-                switch accounts[index] {
-                case .pgyer(let account):
-                    let controller = PgyerController.instance(account, file: url, with: info)
-                    window.contentViewController = controller
-                    
-                case .firim:
-                    break
-                }
-            }
-            presentAsSheet(controller)
         }
     }
 }

@@ -72,8 +72,15 @@ class SettingsRobotController: ViewController<SettingsRobotView> {
             Robot.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
         )
         controller.completion = { [weak self] index in
-            let controller = SettingsRobotCreateController.instance(Robot.allCases[index])
-            self?.presentAsSheet(controller)
+            switch Robot.allCases[index] {
+            case .wechat:
+                let controller = SettingsRobotWechatCreateController.instance()
+                self?.presentAsSheet(controller)
+                
+            case .feishu:
+                let controller = SettingsRobotFeishuCreateController.instance()
+                self?.presentAsSheet(controller)
+            }
         }
         presentAsSheet(controller)
     }

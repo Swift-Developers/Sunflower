@@ -1,13 +1,13 @@
 //
-//  SettingsRobotCreateView.swift
+//  SettingsRobotFeishuCreateView.swift
 //  Sunflower
 //
-//  Created by Lee on 2020/5/16.
+//  Created by Lee on 2020/7/28.
 //
 
 import Cocoa
 
-class SettingsRobotCreateView: NSView {
+class SettingsRobotFeishuCreateView: NSView {
 
     var key: String {
         keyTextField.stringValue
