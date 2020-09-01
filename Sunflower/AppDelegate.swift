@@ -49,7 +49,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 }
 
 extension AppDelegate {
-    private static var o: Any?
+    
     private func setup() {
         UserDefaults.standard.set(false, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
         window = NSApplication.shared.mainWindow

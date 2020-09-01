@@ -1,13 +1,13 @@
 PODS:
   - Alamofire (5.2.2)
-  - AttributedString (1.6.2)
+  - AttributedString (1.6.7)
   - CryptoSwift (1.3.1)
   - DifferenceKit/AppKitExtension (1.1.5):
     - DifferenceKit/Core
   - DifferenceKit/Core (1.1.5)
-  - Kingfisher (5.14.1):
-    - Kingfisher/Core (= 5.14.1)
-  - Kingfisher/Core (5.14.1)
+  - Kingfisher (5.15.0):
+    - Kingfisher/Core (= 5.15.0)
+  - Kingfisher/Core (5.15.0)
   - Moya (14.0.0):
     - Moya/Core (= 14.0.0)
   - Moya/Core (14.0.0):
@@ -64,10 +64,10 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 814429acc853c6c54ff123fc3d2ef66803823ce0
-  AttributedString: 9cdf8d84c901ec98d3ae507c71d29d731daf59ba
+  AttributedString: 482cddfd16198fb3f1d6d13aa46c78af73a91bfa
   CryptoSwift: f12f037f6d0fcd6d48c96db0071b653de64e6c4d
   DifferenceKit: 516f12e336ed65a3a0665847b5c3cb5cad4bd4ea
-  Kingfisher: 8050bc6f7f68cbf3908bd04df7ccbac188f6d6d6
+  Kingfisher: 1acb67597a520c2d0310677e66d6e0af455ef757
   Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
   Preferences: 1ce41315ecadd28a9a4dd92ccd5dea7ca3437f92
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb

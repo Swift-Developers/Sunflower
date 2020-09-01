@@ -23,7 +23,14 @@ extension AttributedString.Attribute {
     /// - Parameter value: 段落样式
     /// - Returns: 属性
     public static func paragraph(_ value: ParagraphStyle...) -> Self {
-        return .init(attributes: [.paragraphStyle: ParagraphStyle.get(value)])
+        return .init(attributes: value.isEmpty ? [:] : [.paragraphStyle: ParagraphStyle.get(value)])
+    }
+    
+    /// 段落
+    /// - Parameter value: 段落样式
+    /// - Returns: 属性
+    public static func paragraph(with value: [ParagraphStyle]) -> Self {
+        return .init(attributes: value.isEmpty ? [:] : [.paragraphStyle: ParagraphStyle.get(value)])
     }
 }
 
@@ -147,5 +154,12 @@ extension AttributedString.Attribute.ParagraphStyle {
     
     public static func allowsDefaultTighteningForTruncation(_ value: Bool) -> Self {
         return .init(style: [.allowsDefaultTighteningForTruncation: value])
+    }
+}
+
+extension AttributedString.Attribute.ParagraphStyle {
+    
+    public static func ~= (lhs: AttributedString.Attribute.ParagraphStyle, rhs: AttributedString.Attribute.ParagraphStyle) -> Bool {
+        return lhs.style.keys == rhs.style.keys
     }
 }
