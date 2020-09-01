@@ -11,16 +11,17 @@ extension UserDefaults {
     
     // 设置信息
     enum SettingsInfo: UserDefaultsSettable {
-        enum defaultKeys: String {
+        enum Keys: String, UserDefaultsSettableKeys {
             case appearance
             case statusbar
-            case upload
+            case uploadRetry
+            case uploadNotification
         }
     }
     
     // 账号信息
     enum AccountInfo: UserDefaultsSettable {
-        enum defaultKeys: String {
+        enum Keys: String, UserDefaultsSettableKeys {
             case pgyer
             case firim
         }
@@ -28,7 +29,7 @@ extension UserDefaults {
     
     // 机器人信息
     enum RobotInfo: UserDefaultsSettable {
-        enum defaultKeys: String {
+        enum Keys: String, UserDefaultsSettableKeys {
             case wechat
             case feishu
         }

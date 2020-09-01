@@ -17,6 +17,8 @@ class PgyerModel {
     
     private var cancellable: Cancellable?
     
+    private var isRetry: Bool { Settings.isUploadRetry }
+    
     init(_ account: Account.Pgyer, file url: URL, with info: Info) {
         self.account = account
         self.file = url
@@ -39,7 +41,7 @@ class PgyerModel {
         cancellable?.cancel()
         cancellable = API.pgyer.load(
             .upload(.init(key: account.key, password: account.password, description: notes, file: file)),
-            options: [.progress(progress)]
+            options: [.progress(progress)] + (isRetry ? [.retry(.force())] : [])
         ) { (result: API.Result<Model>) in
             guard !(result.error?.isRequestCancelled ?? false) else { return }
             switch result {
@@ -58,6 +60,8 @@ class PgyerModel {
         cancellable?.cancel()
     }
     
+    /// 获取详情信息
+    /// - Parameter completion: 完成回调
     func getDetail(with completion: @escaping ((API.Result<Item?>) -> Void)) {
         getList { (result) in
             switch result {

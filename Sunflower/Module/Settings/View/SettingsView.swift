@@ -47,4 +47,12 @@ class SettingsView: NSView {
             appearanceAutoButton.state = .on
         }
     }
+    
+    func set(uploadRetry: Bool) {
+        uploadRetryButton.state = uploadRetry ? .on : .off
+    }
+    
+    func set(uploadNotification: Bool) {
+        uploadNotificationButton.state = uploadNotification ? .on : .off
+    }
 }

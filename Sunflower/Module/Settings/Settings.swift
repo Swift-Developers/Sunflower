@@ -20,3 +20,17 @@ extension Preferences.PaneIdentifier {
     static let robot = Preferences.PaneIdentifier("robot")
 }
 
+extension Settings {
+    
+    /// 是否上传失败自动重试
+    static var isUploadRetry: Bool {
+        get { UserDefaults.SettingsInfo.bool(forKey: .uploadRetry) }
+        set { UserDefaults.SettingsInfo.set(newValue, forKey: .uploadRetry) }
+    }
+    
+    /// 是否上传完成发送通知
+    static var isUploadNotification: Bool {
+        get { UserDefaults.SettingsInfo.bool(forKey: .uploadNotification) }
+        set { UserDefaults.SettingsInfo.set(newValue, forKey: .uploadNotification) }
+    }
+}

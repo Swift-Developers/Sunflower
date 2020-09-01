@@ -7,11 +7,15 @@
 
 import Cocoa
 import Preferences
+import UserNotifications
 
 class SettingsController: ViewController<SettingsView> {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        container.set(uploadRetry: Settings.isUploadRetry)
+        container.set(uploadNotification: Settings.isUploadNotification)
     }
     
     @IBAction func appearanceAction(_ sender: NSButton) {
@@ -29,11 +33,24 @@ class SettingsController: ViewController<SettingsView> {
     }
 
     @IBAction func uploadRetryAction(_ sender: NSButton) {
-        
+        Settings.isUploadRetry = sender.state == .on
     }
     
     @IBAction func uploadNotificationAction(_ sender: NSButton) {
-    
+        if sender.state == .on {
+            sender.isEnabled = false
+            let center = UNUserNotificationCenter.current()
+            center.requestAuthorization(options: [.alert, .badge, .sound]) { (result, error) in
+                DispatchQueue.main.async {
+                    sender.isEnabled = true
+                    sender.state = result ? .on : .off
+                    Settings.isUploadNotification = result
+                }
+            }
+            
+        } else {
+            Settings.isUploadNotification = false
+        }
     }
     
     static func instance() -> Self {

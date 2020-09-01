@@ -2,22 +2,27 @@ import Foundation
 import CryptoSwift
 
 public protocol UserDefaultsSettable {
-    associatedtype defaultKeys: Swift.RawRepresentable
-    static var token: String? { get }
-    static var build: String? { get }
+    associatedtype Keys: UserDefaultsSettableKeys
 }
 
-public extension UserDefaultsSettable where defaultKeys.RawValue == String {
+public protocol UserDefaultsSettableKeys: Swift.RawRepresentable {
+    var token: String? { get }
+    var build: String? { get }
+}
+
+public extension UserDefaultsSettableKeys where RawValue == String {
+    var token: String? { return nil }
+    var build: String? { return nil }
+}
+
+public extension UserDefaultsSettable where Keys.RawValue == String {
     
-    static var token: String? { return nil }
-    static var build: String? { return nil }
-    
-    private static func forKey(_ key: defaultKeys) -> String {
+    private static func forKey(_ key: Keys) -> String {
         var string = String(format: "%@_%@", arguments: [String(describing: self), key.rawValue])
-        if let token = token {
+        if let token = key.token {
             string += String(format: "_%@", token)
         }
-        if let build = build {
+        if let build = key.build {
             string += String(format: "_%@", build)
         }
         return string.md5()
@@ -36,49 +41,49 @@ public extension UserDefaultsSettable where defaultKeys.RawValue == String {
     
     /// setter
     
-    static func set(_ value: String?, forKey key: defaultKeys) {
+    static func set(_ value: String?, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set(_ value: Bool, forKey key: defaultKeys) {
+    static func set(_ value: Bool, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set(_ value: Int, forKey key: defaultKeys) {
+    static func set(_ value: Int, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set(_ value: Float, forKey key: defaultKeys) {
+    static func set(_ value: Float, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set(_ value: Double, forKey key: defaultKeys) {
+    static func set(_ value: Double, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set(_ value: URL?, forKey key: defaultKeys) {
+    static func set(_ value: URL?, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set(_ value: Any?, forKey key: defaultKeys) {
+    static func set(_ value: Any?, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(value, forKey: key)
         keys.insert(key)
     }
     
-    static func set<T: Encodable>(model: T?, forKey key: defaultKeys) {
+    static func set<T: Encodable>(model: T?, forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.set(model: model, forKey: key)
         keys.insert(key)
@@ -86,41 +91,41 @@ public extension UserDefaultsSettable where defaultKeys.RawValue == String {
     
     /// getter
     
-    static func string(forKey key: defaultKeys) -> String? {
+    static func string(forKey key: Keys) -> String? {
         return UserDefaults.standard.string(forKey: forKey(key))
     }
     
-    static func bool(forKey key: defaultKeys) -> Bool {
+    static func bool(forKey key: Keys) -> Bool {
         return UserDefaults.standard.bool(forKey: forKey(key))
     }
     
-    static func integer(forKey key: defaultKeys) -> Int {
+    static func integer(forKey key: Keys) -> Int {
         return UserDefaults.standard.integer(forKey: forKey(key))
     }
     
-    static func float(forKey key: defaultKeys) -> Float {
+    static func float(forKey key: Keys) -> Float {
         return UserDefaults.standard.float(forKey: forKey(key))
     }
     
-    static func double(forKey key: defaultKeys) -> Double {
+    static func double(forKey key: Keys) -> Double {
         return UserDefaults.standard.double(forKey: forKey(key))
     }
     
-    static func url(forKey key: defaultKeys) -> URL? {
+    static func url(forKey key: Keys) -> URL? {
         return UserDefaults.standard.url(forKey: forKey(key))
     }
     
-    static func object(forKey key: defaultKeys) -> Any? {
+    static func object(forKey key: Keys) -> Any? {
         return UserDefaults.standard.object(forKey: forKey(key))
     }
     
-    static func model<T: Decodable>(forKey key: defaultKeys) -> T? {
+    static func model<T: Decodable>(forKey key: Keys) -> T? {
         return UserDefaults.standard.model(forKey: forKey(key))
     }
     
     /// remove
     
-    static func remove(forKey key: defaultKeys) {
+    static func remove(forKey key: Keys) {
         let key = forKey(key)
         UserDefaults.standard.removeObject(forKey: key)
         keys.remove(key)
@@ -132,25 +137,19 @@ public extension UserDefaultsSettable where defaultKeys.RawValue == String {
     }
 }
 
-public extension UserDefaultsSettable where defaultKeys.RawValue == String {
+public extension UserDefaultsSettable where Keys.RawValue == String {
     
-    static func observe(forKey key: defaultKeys, change: @escaping () -> Void) -> UserDefaultsObservation {
-        return UserDefaultsObservation(key: forKey(key)) { _, _ in
-            change()
-        }
-    }
-    
-    static func observe(forKey key: defaultKeys, change: @escaping (Any?, Any?) -> Void) -> UserDefaultsObservation {
+    static func observe(forKey key: Keys, change: @escaping (Any?, Any?) -> Void) -> UserDefaultsObservation {
         return UserDefaultsObservation(key: forKey(key), onChange: change)
     }
     
-    static func observe<Old, New>(forKey key: defaultKeys, change: @escaping (Old?, New?) -> Void) -> UserDefaultsObservation {
+    static func observe<Old, New>(forKey key: Keys, change: @escaping (Old?, New?) -> Void) -> UserDefaultsObservation {
         return UserDefaultsObservation(key: forKey(key)) { old, new in
             change(old as? Old, new as? New)
         }
     }
     
-    static func observe<T: Decodable>(forKey key: defaultKeys, change: @escaping (T?, T?) -> Void) -> UserDefaultsObservation {
+    static func observe<T: Decodable>(forKey key: Keys, change: @escaping (T?, T?) -> Void) -> UserDefaultsObservation {
         return UserDefaultsObservation(key: forKey(key)) { old, new in
             change((try? JSONDecoder().decode(T.self, from: old as? Data ?? .init())) ?? old as? T,
                    (try? JSONDecoder().decode(T.self, from: new as? Data ?? .init())) ?? new as? T)

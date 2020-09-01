@@ -77,7 +77,7 @@ extension PgyerController {
             self?.model.cancelUpload()
         }
         controller.message = "准备完成 开始上传"
-        
+
         model.upload(
             notes,
             progress: { progress in
@@ -87,13 +87,13 @@ extension PgyerController {
             with: { [weak self] result in
                 guard let self = self else { return }
                 controller.dismiss(controller)
-                
+
                 switch result {
                 case .success(let value):
                     let controller = UploadSuccessAlertController.instance()
                     self.presentAsSheet(controller)
                     controller.url = value
-                    
+
                 case .failure(let error):
                     let controller = UploadFailureAlertController.instance()
                     self.presentAsSheet(controller)

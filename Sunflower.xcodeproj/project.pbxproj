@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9B043C3524FE22CE00EF2A83 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B043C3424FE22CE00EF2A83 /* UserNotifications.framework */; };
 		9B267C012444638D002F571E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B267C002444638D002F571E /* AppDelegate.swift */; };
 		9B267C052444638F002F571E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B267C042444638F002F571E /* Assets.xcassets */; };
 		9B267C082444638F002F571E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B267C062444638F002F571E /* Main.storyboard */; };
@@ -114,6 +115,7 @@
 		41F55D1E4B50FB45FCBEAF60 /* Pods-BetaPublisher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaPublisher.debug.xcconfig"; path = "Target Support Files/Pods-BetaPublisher/Pods-BetaPublisher.debug.xcconfig"; sourceTree = "<group>"; };
 		79B3DFE9229EB38C885E32A8 /* Pods-BetaPublisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaPublisher.release.xcconfig"; path = "Target Support Files/Pods-BetaPublisher/Pods-BetaPublisher.release.xcconfig"; sourceTree = "<group>"; };
 		996065FC7B98B5309EA4203A /* Pods_Sunflower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sunflower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B043C3424FE22CE00EF2A83 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
 		9B267BFD2444638D002F571E /* Sunflower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sunflower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B267C002444638D002F571E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B267C042444638F002F571E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			files = (
 				9B375C222446E4B700E3E286 /* AXML in Frameworks */,
 				9B267C2324446F51002F571E /* Pods_Sunflower.framework in Frameworks */,
+				9B043C3524FE22CE00EF2A83 /* UserNotifications.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +248,7 @@
 		50B76FB651E52F694C30D13C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9B043C3424FE22CE00EF2A83 /* UserNotifications.framework */,
 				996065FC7B98B5309EA4203A /* Pods_Sunflower.framework */,
 			);
 			name = Frameworks;

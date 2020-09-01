@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -253,16 +254,8 @@
                                             <rect key="frame" x="1" y="1" width="498" height="259"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lmW-aD-3lU">
-                                                    <rect key="frame" x="185" y="118" width="129" height="23"/>
-                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Upload Failed" id="GNF-Mq-paJ">
-                                                        <font key="font" metaFont="systemSemibold" size="20"/>
-                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                    </textFieldCell>
-                                                </textField>
                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="BSN-bo-4vN">
-                                                    <rect key="frame" x="225" y="161" width="48" height="48"/>
+                                                    <rect key="frame" x="225" y="106" width="48" height="48"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="48" id="KRT-Xm-rVB"/>
                                                         <constraint firstAttribute="height" constant="48" id="UQf-e5-GoU"/>
@@ -270,24 +263,32 @@
                                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="upload_failure" id="5Mx-6H-JqY"/>
                                                 </imageView>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XpX-Pz-Viq">
-                                                    <rect key="frame" x="18" y="87" width="462" height="16"/>
+                                                    <rect key="frame" x="18" y="70" width="462" height="16"/>
                                                     <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="上传失败" id="73B-co-2SQ">
                                                         <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                 </textField>
+                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lmW-aD-3lU">
+                                                    <rect key="frame" x="185" y="174" width="129" height="23"/>
+                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="Upload Failed" id="GNF-Mq-paJ">
+                                                        <font key="font" metaFont="systemSemibold" size="20"/>
+                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                    </textFieldCell>
+                                                </textField>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstItem="BSN-bo-4vN" firstAttribute="top" secondItem="lmW-aD-3lU" secondAttribute="bottom" constant="20" id="122-GP-7uX"/>
+                                                <constraint firstItem="XpX-Pz-Viq" firstAttribute="top" secondItem="BSN-bo-4vN" secondAttribute="bottom" constant="20" id="BxE-iY-aRr"/>
                                                 <constraint firstItem="XpX-Pz-Viq" firstAttribute="centerX" secondItem="fFc-lJ-8Il" secondAttribute="centerX" id="Ehw-DC-gM6"/>
+                                                <constraint firstItem="BSN-bo-4vN" firstAttribute="centerY" secondItem="fFc-lJ-8Il" secondAttribute="centerY" id="X1C-Vf-y7X"/>
                                                 <constraint firstItem="lmW-aD-3lU" firstAttribute="centerX" secondItem="fFc-lJ-8Il" secondAttribute="centerX" id="YLs-RD-eUR"/>
-                                                <constraint firstItem="XpX-Pz-Viq" firstAttribute="top" secondItem="lmW-aD-3lU" secondAttribute="bottom" constant="15" id="ZM6-ML-AV2"/>
                                                 <constraint firstAttribute="trailing" secondItem="XpX-Pz-Viq" secondAttribute="trailing" constant="20" id="bL7-Ql-tG1"/>
                                                 <constraint firstItem="BSN-bo-4vN" firstAttribute="centerX" secondItem="fFc-lJ-8Il" secondAttribute="centerX" id="eq8-dK-erk"/>
-                                                <constraint firstItem="lmW-aD-3lU" firstAttribute="top" secondItem="BSN-bo-4vN" secondAttribute="bottom" constant="20" id="g7l-pl-JU9"/>
                                                 <constraint firstItem="XpX-Pz-Viq" firstAttribute="leading" secondItem="fFc-lJ-8Il" secondAttribute="leading" constant="20" id="lSo-yV-gua"/>
                                                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="XpX-Pz-Viq" secondAttribute="bottom" constant="10" id="mgR-qR-g9F"/>
-                                                <constraint firstItem="lmW-aD-3lU" firstAttribute="centerY" secondItem="fFc-lJ-8Il" secondAttribute="centerY" id="seW-nt-3hV"/>
                                             </constraints>
                                         </view>
                                         <color key="borderColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
