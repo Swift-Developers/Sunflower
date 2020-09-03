@@ -20,6 +20,18 @@ extension Robot {
         case feishu(Robot.Feishu)
     }
     
+    func infos(for keys: [String]) -> [Info] {
+        switch self {
+        case .wechat:
+            let models: [Robot.Wechat] = UserDefaults.RobotInfo.model(forKey: .wechat) ?? []
+            return models.filter({ keys.contains($0.key) }).map({ .wechat($0) })
+            
+        case .feishu:
+            let models: [Robot.Feishu] = UserDefaults.RobotInfo.model(forKey: .feishu) ?? []
+            return models.filter({ keys.contains($0.key) }).map({ .feishu($0) })
+        }
+    }
+    
     static func select(in parent: NSViewController, with completion: @escaping ((Info) -> Void)) {
         
         var robots: [Info] = []
@@ -105,7 +117,7 @@ fileprivate extension Robot.Info {
     }
 }
 
-fileprivate extension Robot {
+extension Robot {
     
     var name: String {
         switch self {

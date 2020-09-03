@@ -9,6 +9,7 @@ import Foundation
 
 class PgyerModel {
     
+    typealias Detail = Pgyer.Detail
     typealias Info = Analysis.Info
     
     let account: Account.Pgyer
@@ -35,7 +36,7 @@ class PgyerModel {
                 with completion: @escaping ((API.Result<URL>) -> Void)) {
         
         struct Model: Codable {
-            let buildShortcutUrl: URL
+            let buildShortcutUrl: String
         }
         
         cancellable?.cancel()
@@ -46,7 +47,11 @@ class PgyerModel {
             guard !(result.error?.isRequestCancelled ?? false) else { return }
             switch result {
             case .success(let value):
-                completion(.success(value.buildShortcutUrl))
+                guard var url = URL(string: "https://www.pgyer.com") else {
+                    return
+                }
+                url.appendPathComponent(value.buildShortcutUrl)
+                completion(.success(url))
                 
             case .failure(let error):
                 guard !error.isRequestCancelled else { return }
@@ -62,11 +67,13 @@ class PgyerModel {
     
     /// 获取详情信息
     /// - Parameter completion: 完成回调
-    func getDetail(with completion: @escaping ((API.Result<Item?>) -> Void)) {
+    func getDetail(with completion: @escaping ((API.Result<Detail?>) -> Void)) {
         getList { (result) in
             switch result {
             case .success(let value):
-                let item = value.first(where: { $0.buildType == self.info.type && $0.buildIdentifier == self.info.identifier })
+                let item = value.first(where: {
+                    $0.buildType == self.info.type && $0.buildIdentifier == self.info.identifier
+                })
                 completion(.success(item))
                 
             case .failure(let error):
@@ -75,9 +82,9 @@ class PgyerModel {
         }
     }
     
-    private func getList(with completion: @escaping ((API.Result<[Item]>) -> Void)) {
+    private func getList(with completion: @escaping ((API.Result<[Detail]>) -> Void)) {
         struct Model: Codable {
-            let list: [Item]
+            let list: [Detail]
         }
         API.pgyer.load(.list(key: account.key), options: []) { (result: API.Result<Model>) in
             switch result {
@@ -88,20 +95,6 @@ class PgyerModel {
                 completion(.failure(error))
             }
         }
-    }
-}
-
-extension PgyerModel {
-    
-    struct Item: Codable {
-        let appKey: String
-        let buildKey: String
-        let buildType: String
-        let buildName: String
-        let buildVersion: String
-        let buildIdentifier: String
-        let buildUpdateDescription: String
-        let buildCreated: String
     }
 }
 

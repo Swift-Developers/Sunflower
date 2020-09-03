@@ -11,8 +11,8 @@ class PgyerIPAController: ViewController<PgyerIPAView> {
 
     typealias Info = Analysis.IPA
     
-    private var file: URL?
-    private var info: Info = .empty
+    private(set) var file: URL?
+    private(set) var info: Info = .empty
     
     var notes: String {
         get { container.notes }
@@ -48,7 +48,7 @@ class PgyerIPAController: ViewController<PgyerIPAView> {
     
     @IBAction func cancelAction(_ sender: NSButton) {
         let controller = ReceiveController.instance()
-        NSApp.mainWindow?.contentViewController = controller
+        view.window?.contentViewController = controller
     }
     
     @IBAction func doneAction(_ sender: NSButton) {
@@ -72,7 +72,7 @@ extension PgyerIPAController {
     @objc
     private func windowCloseAction(_ sender: Notification) {
         let controller = ReceiveController.instance()
-        NSApp.mainWindow?.contentViewController = controller
+        view.window?.contentViewController = controller
     }
 }
 

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		9B043C3524FE22CE00EF2A83 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B043C3424FE22CE00EF2A83 /* UserNotifications.framework */; };
+		9B043C3724FE469100EF2A83 /* UploadRobotController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B043C3624FE469100EF2A83 /* UploadRobotController.swift */; };
+		9B043C3C24FF434100EF2A83 /* UploadRobotItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B043C3A24FF42D500EF2A83 /* UploadRobotItem.swift */; };
+		9B043C3D24FF434700EF2A83 /* UploadRobotItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B043C3B24FF42D600EF2A83 /* UploadRobotItem.xib */; };
+		9B043C4024FF471700EF2A83 /* UploadRobotSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B043C3F24FF471700EF2A83 /* UploadRobotSectionHeader.swift */; };
+		9B043C4224FF499400EF2A83 /* Upload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B043C4124FF499400EF2A83 /* Upload.swift */; };
 		9B267C012444638D002F571E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B267C002444638D002F571E /* AppDelegate.swift */; };
 		9B267C052444638F002F571E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B267C042444638F002F571E /* Assets.xcassets */; };
 		9B267C082444638F002F571E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B267C062444638F002F571E /* Main.storyboard */; };
@@ -67,10 +72,10 @@
 		9B62F063245011B800CBBD00 /* Appearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F062245011B800CBBD00 /* Appearance.swift */; };
 		9B62F0662452AE7400CBBD00 /* UserDefaultsSettable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F0652452AE7400CBBD00 /* UserDefaultsSettable.swift */; };
 		9B62F06A2452B27000CBBD00 /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B62F0692452B27000CBBD00 /* UserDefaults.swift */; };
-		9B6854BB24937124005F301C /* Alert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6854BA24937124005F301C /* Alert.storyboard */; };
-		9B6854BD24937174005F301C /* UploadProcessAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854BC24937174005F301C /* UploadProcessAlertController.swift */; };
-		9B6854C124938BBA005F301C /* UploadSuccessAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854C024938BBA005F301C /* UploadSuccessAlertController.swift */; };
-		9B6854C324938BFA005F301C /* UploadFailureAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854C224938BFA005F301C /* UploadFailureAlertController.swift */; };
+		9B6854BB24937124005F301C /* Upload.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9B6854BA24937124005F301C /* Upload.storyboard */; };
+		9B6854BD24937174005F301C /* UploadProcessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854BC24937174005F301C /* UploadProcessController.swift */; };
+		9B6854C124938BBA005F301C /* UploadSuccessController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854C024938BBA005F301C /* UploadSuccessController.swift */; };
+		9B6854C324938BFA005F301C /* UploadFailureController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B6854C224938BFA005F301C /* UploadFailureController.swift */; };
 		9B7365B42463F04800D053FE /* SettingsAccountSectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */; };
 		9B7365B72463FD7100D053FE /* SettingsAccountItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */; };
 		9B7365B82463FD7100D053FE /* SettingsAccountItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */; };
@@ -116,6 +121,11 @@
 		79B3DFE9229EB38C885E32A8 /* Pods-BetaPublisher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BetaPublisher.release.xcconfig"; path = "Target Support Files/Pods-BetaPublisher/Pods-BetaPublisher.release.xcconfig"; sourceTree = "<group>"; };
 		996065FC7B98B5309EA4203A /* Pods_Sunflower.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Sunflower.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B043C3424FE22CE00EF2A83 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		9B043C3624FE469100EF2A83 /* UploadRobotController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRobotController.swift; sourceTree = "<group>"; };
+		9B043C3A24FF42D500EF2A83 /* UploadRobotItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRobotItem.swift; sourceTree = "<group>"; };
+		9B043C3B24FF42D600EF2A83 /* UploadRobotItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UploadRobotItem.xib; sourceTree = "<group>"; };
+		9B043C3F24FF471700EF2A83 /* UploadRobotSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadRobotSectionHeader.swift; sourceTree = "<group>"; };
+		9B043C4124FF499400EF2A83 /* Upload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Upload.swift; sourceTree = "<group>"; };
 		9B267BFD2444638D002F571E /* Sunflower.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sunflower.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9B267C002444638D002F571E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9B267C042444638F002F571E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -183,10 +193,10 @@
 		9B62F062245011B800CBBD00 /* Appearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appearance.swift; sourceTree = "<group>"; };
 		9B62F0652452AE7400CBBD00 /* UserDefaultsSettable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsSettable.swift; sourceTree = "<group>"; };
 		9B62F0692452B27000CBBD00 /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
-		9B6854BA24937124005F301C /* Alert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Alert.storyboard; sourceTree = "<group>"; };
-		9B6854BC24937174005F301C /* UploadProcessAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProcessAlertController.swift; sourceTree = "<group>"; };
-		9B6854C024938BBA005F301C /* UploadSuccessAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessAlertController.swift; sourceTree = "<group>"; };
-		9B6854C224938BFA005F301C /* UploadFailureAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFailureAlertController.swift; sourceTree = "<group>"; };
+		9B6854BA24937124005F301C /* Upload.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Upload.storyboard; sourceTree = "<group>"; };
+		9B6854BC24937174005F301C /* UploadProcessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadProcessController.swift; sourceTree = "<group>"; };
+		9B6854C024938BBA005F301C /* UploadSuccessController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadSuccessController.swift; sourceTree = "<group>"; };
+		9B6854C224938BFA005F301C /* UploadFailureController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadFailureController.swift; sourceTree = "<group>"; };
 		9B7365B32463F04800D053FE /* SettingsAccountSectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountSectionHeader.swift; sourceTree = "<group>"; };
 		9B7365B52463FD7100D053FE /* SettingsAccountItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAccountItem.swift; sourceTree = "<group>"; };
 		9B7365B62463FD7100D053FE /* SettingsAccountItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsAccountItem.xib; sourceTree = "<group>"; };
@@ -254,6 +264,16 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		9B043C3924FF40A000EF2A83 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9B043C3A24FF42D500EF2A83 /* UploadRobotItem.swift */,
+				9B043C3B24FF42D600EF2A83 /* UploadRobotItem.xib */,
+				9B043C3F24FF471700EF2A83 /* UploadRobotSectionHeader.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9B267BF42444638D002F571E = {
 			isa = PBXGroup;
 			children = (
@@ -298,7 +318,7 @@
 		9B267C1124446846002F571E /* Module */ = {
 			isa = PBXGroup;
 			children = (
-				9B6854B724937104005F301C /* Alert */,
+				9B6854B724937104005F301C /* Upload */,
 				9BE7D4D2248B8C2400DE1176 /* Picker */,
 				9B62F003244DC94700CBBD00 /* Settings */,
 				9B267C182444691C002F571E /* Receive */,
@@ -711,21 +731,24 @@
 			path = UserDefaults;
 			sourceTree = "<group>";
 		};
-		9B6854B724937104005F301C /* Alert */ = {
+		9B6854B724937104005F301C /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				9B043C3924FF40A000EF2A83 /* View */,
 				9B6854B924937114005F301C /* Storyboard */,
 				9B6854B82493710B005F301C /* Controller */,
+				9B043C4124FF499400EF2A83 /* Upload.swift */,
 			);
-			path = Alert;
+			path = Upload;
 			sourceTree = "<group>";
 		};
 		9B6854B82493710B005F301C /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9B6854BC24937174005F301C /* UploadProcessAlertController.swift */,
-				9B6854C024938BBA005F301C /* UploadSuccessAlertController.swift */,
-				9B6854C224938BFA005F301C /* UploadFailureAlertController.swift */,
+				9B6854BC24937174005F301C /* UploadProcessController.swift */,
+				9B6854C024938BBA005F301C /* UploadSuccessController.swift */,
+				9B6854C224938BFA005F301C /* UploadFailureController.swift */,
+				9B043C3624FE469100EF2A83 /* UploadRobotController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -733,7 +756,7 @@
 		9B6854B924937114005F301C /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				9B6854BA24937124005F301C /* Alert.storyboard */,
+				9B6854BA24937124005F301C /* Upload.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -931,13 +954,14 @@
 			files = (
 				9B267C052444638F002F571E /* Assets.xcassets in Resources */,
 				9B267C1D24446C1B002F571E /* Receive.storyboard in Resources */,
-				9B6854BB24937124005F301C /* Alert.storyboard in Resources */,
+				9B6854BB24937124005F301C /* Upload.storyboard in Resources */,
 				9BEA1A0624458A5E0084563C /* Pgyer.storyboard in Resources */,
 				9B267C082444638F002F571E /* Main.storyboard in Resources */,
 				9B62F013244EC21200CBBD00 /* Settings.storyboard in Resources */,
 				9BF79A32246FE69F00C471FA /* SettingsRobotItem.xib in Resources */,
 				9BE7D4D6248B8C4D00DE1176 /* Picker.storyboard in Resources */,
 				9B7365B82463FD7100D053FE /* SettingsAccountItem.xib in Resources */,
+				9B043C3D24FF434700EF2A83 /* UploadRobotItem.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1010,13 +1034,15 @@
 				9B267C3D24447937002F571E /* APICancellableWrapper.swift in Sources */,
 				9BEA1A1D2445BBC10084563C /* Analysis+APK.swift in Sources */,
 				9BF00FDB246E943800AB10AA /* Robot+Feishu.swift in Sources */,
+				9B043C4024FF471700EF2A83 /* UploadRobotSectionHeader.swift in Sources */,
 				9B267C3824447937002F571E /* APITimeoutPlugin.swift in Sources */,
 				9BEBB0C824CFD99700355C22 /* SettingsRobotFeishuCreateController.swift in Sources */,
 				9B267C3524447937002F571E /* APIPgyerTarget.swift in Sources */,
 				9B4EFA65244D866C00C1BD84 /* AnalysisArsc.mm in Sources */,
 				9B267C4824447B5E002F571E /* Pgyer.swift in Sources */,
 				9BEA1A132445A6FC0084563C /* ViewExtension.swift in Sources */,
-				9B6854C324938BFA005F301C /* UploadFailureAlertController.swift in Sources */,
+				9B043C3724FE469100EF2A83 /* UploadRobotController.swift in Sources */,
+				9B6854C324938BFA005F301C /* UploadFailureController.swift in Sources */,
 				9BF00FCE246E46F700AB10AA /* SettingsAccountPgyerCreateView.swift in Sources */,
 				9BEA1A0A24458A900084563C /* PgyerView.swift in Sources */,
 				9B62F02E244EC41D00CBBD00 /* SettingsRobotController.swift in Sources */,
@@ -1040,16 +1066,18 @@
 				9BF79A1D246FD03100C471FA /* SettingsRobotWechatInfoView.swift in Sources */,
 				9B26C93C2458060C0038E82E /* SettingsAccountFirimInfoController.swift in Sources */,
 				9B62F06A2452B27000CBBD00 /* UserDefaults.swift in Sources */,
+				9B043C4224FF499400EF2A83 /* Upload.swift in Sources */,
 				9BF00FD9246E942D00AB10AA /* Robot+Wechat.swift in Sources */,
 				9BF79A24246FD0CF00C471FA /* SettingsRobotItem.swift in Sources */,
 				9B62F00A244DC97C00CBBD00 /* Settings+Pgyer.swift in Sources */,
 				9B267C012444638D002F571E /* AppDelegate.swift in Sources */,
-				9B6854C124938BBA005F301C /* UploadSuccessAlertController.swift in Sources */,
-				9B6854BD24937174005F301C /* UploadProcessAlertController.swift in Sources */,
+				9B6854C124938BBA005F301C /* UploadSuccessController.swift in Sources */,
+				9B6854BD24937174005F301C /* UploadProcessController.swift in Sources */,
 				9B62F05B244EEC4600CBBD00 /* SettingsAccountController.swift in Sources */,
 				9B267C46244479A3002F571E /* ViewController.swift in Sources */,
 				9B62F022244EC39100CBBD00 /* SettingsView.swift in Sources */,
 				9B267C3624447937002F571E /* APIFeishuTarget.swift in Sources */,
+				9B043C3C24FF434100EF2A83 /* UploadRobotItem.swift in Sources */,
 				9BF79A21246FD06200C471FA /* SettingsRobotSectionHeader.swift in Sources */,
 				9BEA1A1B2445BBB00084563C /* Analysis+IPA.swift in Sources */,
 				9B26C9402458068C0038E82E /* SettingsAccountFirimInfoView.swift in Sources */,

@@ -105,7 +105,7 @@ fileprivate extension Account.Info {
     }
 }
 
-fileprivate extension Account {
+extension Account {
     
     var name: String {
         switch self {

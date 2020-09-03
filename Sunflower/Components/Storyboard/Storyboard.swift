@@ -2,7 +2,7 @@ import Foundation
 import Cocoa
 
 enum StoryBoard: String {
-    case alert               = "Alert"
+    case upload              = "Upload"
     case picker              = "Picker"
     case receive             = "Receive"
     case pgyer               = "Pgyer"

@@ -34,4 +34,11 @@ extension UserDefaults {
             case feishu
         }
     }
+    
+    // 上传配置信息
+    enum UploadInfo: UserDefaultsSettable {
+        enum Keys: String, UserDefaultsSettableKeys {
+            case robots
+        }
+    }
 }

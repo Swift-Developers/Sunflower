@@ -228,23 +228,6 @@ extension SettingsRobotController: PreferencePane {
     var toolbarItemIcon: NSImage { NSImage(named: NSImage.advancedName) ?? .init() }
 }
 
-fileprivate extension Robot {
-    
-    var name: String {
-        switch self {
-        case .wechat:    return "企业微信"
-        case .feishu:    return "飞书"
-        }
-    }
-    
-    var icon: NSImage {
-        switch self {
-        case .wechat:    return #imageLiteral(resourceName: "platform_icon_wechat")
-        case .feishu:    return #imageLiteral(resourceName: "platform_icon_feishu")
-        }
-    }
-}
-
 extension SettingsRobotModel.Section.Item: Differentiable {
     
     var differenceIdentifier: String { key }

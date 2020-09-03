@@ -1,5 +1,5 @@
 //
-//  UploadFailureAlertController.swift
+//  UploadFailureController.swift
 //  Sunflower
 //
 //  Created by Lee on 2020/6/12.
@@ -7,15 +7,16 @@
 
 import Cocoa
 
-class UploadFailureAlertController: ViewController<NSView> {
+class UploadFailureController: ViewController<NSView> {
 
     @IBOutlet private weak var messageLabel: NSTextField!
     
+    /// 提示消息
     var message: String {
         get { messageLabel.stringValue }
         set { messageLabel.stringValue = newValue }
     }
-    
+    /// 重试回调
     var retry: (() -> Void)?
     
     override func viewDidLoad() {
@@ -32,6 +33,6 @@ class UploadFailureAlertController: ViewController<NSView> {
     }
     
     static func instance() -> Self {
-        return StoryBoard.alert.instance()
+        return StoryBoard.upload.instance()
     }
 }

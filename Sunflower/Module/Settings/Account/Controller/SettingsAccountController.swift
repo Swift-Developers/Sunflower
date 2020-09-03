@@ -228,23 +228,6 @@ extension SettingsAccountController: PreferencePane {
     var toolbarItemIcon: NSImage { NSImage(named: NSImage.userAccountsName) ?? .init() }
 }
 
-fileprivate extension Account {
-    
-    var name: String {
-        switch self {
-        case .pgyer:    return "蒲公英"
-        case .firim:    return "fir.im"
-        }
-    }
-    
-    var icon: NSImage {
-        switch self {
-        case .pgyer:    return #imageLiteral(resourceName: "platform_icon_pgyer")
-        case .firim:    return #imageLiteral(resourceName: "platform_icon_firim")
-        }
-    }
-}
-
 extension SettingsAccountModel.Section.Item: Differentiable {
     
     var differenceIdentifier: String { key }

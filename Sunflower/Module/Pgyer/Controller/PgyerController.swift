@@ -9,22 +9,35 @@ import Cocoa
 
 class PgyerController: ViewController<NSView> {
     
+    typealias Detail = PgyerModel.Detail
+    
     private var model: PgyerModel!
+    private var detail: Detail?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var setNotes: ((String?) -> Void)
         
         switch model.info {
         case .ipa(let value):
             let controller = PgyerIPAController.instance(file: model.file, with: value)
             add(child: controller)
             controller.upload = upload
-            getNotes {
+            setNotes = {
                 controller.notes = $0 ?? ""
             }
             
         case .apk:
-            break
+            setNotes = {
+                print($0 ?? "")
+            }
+        }
+        
+        loadDetail { [weak self] (result) in
+            guard let self = self else { return }
+            setNotes(result?.buildUpdateDescription)
+            self.detail = result
         }
     }
     
@@ -41,16 +54,16 @@ class PgyerController: ViewController<NSView> {
 
 extension PgyerController {
     
-    private func getNotes(with completion: @escaping ((String?) -> Void)) {
+    private func loadDetail(with completion: @escaping ((Detail?) -> Void)) {
         model.getDetail { [weak self] (result) in
             guard let self = self else { return }
             
             switch result {
             case .success(let value):
-                completion(value?.buildUpdateDescription)
+                completion(value)
                 
             case .failure:
-                guard let window = NSApp.mainWindow else { return }
+                guard let window = self.view.window else { return }
                 
                 let alert = NSAlert()
                 alert.addButton(withTitle: "重试")
@@ -59,11 +72,11 @@ extension PgyerController {
                 alert.beginSheetModal(for: window) { [weak self] (response) in
                     guard let self = self else { return }
                     if response == .alertFirstButtonReturn {
-                        self.getNotes(with: completion)
+                        self.loadDetail(with: completion)
                         
                     } else {
                         let controller = ReceiveController.instance()
-                        NSApp.mainWindow?.contentViewController = controller
+                        self.view.window?.contentViewController = controller
                     }
                 }
             }
@@ -71,13 +84,29 @@ extension PgyerController {
     }
     
     private func upload(_ source: PgyerIPAController, with notes: String) {
-        let controller = UploadProcessAlertController.instance()
+        Upload.prepare(in: self) { [weak self] result in
+            guard let self = self else { return }
+            self.uploading(source.info.name, notes, send: result)
+        }
+    }
+    
+    private func upload(_ source: PgyerAPKController, with notes: String) {
+        
+    }
+    
+    /// 上传中
+    /// - Parameters:
+    ///   - name: 应用名称
+    ///   - notes: 更新记录
+    ///   - notification: 通知配置
+    private func uploading(_ name: String, _ notes: String, send notification: Upload.Notification) {
+        let controller = UploadProcessController.instance()
         presentAsSheet(controller)
         controller.cancelled = { [weak self] in
             self?.model.cancelUpload()
         }
         controller.message = "准备完成 开始上传"
-
+        
         model.upload(
             notes,
             progress: { progress in
@@ -87,27 +116,28 @@ extension PgyerController {
             with: { [weak self] result in
                 guard let self = self else { return }
                 controller.dismiss(controller)
-
+                
                 switch result {
                 case .success(let value):
-                    let controller = UploadSuccessAlertController.instance()
-                    self.presentAsSheet(controller)
+                    let controller = UploadSuccessController.instance()
                     controller.url = value
-
+                    controller.name = name
+                    controller.notes = notes
+                    controller.password = self.model.account.password
+                    controller.local = notification.local
+                    controller.robot = notification.robot
+                    self.presentAsSheet(controller)
+                    
                 case .failure(let error):
-                    let controller = UploadFailureAlertController.instance()
+                    let controller = UploadFailureController.instance()
                     self.presentAsSheet(controller)
                     controller.message = error.description
                     controller.retry = { [weak self] in
                         guard let self = self else { return }
-                        self.upload(source, with: notes)
+                        self.uploading(name, notes, send: notification)
                     }
                 }
             }
         )
-    }
-    
-    private func upload(_ source: PgyerAPKController, with notes: String) {
-        
     }
 }

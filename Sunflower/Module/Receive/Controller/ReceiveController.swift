@@ -21,7 +21,7 @@ class ReceiveController: ViewController<ReceiveView> {
     }
     
     @IBAction func addAction(_ sender: NSButton) {
-        guard let window = NSApp.mainWindow else {
+        guard let window = view.window else {
             return
         }
         
@@ -48,14 +48,14 @@ class ReceiveController: ViewController<ReceiveView> {
 
 extension ReceiveController {
     
-    private func handle(file url: URL) {
+    func handle(file url: URL) {
         Analysis.handle(file: url) { [weak self] (result) in
             switch result {
             case .success(let value):
                 self?.handle(file: url, with: value)
                 
             case .failure(let error):
-                guard let window = NSApp.mainWindow else { return }
+                guard let window = self?.view.window else { return }
                 
                 let alert = NSAlert()
                 alert.alertStyle = .critical
@@ -67,7 +67,7 @@ extension ReceiveController {
     }
     
     private func handle(file url: URL, with info: Analysis.Info) {
-        guard let window = NSApp.mainWindow else { return }
+        guard let window = view.window else { return }
         
         // 选择账号
         // 查询该账号平台下app列表
@@ -90,22 +90,5 @@ extension ReceiveController: ReceiveDragViewDelegate {
     
     func draggingFileAccept(file url: URL) {
         handle(file: url)
-    }
-}
-
-fileprivate extension Account {
-    
-    var name: String {
-        switch self {
-        case .pgyer:    return "蒲公英"
-        case .firim:    return "fir.im"
-        }
-    }
-    
-    var icon: NSImage {
-        switch self {
-        case .pgyer:    return #imageLiteral(resourceName: "platform_icon_pgyer")
-        case .firim:    return #imageLiteral(resourceName: "platform_icon_firim")
-        }
     }
 }

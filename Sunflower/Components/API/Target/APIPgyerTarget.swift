@@ -8,9 +8,7 @@ extension API {
 enum APIPgyerTarget {
     /// 上传
     case upload(Pgyer.Upload)
-    /// 信息
-    case info(key: String)
-    /// app列表
+    /// 列表
     case list(key: String)
 }
 
@@ -21,7 +19,6 @@ extension APIPgyerTarget: TargetType {
     var path: String {
         switch self {
         case .upload:               return "app/upload"
-        case .info:                 return "app/view"
         case .list:                 return "app/listMy"
         }
     }
@@ -40,10 +37,7 @@ extension APIPgyerTarget: TargetType {
             ])
             
         case let .list(key):
-            return .json(["_api_key": key])
-            
-        case let .info(key):
-            return .json(["_api_key": key])
+            return .body(["_api_key": key])
         }
     }
     
@@ -62,7 +56,7 @@ extension APIPgyerTarget: TargetType {
 
 extension Task {
     
-    fileprivate static func json(_ parameters: [String: Any]) -> Task {
+    fileprivate static func body(_ parameters: [String: Any]) -> Task {
         return .requestParameters(
             parameters: parameters,
             encoding: URLEncoding.default

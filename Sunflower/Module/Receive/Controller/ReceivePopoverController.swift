@@ -27,9 +27,12 @@ class ReceivePopoverController: ViewController<ReceivePopoverView> {
 extension ReceivePopoverController {
     
     private func handle(file url: URL) {
-        Analysis.handle(file: url) { (result) in
-            
-        }
+        let controller = ReceiveController.instance()
+        
+        AppDelegate.shared.window?.contentViewController = controller
+        AppDelegate.shared.window?.makeKeyAndOrderFront(self)
+        
+        controller.handle(file: url)
     }
 }
 

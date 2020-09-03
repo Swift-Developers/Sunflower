@@ -21,6 +21,7 @@ extension APIWechatTarget: TargetType {
         switch self {
         case .sendText:
             return "send"
+            
         case .sendImage:
             return "send"
         }
@@ -31,20 +32,27 @@ extension APIWechatTarget: TargetType {
     }
     
     var sampleData: Data {
-        return Data()
+        return .init()
     }
     
     var task: Task {
         switch self {
         case let .sendText(key, content, at):
-            let body: [String: Any] = ["msgtype": "text", "text": ["content": content, "mentioned_mobile_list": at]]
+            let body: [String: Any] = [
+                "msgtype": "text",
+                "text": ["content": content, "mentioned_mobile_list": at]
+            ]
             return .requestCompositeParameters(
                 bodyParameters: body,
                 bodyEncoding: JSONEncoding.default,
                 urlParameters: ["key": key]
             )
+            
         case let .sendImage(key, content, md5):
-            let body: [String: Any] = ["msgtype": "image", "image": ["base64": content, "md5": md5]]
+            let body: [String: Any] = [
+                "msgtype": "image",
+                "image": ["base64": content, "md5": md5]
+            ]
             return .requestCompositeParameters(
                 bodyParameters: body,
                 bodyEncoding: JSONEncoding.default,

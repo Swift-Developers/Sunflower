@@ -17,4 +17,15 @@ enum Pgyer {
         let description: String     // 版本更新描述
         let file: URL
     }
+    
+    struct Detail: Codable {
+        let appKey: String
+        let buildKey: String
+        let buildType: String
+        let buildName: String
+        let buildVersion: String
+        let buildIdentifier: String
+        let buildUpdateDescription: String
+        let buildCreated: String
+    }
 }

@@ -7,18 +7,20 @@ extension API {
 
 enum APIFeishuTarget {
     /// 发送消息
-    case sendText(key: String, title: String, content: String)
+    case sendText(key: String, title: String, content: String, url: String?)
 }
+
+// https://getfeishu.cn/hc/zh-cn/articles/360024984973-在群聊中使用机器人
 
 extension APIFeishuTarget: TargetType {
     
     var baseURL: URL {
-        return URL(string: "https://open.feishu.cn/open-apis/bot/hook")!
+        return URL(string: "https://open.feishu.cn/open-apis/bot/v2/hook")!
     }
     
     var path: String {
         switch self {
-        case let .sendText(key, _, _):
+        case let .sendText(key, _, _, _):
             return "\(key)"
         }
     }
@@ -28,13 +30,31 @@ extension APIFeishuTarget: TargetType {
     }
     
     var sampleData: Data {
-        return Data()
+        return .init()
     }
     
     var task: Task {
         switch self {
-        case let .sendText(_, title, content):
-            let body: [String: Any] = ["title": title, "text": content]
+        case let .sendText(_, title, content, url):
+            let body: [String: Any] = [
+                "msg_type": "post",
+                "content": [
+                    "post": [
+                        "zh_cn": [
+                            "title": title,
+                            "content": [
+                                [
+                                    ["tag": "text", "text": content]
+                                ],
+                                [
+                                    ["tag": "text", "text": "安装地址: "],
+                                    ["tag": "a", "text": "点击安装", "href": url ?? ""]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
             return .requestParameters(parameters: body, encoding: JSONEncoding.default)
         }
     }
