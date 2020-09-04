@@ -72,8 +72,8 @@ extension UploadSuccessController {
             
             DispatchQueue.main.async {
                 let content = UNMutableNotificationContent()
-                content.title = "提示"
-                content.body = "\(name) 已上传完成"
+                content.title = "上传完成"
+                content.body = "\(name) 已上传至 "
                 let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 2, repeats: false)
                 let request = UNNotificationRequest(identifier: "", content: content, trigger: trigger)
                 center.add(request) { (error) in }

@@ -28,9 +28,12 @@ class PgyerController: ViewController<NSView> {
                 controller.notes = $0 ?? ""
             }
             
-        case .apk:
+        case .apk(let value):
+            let controller = PgyerAPKController.instance(file: model.file, with: value)
+            add(child: controller)
+            controller.upload = upload
             setNotes = {
-                print($0 ?? "")
+                controller.notes = $0 ?? ""
             }
         }
         
@@ -91,7 +94,10 @@ extension PgyerController {
     }
     
     private func upload(_ source: PgyerAPKController, with notes: String) {
-        
+        Upload.prepare(in: self) { [weak self] result in
+            guard let self = self else { return }
+            self.uploading(source.info.name ?? "", notes, send: result)
+        }
     }
     
     /// 上传中

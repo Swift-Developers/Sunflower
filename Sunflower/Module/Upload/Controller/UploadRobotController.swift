@@ -13,10 +13,15 @@ class UploadRobotController: NSViewController {
     typealias Section = SettingsRobotModel.Section
     
     @IBOutlet weak var listView: NSCollectionView!
+    @IBOutlet weak var emptyView: NSView!
     @IBOutlet weak var doneButton: NSButton!
     
     private let model = SettingsRobotModel()
-    private var sections: [ArraySection<Robot, Section.Item>] = []
+    private var sections: [ArraySection<Robot, Section.Item>] = [] {
+        didSet {
+            emptyView.isHidden = !sections.isEmpty
+        }
+    }
     private var selectes: [IndexPath] = [] {
         didSet {
             doneButton.isEnabled = !selectes.isEmpty
@@ -83,6 +88,10 @@ class UploadRobotController: NSViewController {
             }
         }
         listView.selectItems(at: .init(selectes), scrollPosition: .init())
+    }
+    
+    @IBAction func addAction(_ sender: NSButton) {
+        Robot.create(in: self)
     }
     
     @IBAction func skipAction(_ sender: Any) {

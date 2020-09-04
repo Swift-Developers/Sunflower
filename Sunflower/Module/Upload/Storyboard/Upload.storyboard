@@ -418,12 +418,60 @@
                                                         <constraint firstAttribute="bottom" secondItem="WN8-6U-sx3" secondAttribute="bottom" id="kzx-9D-s9G"/>
                                                     </constraints>
                                                 </customView>
+                                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="ZCf-ai-iuc">
+                                                    <rect key="frame" x="0.0" y="0.0" width="498" height="269"/>
+                                                    <subviews>
+                                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="z70-Ke-As9">
+                                                            <rect key="frame" x="88" y="125" width="322" height="19"/>
+                                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Click  the add (+) button to create a new robot" id="dAA-Tt-PCa">
+                                                                <font key="font" metaFont="system" size="15"/>
+                                                                <color key="textColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
+                                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                            </textFieldCell>
+                                                        </textField>
+                                                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KKh-rj-7u1">
+                                                            <rect key="frame" x="203" y="54" width="92" height="45"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="34" id="2PC-IP-1Qf"/>
+                                                                <constraint firstAttribute="width" constant="80" id="ATy-0r-9H9"/>
+                                                            </constraints>
+                                                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSAddTemplate" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S8y-56-MJX">
+                                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                <font key="font" metaFont="system"/>
+                                                            </buttonCell>
+                                                            <color key="contentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="customCornerRadius">
+                                                                    <real key="value" value="0.0"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                            <connections>
+                                                                <action selector="addAction:" target="5rs-qd-WG1" id="5E7-wo-NGS"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="KKh-rj-7u1" firstAttribute="top" secondItem="z70-Ke-As9" secondAttribute="bottom" constant="30" id="23R-YS-DW8"/>
+                                                        <constraint firstItem="KKh-rj-7u1" firstAttribute="centerX" secondItem="ZCf-ai-iuc" secondAttribute="centerX" id="XuF-nN-N75"/>
+                                                        <constraint firstItem="z70-Ke-As9" firstAttribute="centerY" secondItem="ZCf-ai-iuc" secondAttribute="centerY" id="h8m-Oz-xlD"/>
+                                                        <constraint firstItem="z70-Ke-As9" firstAttribute="centerX" secondItem="ZCf-ai-iuc" secondAttribute="centerX" id="uoR-1d-WSf"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="backgroundColor">
+                                                            <color key="value" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                        </userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </customView>
                                             </subviews>
                                             <constraints>
+                                                <constraint firstAttribute="trailing" secondItem="ZCf-ai-iuc" secondAttribute="trailing" id="5ey-mG-DyL"/>
                                                 <constraint firstItem="dbz-dH-ECb" firstAttribute="top" secondItem="Hu2-bk-4ed" secondAttribute="top" id="6ga-LF-4ac"/>
                                                 <constraint firstItem="dbz-dH-ECb" firstAttribute="leading" secondItem="Hu2-bk-4ed" secondAttribute="leading" id="7dE-bw-zov"/>
                                                 <constraint firstAttribute="trailing" secondItem="dbz-dH-ECb" secondAttribute="trailing" id="EXq-wd-DbD"/>
+                                                <constraint firstAttribute="bottom" secondItem="ZCf-ai-iuc" secondAttribute="bottom" id="QwA-mq-tEI"/>
                                                 <constraint firstAttribute="bottom" secondItem="dbz-dH-ECb" secondAttribute="bottom" id="TcB-7c-NMr"/>
+                                                <constraint firstItem="ZCf-ai-iuc" firstAttribute="leading" secondItem="Hu2-bk-4ed" secondAttribute="leading" id="cve-jv-aE7"/>
+                                                <constraint firstItem="ZCf-ai-iuc" firstAttribute="top" secondItem="Hu2-bk-4ed" secondAttribute="top" id="u1t-z0-BTK"/>
                                             </constraints>
                                         </view>
                                         <color key="borderColor" name="placeholderTextColor" catalog="System" colorSpace="catalog"/>
@@ -455,6 +503,7 @@
                     </view>
                     <connections>
                         <outlet property="doneButton" destination="cuf-ZL-7Ur" id="USf-Sx-jke"/>
+                        <outlet property="emptyView" destination="ZCf-ai-iuc" id="c01-B7-aci"/>
                         <outlet property="listView" destination="nHH-1e-Ey6" id="Vci-ke-6cT"/>
                     </connections>
                 </viewController>
@@ -464,6 +513,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSFollowLinkFreestandingTemplate" width="14" height="14"/>
         <image name="upload_failure" width="48" height="48"/>
         <image name="upload_success" width="48" height="48"/>

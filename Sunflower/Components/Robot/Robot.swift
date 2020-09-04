@@ -32,6 +32,30 @@ extension Robot {
         }
     }
     
+    /// 创建
+    /// - Parameter parent: 控制器
+    static func create(in parent: NSViewController) {
+        let controller = SinglePickerController.instance(
+            Robot.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
+        )
+        controller.completion = { index in
+            switch Robot.allCases[index] {
+            case .wechat:
+                let controller = SettingsRobotWechatCreateController.instance()
+                parent.presentAsSheet(controller)
+                
+            case .feishu:
+                let controller = SettingsRobotFeishuCreateController.instance()
+                parent.presentAsSheet(controller)
+            }
+        }
+        parent.presentAsSheet(controller)
+    }
+    
+    /// 选择
+    /// - Parameters:
+    ///   - parent: 控制器
+    ///   - completion: 完成回调
     static func select(in parent: NSViewController, with completion: @escaping ((Info) -> Void)) {
         
         var robots: [Info] = []

@@ -11,8 +11,8 @@ class PgyerAPKController: ViewController<PgyerAPKView> {
 
     typealias Info = Analysis.APK
     
-    private var file: URL?
-    private var info: Info = .empty
+    private(set) var file: URL?
+    private(set) var info: Info = .empty
     
     var notes: String {
         get { container.notes }

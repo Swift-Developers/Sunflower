@@ -68,21 +68,7 @@ class SettingsRobotController: ViewController<SettingsRobotView> {
     }
     
     @IBAction func createAction(_ sender: NSButton) {
-        let controller = SinglePickerController.instance(
-            Robot.allCases.map({ .init(icon: $0.icon, name: .init(string: $0.name)) })
-        )
-        controller.completion = { [weak self] index in
-            switch Robot.allCases[index] {
-            case .wechat:
-                let controller = SettingsRobotWechatCreateController.instance()
-                self?.presentAsSheet(controller)
-                
-            case .feishu:
-                let controller = SettingsRobotFeishuCreateController.instance()
-                self?.presentAsSheet(controller)
-            }
-        }
-        presentAsSheet(controller)
+        Robot.create(in: self)
     }
     
     @IBAction func removeAction(_ sender: NSButton) {
