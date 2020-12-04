@@ -205,13 +205,20 @@ extension Analysis {
         }
         
         do {
-            let contents = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [])
-            guard let app = contents.filter({ $0.pathExtension.lowercased() == "app" }).first else {
+            let temp = try FileManager.default.contentsOfDirectory(at: url, includingPropertiesForKeys: [])
+            guard let app = temp.filter({ $0.pathExtension.lowercased() == "app" }).first else {
                 completion(.failure(.ipa(.plist)))
                 return
             }
+            
+            var icon: NSImage?
+            let contents = try FileManager.default.contentsOfDirectory(at: app, includingPropertiesForKeys: [])
+            if let path = contents.first(where: { $0.lastPathComponent.hasPrefix("AppIcon") }) {
+                let icon = NSImage(contentsOf: iconPath)
+            }
+            
+            
             let data = try Data(contentsOf: app.appendingPathComponent("Info.plist"))
-            let icon = NSImage(contentsOf: app.appendingPathComponent("AppIcon60x60@2x.png"))
             let info = try PropertyListDecoder().decode(InfoPlist.self, from: data)
             let date = try FileManager.default.attributesOfItem(atPath: app.path)[.creationDate] as? Date
             
