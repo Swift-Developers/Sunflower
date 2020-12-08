@@ -214,7 +214,7 @@ extension Analysis {
             var icon: NSImage?
             let contents = try FileManager.default.contentsOfDirectory(at: app, includingPropertiesForKeys: [])
             if let path = contents.first(where: { $0.lastPathComponent.hasPrefix("AppIcon") }) {
-                let icon = NSImage(contentsOf: iconPath)
+                icon = NSImage(contentsOf: path)
             }
             
             
