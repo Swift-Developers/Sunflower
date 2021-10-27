@@ -4,13 +4,42 @@
 
 <img src="screenshot.gif" width="628">
 
-Just pass in some view controllers and this package will take care of the rest.
+Just pass in some view controllers and this package will take care of the rest. Built-in SwiftUI support.
+
+<br>
+
+---
+
+<div align="center">
+	<p>
+		<p>
+			<sup>
+				<a href="https://github.com/sponsors/sindresorhus">Sindre‘s open source work is supported by the community</a>
+			</sup>
+		</p>
+		<sup>Special thanks to:</sup>
+		<br>
+		<br>
+		<a href="https://keygen.sh">
+			<div>
+				<img src="https://sindresorhus.com/assets/thanks/keygen-logo.svg" width="210" alt="Keygen">
+			</div>
+			<b>A dead-simple software licensing and distribution API built for developers</b>
+		</a>
+		<br>
+		<br>
+	</p>
+</div>
+
+---
+
+<br>
 
 ## Requirements
 
 - macOS 10.10+
-- Xcode 12+
-- Swift 5.3+
+- Xcode 12.5+
+- Swift 5.4+
 
 ## Install
 
@@ -91,6 +120,19 @@ final class AdvancedPreferenceViewController: NSViewController, PreferencePane {
 }
 ```
 
+If you need to respond actions indirectly, `PreferencesWindowController` will forward responder chain actions to the active pane if it responds to that selector.
+
+```swift
+final class AdvancedPreferenceViewController: NSViewController, PreferencePane {
+	@IBOutlet private var fontLabel: NSTextField!
+	private var selectedFont = NSFont.systemFont(ofSize: 14)
+
+	@IBAction private func changeFont(_ sender: NSFontManager) {
+		font = sender.convert(font)
+	}
+}
+```
+
 In the `AppDelegate`, initialize a new `PreferencesWindowController` and pass it the view controllers. Then add an action outlet for the `Preferences…` menu item to show the preferences window.
 
 `AppDelegate.swift`
@@ -103,7 +145,7 @@ import Preferences
 final class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 
-	lazy var preferencesWindowController = PreferencesWindowController(
+	private lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			GeneralPreferenceViewController(),
 			AdvancedPreferenceViewController()
@@ -125,7 +167,7 @@ When you create the `PreferencesWindowController`, you can choose between the `N
 
 ```swift
 // …
-lazy var preferencesWindowController = PreferencesWindowController(
+private lazy var preferencesWindowController = PreferencesWindowController(
 	preferencePanes: [
 		GeneralPreferenceViewController(),
 		AdvancedPreferenceViewController()
@@ -220,7 +262,7 @@ Then in the `AppDelegate`, initialize a new `PreferencesWindowController` and pa
 ```swift
 // …
 
-lazy var preferencesWindowController = PreferencesWindowController(
+private lazy var preferencesWindowController = PreferencesWindowController(
 	panes: [
 		Pane(
 			 identifier: …,
@@ -261,7 +303,7 @@ let CustomViewPreferencePaneViewController: () -> PreferencePane = {
 
 // …
 
-lazy var preferencesWindowController = PreferencesWindowController(
+private lazy var preferencesWindowController = PreferencesWindowController(
 	preferencePanes: [
 		GeneralPreferenceViewController(),
 		AdvancedPreferenceViewController(),
@@ -329,6 +371,7 @@ It can't be that hard right? Well, turns out it is:
 - [LaunchAtLogin](https://github.com/sindresorhus/LaunchAtLogin) - Add "Launch at Login" functionality to your macOS app
 - [KeyboardShortcuts](https://github.com/sindresorhus/KeyboardShortcuts) - Add user-customizable global keyboard shortcuts to your macOS app
 - [DockProgress](https://github.com/sindresorhus/DockProgress) - Show progress in your app's Dock icon
+- [Regex](https://github.com/sindresorhus/Regex) - Swifty regular expressions
 - [More…](https://github.com/search?q=user%3Asindresorhus+language%3Aswift)
 
 You might also like Sindre's [apps](https://sindresorhus.com/apps).

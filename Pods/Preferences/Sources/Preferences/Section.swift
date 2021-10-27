@@ -11,11 +11,11 @@ extension Preferences {
 		Preference key holding max width of section labels.
 		*/
 		private struct LabelWidthPreferenceKey: PreferenceKey {
-			typealias Value = CGFloat
+			typealias Value = Double
 
-			static var defaultValue: CGFloat = 0.0
+			static var defaultValue = 0.0
 
-			static func reduce(value: inout CGFloat, nextValue: () -> CGFloat) {
+			static func reduce(value: inout Double, nextValue: () -> Double) {
 				let next = nextValue()
 				value = next > value ? next : value
 			}
@@ -27,9 +27,8 @@ extension Preferences {
 		private struct LabelOverlay: View {
 			var body: some View {
 				GeometryReader { geometry in
-					Rectangle()
-						.fill(Color.clear)
-						.preference(key: LabelWidthPreferenceKey.self, value: geometry.size.width)
+					Color.clear
+						.preference(key: LabelWidthPreferenceKey.self, value: Double(geometry.size.width))
 				}
 			}
 		}
@@ -38,12 +37,12 @@ extension Preferences {
 		Convenience modifier for applying `LabelWidthPreferenceKey`.
 		*/
 		struct LabelWidthModifier: ViewModifier {
-			@Binding var maxWidth: CGFloat
+			@Binding var maximumWidth: Double
 
 			func body(content: Content) -> some View {
 				content
-					.onPreferenceChange(LabelWidthPreferenceKey.self) { newMaxWidth in
-						maxWidth = newMaxWidth
+					.onPreferenceChange(LabelWidthPreferenceKey.self) { newMaximumWidth in
+						maximumWidth = Double(newMaximumWidth)
 					}
 			}
 		}
@@ -51,24 +50,28 @@ extension Preferences {
 		public let label: AnyView
 		public let content: AnyView
 		public let bottomDivider: Bool
+		public let verticalAlignment: VerticalAlignment
 
 		/**
 		A section is responsible for controlling a single preference.
 
 		- Parameters:
 			- bottomDivider: Whether to place a `Divider` after the section content. Default is `false`.
+			- verticalAlignement: The vertical alignment of the section content.
 			- label: A view describing preference handled by this section.
 			- content: A content view.
 		*/
 		public init<Label: View, Content: View>(
 			bottomDivider: Bool = false,
+			verticalAlignment: VerticalAlignment = .firstTextBaseline,
 			label: @escaping () -> Label,
 			@ViewBuilder content: @escaping () -> Content
 		) {
 			self.label = label()
 				.overlay(LabelOverlay())
-				.eraseToAnyView()
+				.eraseToAnyView() // TODO: Remove use of `AnyView`.
 			self.bottomDivider = bottomDivider
+			self.verticalAlignment = verticalAlignment
 			let stack = VStack(alignment: .leading) { content() }
 			self.content = stack.eraseToAnyView()
 		}
@@ -79,11 +82,13 @@ extension Preferences {
 		- Parameters:
 			- title: A string describing preference handled by this section.
 			- bottomDivider: Whether to place a `Divider` after the section content. Default is `false`.
+			- verticalAlignement: The vertical alignment of the section content.
 			- content: A content view.
 		*/
 		public init<Content: View>(
 			title: String,
 			bottomDivider: Bool = false,
+			verticalAlignment: VerticalAlignment = .firstTextBaseline,
 			@ViewBuilder content: @escaping () -> Content
 		) {
 			let textLabel = {
@@ -93,11 +98,16 @@ extension Preferences {
 					.eraseToAnyView()
 			}
 
-			self.init(bottomDivider: bottomDivider, label: textLabel, content: content)
+			self.init(
+				bottomDivider: bottomDivider,
+				verticalAlignment: verticalAlignment,
+				label: textLabel,
+				content: content
+			)
 		}
 
 		public var body: some View {
-			HStack(alignment: .top) {
+			HStack(alignment: verticalAlignment) {
 				label
 					.alignmentGuide(.preferenceSectionLabel) { $0[.trailing] }
 				content

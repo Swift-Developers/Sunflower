@@ -5,7 +5,7 @@ extension Preferences {
 	/**
 	Function builder for `Preferences` components used in order to restrict types of child views to be of type `Section`.
 	*/
-	@_functionBuilder
+	@resultBuilder
 	public struct SectionBuilder {
 		public static func buildBlock(_ sections: Section...) -> [Section] {
 			sections
@@ -18,7 +18,8 @@ extension Preferences {
 	public struct Container: View {
 		private let sectionBuilder: () -> [Section]
 		private let contentWidth: Double
-		@State private var maxLabelWidth: CGFloat = 0.0
+		private let minimumLabelWidth: Double
+		@State private var maximumLabelWidth = 0.0
 
 		/**
 		Creates an instance of container component, which handles layout of stacked `Preferences.Section` views.
@@ -27,14 +28,17 @@ extension Preferences {
 
 		- Parameters:
 			- contentWidth: A fixed width of the container's content (excluding paddings).
+			- minimumLabelWidth: A minimum width for labels within this container. By default, it will fit to the largest label.
 			- builder: A view builder that creates `Preferences.Section`'s of this container.
 		*/
 		public init(
 			contentWidth: Double,
+			minimumLabelWidth: Double = 0,
 			@SectionBuilder builder: @escaping () -> [Section]
 		) {
 			self.sectionBuilder = builder
 			self.contentWidth = contentWidth
+			self.minimumLabelWidth = minimumLabelWidth
 		}
 
 		public var body: some View {
@@ -45,25 +49,20 @@ extension Preferences {
 					viewForSection(sections, index: index)
 				}
 			}
-			.modifier(Section.LabelWidthModifier(maxWidth: $maxLabelWidth))
+			.modifier(Section.LabelWidthModifier(maximumWidth: $maximumLabelWidth))
 			.frame(width: CGFloat(contentWidth), alignment: .leading)
-			.padding(.vertical, 20.0)
-			.padding(.horizontal, 30.0)
+			.padding(.vertical, 20)
+			.padding(.horizontal, 30)
 		}
 
+		@ViewBuilder
 		private func viewForSection(_ sections: [Section], index: Int) -> some View {
-			Group {
-				if index != sections.count - 1 && sections[index].bottomDivider {
-					Group {
-						sections[index]
-						Divider()
-							// Strangely doesn't work without width being specified. Probably because of custom alignment.
-							.frame(width: CGFloat(contentWidth), height: 20.0)
-							.alignmentGuide(.preferenceSectionLabel) { $0[.leading] + maxLabelWidth }
-					}
-				} else {
-					sections[index]
-				}
+			sections[index]
+			if index != sections.count - 1 && sections[index].bottomDivider {
+				Divider()
+					// Strangely doesn't work without width being specified. Probably because of custom alignment.
+					.frame(width: CGFloat(contentWidth), height: 20)
+					.alignmentGuide(.preferenceSectionLabel) { $0[.leading] + CGFloat(max(minimumLabelWidth, maximumLabelWidth)) }
 			}
 		}
 	}
